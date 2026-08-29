@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>GK Quiz Master</title>
 
@@ -18,56 +18,91 @@ content="width=device-width, initial-scale=1.0">
 }
 
 body {
+
     margin: 0;
+
     min-height: 100vh;
 
     background:
-    linear-gradient(135deg, #667eea, #764ba2);
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
 
     padding: 30px 20px;
 }
 
 .container {
+
     width: 100%;
+
     max-width: 900px;
 
     margin: auto;
+}
+
+.header {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 22px;
 
     text-align: center;
 
-    color: white;
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.18);
+
+    margin-bottom: 20px;
 }
 
 .logo {
-    font-size: 60px;
+
+    font-size: 50px;
 }
 
-h1 {
-    font-size: 42px;
+.header h1 {
+
     margin: 5px 0;
+
+    color: #667eea;
+
+    font-size: 35px;
 }
 
-.subtitle {
-    opacity: .9;
-    margin-bottom: 25px;
+.header p {
+
+    color: #777;
+
+    margin: 5px 0 20px;
 }
-
-
-/* USER AREA */
 
 .user-area {
-    background: rgba(255,255,255,.15);
 
-    border-radius: 15px;
+    display: flex;
 
-    padding: 15px;
+    justify-content: center;
 
-    margin-bottom: 25px;
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.user-name {
+
+    color: #555;
+
+    font-weight: bold;
 }
 
 .login-btn,
-.admin-btn,
-.logout-btn {
+.logout-btn,
+.admin-btn {
 
     border: none;
 
@@ -75,134 +110,167 @@ h1 {
 
     border-radius: 9px;
 
+    color: white;
+
     cursor: pointer;
 
-    font-weight: bold;
-
-    margin: 4px;
+    font-size: 14px;
 }
 
 .login-btn {
-    background: white;
-    color: #667eea;
-}
 
-.admin-btn {
-    background: #ffd43b;
-    color: #333;
+    background: #667eea;
 }
 
 .logout-btn {
+
     background: #dc3545;
-    color: white;
 }
 
+.admin-btn {
 
-/* LEVELS */
+    background: #333;
+}
 
 .levels {
 
     display: grid;
 
     grid-template-columns:
-    repeat(2, 1fr);
+        repeat(2, 1fr);
 
-    gap: 18px;
+    gap: 20px;
 }
 
 .level {
 
     background: white;
 
-    color: #333;
+    border-radius: 20px;
 
     padding: 25px;
 
-    border-radius: 18px;
-
-    cursor: pointer;
-
-    transition: .25s;
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,0.15);
 
     position: relative;
+
+    transition: 0.2s;
 }
 
 .level:hover {
-    transform: translateY(-5px);
+
+    transform:
+        translateY(-4px);
 }
 
-.level.locked {
-    opacity: .55;
+.level-number {
 
-    cursor: not-allowed;
-}
+    font-size: 14px;
 
-.level.locked:hover {
-    transform: none;
-}
-
-.level-icon {
-    font-size: 35px;
-}
-
-.level-title {
-    font-size: 23px;
+    color: #667eea;
 
     font-weight: bold;
+}
+
+.level h2 {
 
     margin: 8px 0;
+
 }
 
-.level-description {
+.level p {
+
     color: #777;
 
-    font-size: 14px;
+    line-height: 1.5;
 }
 
-.lock {
+.play {
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #667eea;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+.play:hover {
+
+    background: #5568d9;
+}
+
+.locked {
+
+    opacity: 0.65;
+}
+
+.lock-icon {
+
     position: absolute;
 
-    right: 18px;
+    top: 20px;
 
-    top: 18px;
+    right: 20px;
 
-    font-size: 24px;
+    font-size: 25px;
 }
 
-.status {
-    margin-top: 10px;
+.approved-badge {
 
-    font-size: 13px;
+    display: inline-block;
 
-    font-weight: bold;
+    background: #d4edda;
+
+    color: #155724;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    margin-top: 5px;
 }
 
+.pending-badge {
 
-/* NOTICE */
+    display: inline-block;
 
-.notice {
+    background: #fff3cd;
 
-    margin-top: 25px;
+    color: #856404;
 
-    background:
-    rgba(255,255,255,.15);
+    padding: 5px 10px;
 
-    padding: 15px;
+    border-radius: 20px;
 
-    border-radius: 12px;
+    font-size: 12px;
 
-    font-size: 14px;
+    margin-top: 5px;
 }
 
-
-@media(max-width:600px) {
-
-    h1 {
-        font-size: 34px;
-    }
+@media(max-width:700px) {
 
     .levels {
+
         grid-template-columns: 1fr;
+    }
+
+    .header h1 {
+
+        font-size: 28px;
     }
 
 }
@@ -218,261 +286,247 @@ h1 {
 <div class="container">
 
 
-    <div class="logo">
-        🧠
-    </div>
+    <!-- =========================
+         HEADER
+    ========================== -->
 
+    <div class="header">
 
-    <h1>
-        GK Quiz Master
-    </h1>
-
-
-    <div class="subtitle">
-        General Knowledge Challenge
-    </div>
-
-
-    <!-- USER -->
-
-    <div class="user-area">
-
-        <div id="userInfo">
-            You are playing as Guest
+        <div class="logo">
+            🧠
         </div>
 
+        <h1>
+            GK Quiz Master
+        </h1>
 
-        <div id="userButtons">
+        <p>
+            General Knowledge Challenge
+        </p>
 
-            <button
-            class="login-btn"
-            onclick="goLogin()">
 
-                🔐 Login
-
-            </button>
+        <div
+            class="user-area"
+            id="userArea">
 
         </div>
 
     </div>
 
 
-
-    <!-- LEVELS -->
+    <!-- =========================
+         LEVELS
+    ========================== -->
 
     <div class="levels">
 
 
         <!-- LEVEL 1 -->
 
-        <div
-        class="level"
-        onclick="openLevel(1)">
+        <div class="level">
 
-            <div class="level-icon">
-                🟢
+            <div class="level-number">
+                LEVEL 1
             </div>
 
-            <div class="level-title">
-                Level 1
-            </div>
+            <h2>
+                🟢 Basic General Knowledge
+            </h2>
 
-            <div class="level-description">
-                Basic General Knowledge
-            </div>
+            <p>
+                50 Questions<br>
+                10 Minutes<br>
+                Pass Mark: 90%
+            </p>
 
-            <div class="status">
-                ✓ Available
-            </div>
+            <button
+                class="play"
+                onclick="startLevel(1)">
+
+                ▶ Start Level 1
+
+            </button>
 
         </div>
-
 
 
         <!-- LEVEL 2 -->
 
-        <div
-        class="level"
-        onclick="openLevel(2)">
+        <div class="level">
 
-            <div class="level-icon">
-                🔵
+            <div class="level-number">
+                LEVEL 2
             </div>
 
-            <div class="level-title">
-                Level 2
-            </div>
+            <h2>
+                🔵 General Knowledge
+            </h2>
 
-            <div class="level-description">
-                General Knowledge
-            </div>
+            <p>
+                10 Questions<br>
+                60 Seconds<br>
+                Pass Mark: 90%
+            </p>
 
-            <div class="status">
-                ✓ Available
-            </div>
+            <button
+                class="play"
+                onclick="startLevel(2)">
+
+                ▶ Start Level 2
+
+            </button>
 
         </div>
-
 
 
         <!-- LEVEL 3 -->
 
         <div
-        class="level locked"
-        id="level3"
-        onclick="openLevel(3)">
+            class="level"
+            id="level3">
 
-            <div
-            class="lock"
-            id="lock3">
-
+            <div class="lock-icon"
+                 id="lock3">
                 🔒
-
             </div>
 
-            <div class="level-icon">
-                🟡
+            <div class="level-number">
+                LEVEL 3
             </div>
 
-            <div class="level-title">
-                Level 3
-            </div>
+            <h2>
+                🟡 Intermediate GK
+            </h2>
 
-            <div class="level-description">
-                Intermediate GK
-            </div>
-
-            <div
-            class="status"
-            id="status3">
-
+            <p>
+                10 Questions<br>
+                60 Seconds<br>
                 Admin Approval Required
+            </p>
 
-            </div>
+            <button
+                class="play"
+                id="button3"
+                onclick="startLevel(3)">
+
+                🔐 Login Required
+
+            </button>
 
         </div>
-
 
 
         <!-- LEVEL 4 -->
 
         <div
-        class="level locked"
-        id="level4"
-        onclick="openLevel(4)">
+            class="level"
+            id="level4">
 
-            <div
-            class="lock"
-            id="lock4">
-
+            <div class="lock-icon"
+                 id="lock4">
                 🔒
-
             </div>
 
-            <div class="level-icon">
-                🟠
+            <div class="level-number">
+                LEVEL 4
             </div>
 
-            <div class="level-title">
-                Level 4
-            </div>
+            <h2>
+                🟠 Advanced GK
+            </h2>
 
-            <div class="level-description">
-                Advanced GK
-            </div>
-
-            <div
-            class="status"
-            id="status4">
-
+            <p>
+                10 Questions<br>
+                60 Seconds<br>
                 Admin Approval Required
+            </p>
 
-            </div>
+            <button
+                class="play"
+                id="button4"
+                onclick="startLevel(4)">
+
+                🔐 Login Required
+
+            </button>
 
         </div>
-
 
 
         <!-- LEVEL 5 -->
 
         <div
-        class="level locked"
-        id="level5"
-        onclick="openLevel(5)">
+            class="level"
+            id="level5">
 
-            <div
-            class="lock"
-            id="lock5">
-
+            <div class="lock-icon"
+                 id="lock5">
                 🔒
-
             </div>
 
-            <div class="level-icon">
-                🔴
+            <div class="level-number">
+                LEVEL 5
             </div>
 
-            <div class="level-title">
-                Level 5
-            </div>
+            <h2>
+                🔴 Expert IR & GK
+            </h2>
 
-            <div class="level-description">
-                Expert / Competitive GK
-            </div>
-
-            <div
-            class="status"
-            id="status5">
-
+            <p>
+                10 Questions<br>
+                60 Seconds<br>
                 Admin Approval Required
+            </p>
 
-            </div>
+            <button
+                class="play"
+                id="button5"
+                onclick="startLevel(5)">
+
+                🔐 Login Required
+
+            </button>
 
         </div>
 
 
     </div>
-
-
-    <div class="notice">
-
-        🔐 Levels 3, 4 and 5 are available
-        only to Admin-approved accounts.
-
-    </div>
-
 
 </div>
 
 
 <script>
 
-
-/* =========================
+/* =========================================
    GET CURRENT USER
-========================= */
+========================================= */
 
 function getCurrentUser() {
 
-    const savedUser =
-        JSON.parse(
-            localStorage.getItem(
-                "currentUser"
-            )
-        );
+    return JSON.parse(
+        localStorage.getItem(
+            "currentUser"
+        )
+    );
+
+}
 
 
-    if (!savedUser) {
+/* =========================================
+   GET USER FROM DATABASE
+========================================= */
+
+function getLatestUser() {
+
+    const currentUser =
+        getCurrentUser();
+
+
+    if (!currentUser) {
 
         return null;
-
     }
 
-
-    /*
-       Get the latest version of
-       the user from the users list.
-    */
 
     const users =
         JSON.parse(
@@ -482,124 +536,131 @@ function getCurrentUser() {
         ) || [];
 
 
-    const latestUser =
-        users.find(
-            user =>
+    return users.find(
+        function(user) {
+
+            return (
                 user.email ===
-                savedUser.email
-        );
+                currentUser.email
+            );
 
-
-    return latestUser || savedUser;
+        }
+    ) || null;
 
 }
 
 
-/* =========================
-   UPDATE USER DISPLAY
-========================= */
+/* =========================================
+   HEADER
+========================================= */
 
-function updateUserDisplay() {
+function updateHeader() {
+
+    const area =
+        document.getElementById(
+            "userArea"
+        );
 
 
-    const user =
+    area.innerHTML = "";
+
+
+    const currentUser =
         getCurrentUser();
 
 
-    const info =
-        document.getElementById(
-            "userInfo"
-        );
+    if (!currentUser) {
 
+        area.innerHTML = `
 
-    const buttons =
-        document.getElementById(
-            "userButtons"
-        );
+            <span class="user-name">
+                You are playing as Guest
+            </span>
 
-
-    if (!user) {
-
-        info.innerText =
-            "You are playing as Guest";
-
-        buttons.innerHTML =
-
-            `
             <button
-            class="login-btn"
-            onclick="goLogin()">
+                class="login-btn"
+                onclick="goLogin()">
 
-                🔐 Login
+                🔐 Login / Register
 
             </button>
-            `;
+
+        `;
 
         return;
-
     }
 
 
-    info.innerText =
-        "👋 Welcome, " +
-        user.name;
+    const user =
+        getLatestUser();
 
 
-    let html = "";
+    const approved =
+        user &&
+        user.approved === true;
 
 
-    if (
-        user.email ===
-        "admin@gkquiz.com"
-    ) {
+    area.innerHTML = `
 
-        html +=
+        <span class="user-name">
+
+            👤 Welcome,
+            ${escapeHTML(
+                currentUser.name ||
+                currentUser.email
+            )}
+
+        </span>
+
+        ${
+            approved
+
+            ?
 
             `
-            <button
-            class="admin-btn"
-            onclick="goAdmin()">
+            <span class="approved-badge">
+                ✓ Approved
+            </span>
+            `
 
-                👨‍💼 Admin Dashboard
+            :
 
-            </button>
-            `;
+            `
+            <span class="pending-badge">
+                ⏳ Pending Approval
+            </span>
+            `
+        }
 
-    }
-
-
-    html +=
-
-        `
         <button
-        class="logout-btn"
-        onclick="logout()">
+            class="logout-btn"
+            onclick="logout()">
 
             Logout
 
         </button>
-        `;
 
-
-    buttons.innerHTML =
-        html;
-
+    `;
 
 }
 
 
-/* =========================
-   UPDATE LEVEL ACCESS
-========================= */
+/* =========================================
+   UPDATE LEVELS
+========================================= */
 
 function updateLevels() {
 
-
-    const user =
+    const currentUser =
         getCurrentUser();
 
 
+    const user =
+        getLatestUser();
+
+
     const approved =
+        currentUser &&
         user &&
         user.approved === true;
 
@@ -610,12 +671,10 @@ function updateLevels() {
         level++
     ) {
 
-
-        const box =
+        const button =
             document.getElementById(
-                "level" + level
+                "button" + level
             );
-
 
         const lock =
             document.getElementById(
@@ -623,50 +682,52 @@ function updateLevels() {
             );
 
 
-        const status =
-            document.getElementById(
-                "status" + level
-            );
-
-
         if (approved) {
 
+            button.innerText =
+                "▶ Start Level " +
+                level;
 
-            box.classList.remove(
-                "locked"
-            );
+            button.onclick =
+                function() {
 
+                    startLevel(level);
+
+                };
 
             lock.innerText =
                 "🔓";
 
+        }
 
-            status.innerText =
-                "✓ Approved Access";
+        else {
 
+            button.innerText =
+                currentUser
+                ?
+                "⏳ Waiting for Approval"
+                :
+                "🔐 Login Required";
 
-            status.style.color =
-                "#28a745";
+            button.onclick =
+                function() {
 
+                    if (!currentUser) {
 
-        } else {
+                        goLogin();
 
+                    } else {
 
-            box.classList.add(
-                "locked"
-            );
+                        alert(
+                            "⏳ Your account is waiting for Admin approval."
+                        );
 
+                    }
+
+                };
 
             lock.innerText =
                 "🔒";
-
-
-            status.innerText =
-                "Admin Approval Required";
-
-
-            status.style.color =
-                "#dc3545";
 
         }
 
@@ -675,12 +736,13 @@ function updateLevels() {
 }
 
 
-/* =========================
-   OPEN LEVEL
-========================= */
+/* =========================================
+   START LEVEL
+========================================= */
 
-function openLevel(level) {
+function startLevel(level) {
 
+    /* Level 1 & 2 */
 
     if (
         level === 1 ||
@@ -692,40 +754,41 @@ function openLevel(level) {
             level;
 
         return;
-
     }
 
 
-    const user =
+    /* Level 3-5 */
+
+    const currentUser =
         getCurrentUser();
 
 
-    if (!user) {
+    if (!currentUser) {
 
         alert(
-            "🔐 Please login first.\n\n" +
-            "Levels 3, 4 and 5 require " +
-            "an approved account."
+            "🔐 Please login first."
         );
 
         goLogin();
 
         return;
-
     }
 
 
+    const user =
+        getLatestUser();
+
+
     if (
+        !user ||
         user.approved !== true
     ) {
 
         alert(
-            "⏳ Your account has not been approved yet.\n\n" +
-            "Please wait for Admin approval."
+            "⏳ Your account has not been approved by Admin yet."
         );
 
         return;
-
     }
 
 
@@ -736,9 +799,9 @@ function openLevel(level) {
 }
 
 
-/* =========================
+/* =========================================
    LOGIN
-========================= */
+========================================= */
 
 function goLogin() {
 
@@ -748,21 +811,9 @@ function goLogin() {
 }
 
 
-/* =========================
-   ADMIN
-========================= */
-
-function goAdmin() {
-
-    window.location.href =
-        "admin.html";
-
-}
-
-
-/* =========================
+/* =========================================
    LOGOUT
-========================= */
+========================================= */
 
 function logout() {
 
@@ -770,23 +821,36 @@ function logout() {
         "currentUser"
     );
 
-    updateUserDisplay();
-
-    updateLevels();
+    window.location.reload();
 
 }
 
 
-/* =========================
-   START
-========================= */
+/* =========================================
+   ESCAPE HTML
+========================================= */
 
-updateUserDisplay();
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+updateHeader();
 
 updateLevels();
 
 </script>
-
 
 </body>
 
