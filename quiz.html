@@ -476,12 +476,15 @@ function createQuiz() {
         return;
     }
 
-    quizQuestions =
-        shuffle([...bank]).slice(
-            0,
-            Math.min(
-                QUESTIONS_PER_QUIZ,
-                bank.length
+    const questionsToUse =
+    currentLevel === 1 ? 50 : QUESTIONS_PER_QUIZ;
+
+quizQuestions =
+    shuffle([...bank]).slice(
+        0,
+        Math.min(
+            questionsToUse,
+            bank.length
             )
         );
 
