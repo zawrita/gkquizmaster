@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -6,16 +7,25 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+   content="width=device-width, initial-scale=1.0">
 
 <title>GK Quiz Master</title>
 
 <style>
 
+/* =========================
+   RESET
+========================= */
+
 * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
+
+
+/* =========================
+   BODY
+========================= */
 
 body {
 
@@ -39,6 +49,11 @@ body {
     padding: 20px;
 }
 
+
+/* =========================
+   QUIZ BOX
+========================= */
+
 .quiz-box {
 
     width: 100%;
@@ -56,6 +71,11 @@ body {
         rgba(0,0,0,0.2);
 }
 
+
+/* =========================
+   TOP
+========================= */
+
 .top {
 
     display: flex;
@@ -67,6 +87,7 @@ body {
     margin-bottom: 15px;
 }
 
+
 .level-title {
 
     font-size: 20px;
@@ -76,19 +97,28 @@ body {
     color: #667eea;
 }
 
+
 .timer {
 
-    font-size: 18px;
+    font-size: 20px;
 
     font-weight: bold;
 }
+
+
+/* =========================
+   PROGRESS
+========================= */
 
 .progress-text {
 
     color: #777;
 
     margin-bottom: 8px;
+
+    font-size: 16px;
 }
+
 
 .progress-container {
 
@@ -105,6 +135,7 @@ body {
     overflow: hidden;
 }
 
+
 .progress-bar {
 
     width: 0%;
@@ -118,16 +149,26 @@ body {
     transition: width 0.3s;
 }
 
+
+/* =========================
+   QUESTION
+========================= */
+
 .question {
 
     font-size: 25px;
 
     font-weight: bold;
 
-    line-height: 1.4;
+    line-height: 1.5;
 
     margin-bottom: 25px;
 }
+
+
+/* =========================
+   ANSWERS
+========================= */
 
 .answer {
 
@@ -152,12 +193,14 @@ body {
     transition: 0.2s;
 }
 
+
 .answer:hover {
 
     background: #f1f2ff;
 
     border-color: #667eea;
 }
+
 
 .answer.correct {
 
@@ -168,6 +211,7 @@ body {
     color: #155724;
 }
 
+
 .answer.wrong {
 
     background: #f8d7da !important;
@@ -176,6 +220,11 @@ body {
 
     color: #721c24;
 }
+
+
+/* =========================
+   MESSAGE
+========================= */
 
 .message {
 
@@ -189,6 +238,11 @@ body {
 
     margin-top: 15px;
 }
+
+
+/* =========================
+   NEXT BUTTON
+========================= */
 
 .next {
 
@@ -211,10 +265,16 @@ body {
     cursor: pointer;
 }
 
+
 .next:hover {
 
     background: #5568d9;
 }
+
+
+/* =========================
+   RESULT
+========================= */
 
 .result {
 
@@ -223,10 +283,12 @@ body {
     text-align: center;
 }
 
+
 .result h1 {
 
     font-size: 32px;
 }
+
 
 .score {
 
@@ -239,12 +301,14 @@ body {
     margin: 20px;
 }
 
+
 .percentage {
 
     font-size: 25px;
 
     margin-bottom: 10px;
 }
+
 
 .status {
 
@@ -254,6 +318,7 @@ body {
 
     margin-bottom: 20px;
 }
+
 
 .result-message {
 
@@ -265,6 +330,11 @@ body {
 
     white-space: pre-line;
 }
+
+
+/* =========================
+   RESULT BUTTONS
+========================= */
 
 .restart,
 .home,
@@ -285,20 +355,28 @@ body {
     margin: 5px;
 }
 
+
 .restart {
 
     background: #667eea;
 }
+
 
 .home {
 
     background: #555;
 }
 
+
 .next-level {
 
     background: #28a745;
 }
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px) {
 
@@ -307,10 +385,12 @@ body {
         padding: 25px;
     }
 
+
     .question {
 
         font-size: 21px;
     }
+
 
     .answer {
 
@@ -319,9 +399,10 @@ body {
         padding: 14px;
     }
 
+
     .timer {
 
-        font-size: 16px;
+        font-size: 17px;
     }
 
 }
@@ -330,171 +411,169 @@ body {
 
 </head>
 
-
 <body>
 
-
-<!-- =========================
+<!-- =====================================================
      QUIZ BOX
-========================= -->
+===================================================== -->
 
-<div class="quiz-box"
-     id="quizBox">
+<div class="quiz-box" id="quizBox">
 
-
-    <div class="top">
-
-        <div class="level-title"
-             id="levelTitle">
-
-            Level 1
-
-        </div>
+```
+<div class="top">
 
 
-        <div class="timer"
-             id="timer">
+    <div class="level-title"
+         id="levelTitle">
 
-            ⏱️ 10:00
-
-        </div>
+        Level 1
 
     </div>
 
 
-    <div class="progress-text"
-         id="progressText">
+    <div class="timer"
+         id="timer">
 
-        Question 1 / 50
-
-    </div>
-
-
-    <div class="progress-container">
-
-        <div class="progress-bar"
-             id="progressBar">
-
-        </div>
+        ⏱️ 10:00
 
     </div>
-
-
-    <div class="question"
-         id="question">
-
-    </div>
-
-
-    <div id="answers">
-
-    </div>
-
-
-    <div class="message"
-         id="message">
-
-    </div>
-
-
-    <button class="next"
-            id="nextButton"
-            onclick="nextQuestion()">
-
-        Next →
-
-    </button>
 
 
 </div>
 
 
+<div class="progress-text"
+     id="progressText">
 
-<!-- =========================
+    Question 1 / 50
+
+</div>
+
+
+<div class="progress-container">
+
+    <div class="progress-bar"
+         id="progressBar">
+
+    </div>
+
+</div>
+
+
+<div class="question"
+     id="question">
+
+</div>
+
+
+<div id="answers">
+
+</div>
+
+
+<div class="message"
+     id="message">
+
+</div>
+
+
+<button class="next"
+        id="nextButton"
+        onclick="nextQuestion()">
+
+    Next →
+
+</button>
+```
+
+</div>
+
+<!-- =====================================================
      RESULT BOX
-========================= -->
+===================================================== -->
 
 <div class="quiz-box result"
      id="resultBox">
 
+```
+<h1 id="resultTitle">
 
-    <h1 id="resultTitle">
+    🎉 Quiz Completed!
 
-        🎉 Quiz Completed!
-
-    </h1>
-
-
-    <p>Your Score</p>
+</h1>
 
 
-    <div class="score"
-         id="score">
-
-        0 / 50
-
-    </div>
+<p>Your Score</p>
 
 
-    <div class="percentage"
-         id="percentage">
+<div class="score"
+     id="score">
 
-        0%
-
-    </div>
-
-
-    <div class="status"
-         id="status">
-
-    </div>
-
-
-    <div class="result-message"
-         id="resultMessage">
-
-    </div>
-
-
-    <button class="restart"
-            onclick="restartQuiz()">
-
-        🔄 Try Again
-
-    </button>
-
-
-    <button class="next-level"
-            id="nextLevelButton"
-            onclick="goNextLevel()"
-            style="display:none;">
-
-        🔓 Next Level
-
-    </button>
-
-
-    <button class="home"
-            onclick="goHome()">
-
-        🏠 Home
-
-    </button>
-
+    0 / 50
 
 </div>
 
 
+<div class="percentage"
+     id="percentage">
 
-<!-- =========================
+    0%
+
+</div>
+
+
+<div class="status"
+     id="status">
+
+</div>
+
+
+<div class="result-message"
+     id="resultMessage">
+
+</div>
+
+
+<button class="restart"
+        onclick="restartQuiz()">
+
+    🔄 Try Again
+
+</button>
+
+
+<button class="next-level"
+        id="nextLevelButton"
+        onclick="goNextLevel()"
+        style="display:none;">
+
+    🔓 Next Level
+
+</button>
+
+
+<button class="home"
+        onclick="goHome()">
+
+    🏠 Home
+
+</button>
+```
+
+</div>
+
+<!-- =====================================================
      QUESTION BANK
-========================= -->
+===================================================== -->
 
-<script src="questions.js"></script>
+<!--
+     IMPORTANT:
+     questions.js contains your ASEAN 50 questions
+-->
 
+<script src="questions.js?v=2"></script>
 
 <script>
-
 
 /* =====================================================
    QUIZ SETTINGS
@@ -502,25 +581,36 @@ body {
 
 
 /*
-   IMPORTANT:
-
-   Level 1
-   = 50 questions
-   = 10 minutes
-   = 600 seconds
-
-   Level 2-5
-   = 10 questions
-   = 60 seconds
+   LEVEL 1
+   -------------------------
+   50 QUESTIONS
+   10 MINUTES
+   600 SECONDS
 */
+
 
 const LEVEL_1_QUESTIONS = 50;
 
-const OTHER_LEVEL_QUESTIONS = 10;
-
 const LEVEL_1_TIME = 600;
 
+
+/*
+   LEVEL 2 - 5
+   -------------------------
+   10 QUESTIONS
+   60 SECONDS
+*/
+
+
+const OTHER_LEVEL_QUESTIONS = 10;
+
 const OTHER_LEVEL_TIME = 60;
+
+
+/*
+   PASS MARK
+*/
+
 
 const PASS_MARK = 90;
 
@@ -542,7 +632,7 @@ let answered = false;
 
 let timeLeft = 0;
 
-let timer;
+let timer = null;
 
 
 
@@ -556,7 +646,7 @@ const urlParams =
     );
 
 
-if (urlParams.get("level")) {
+if (urlParams.has("level")) {
 
     currentLevel =
         Number(
@@ -566,17 +656,35 @@ if (urlParams.get("level")) {
 }
 
 
+/* =====================================================
+   CHECK VALID LEVEL
+===================================================== */
+
+if (
+    !Number.isInteger(currentLevel) ||
+    currentLevel < 1 ||
+    currentLevel > 5
+) {
+
+    alert("Invalid quiz level.");
+
+    window.location.href =
+        "index.html";
+
+}
+
+
 
 /* =====================================================
-   CHECK LEVEL
+   CHECK LEVEL PERMISSION
 ===================================================== */
 
 function checkLevelPermission() {
 
 
     /*
-       Level 1 and Level 2
-       are public.
+       LEVEL 1 & 2
+       PUBLIC
     */
 
     if (
@@ -590,28 +698,8 @@ function checkLevelPermission() {
 
 
     /*
-       Invalid level
-    */
-
-    if (
-        currentLevel < 1 ||
-        currentLevel > 5
-    ) {
-
-        alert(
-            "Invalid quiz level."
-        );
-
-        window.location.href =
-            "index.html";
-
-        return false;
-
-    }
-
-
-    /*
-       Get current user
+       LEVEL 3 - 5
+       LOGIN REQUIRED
     */
 
     const currentUser =
@@ -621,10 +709,6 @@ function checkLevelPermission() {
             )
         );
 
-
-    /*
-       Login required
-    */
 
     if (!currentUser) {
 
@@ -643,7 +727,7 @@ function checkLevelPermission() {
 
 
     /*
-       Get users
+       GET USERS
     */
 
     const users =
@@ -655,7 +739,7 @@ function checkLevelPermission() {
 
 
     /*
-       Find user
+       FIND USER
     */
 
     const user =
@@ -670,10 +754,6 @@ function checkLevelPermission() {
             }
         );
 
-
-    /*
-       User not found
-    */
 
     if (!user) {
 
@@ -694,7 +774,7 @@ function checkLevelPermission() {
 
 
     /*
-       Admin approval
+       ADMIN APPROVAL
     */
 
     if (
@@ -783,7 +863,7 @@ function createQuiz() {
 
 
     /*
-       Get question bank
+       GET BANK
     */
 
     const bank =
@@ -791,13 +871,16 @@ function createQuiz() {
 
 
     /*
-       Check bank
+       QUESTION BANK NOT FOUND
     */
 
-    if (!bank) {
+    if (
+        !Array.isArray(bank)
+    ) {
 
         alert(
-            "Question bank not found!"
+            "Question bank not found for Level " +
+            currentLevel
         );
 
         window.location.href =
@@ -809,79 +892,158 @@ function createQuiz() {
 
 
     /*
-       LEVEL 1
-
-       Use ALL 50 questions.
-
-       No slicing to 10.
+       DETERMINE NUMBER OF QUESTIONS
     */
+
 
     let questionsToUse;
 
+    let quizTime;
+
+
+    /*
+       =========================
+       LEVEL 1
+       =========================
+
+       ALWAYS USE ALL 50
+    */
 
     if (
         currentLevel === 1
     ) {
 
         questionsToUse =
-            LEVEL_1_QUESTIONS;
+            50;
 
-    } else {
-
-        questionsToUse =
-            OTHER_LEVEL_QUESTIONS;
+        quizTime =
+            600;
 
     }
 
 
     /*
-       Create quiz
+       =========================
+       LEVEL 2 - 5
+       =========================
     */
 
-    quizQuestions =
-        shuffle(
-            [...bank]
-        ).slice(
-            0,
-            Math.min(
-                questionsToUse,
-                bank.length
-            )
-        );
+    else {
+
+        questionsToUse =
+            10;
+
+        quizTime =
+            60;
+
+    }
 
 
     /*
-       Reset
+       IMPORTANT CHECK
+    */
+
+    if (
+        currentLevel === 1 &&
+        bank.length < 50
+    ) {
+
+        alert(
+            "Level 1 needs 50 questions.\n\n" +
+            "Current questions found: " +
+            bank.length
+        );
+
+        return;
+
+    }
+
+
+    /*
+       LEVEL 1
+       -------------------------
+       DO NOT RANDOMLY REMOVE
+       QUESTIONS.
+
+       Use all 50 questions.
+    */
+
+    if (
+        currentLevel === 1
+    ) {
+
+        quizQuestions =
+            [...bank];
+
+    }
+
+
+    /*
+       LEVEL 2 - 5
+       -------------------------
+       Randomly select 10.
+    */
+
+    else {
+
+        quizQuestions =
+            shuffle(
+                [...bank]
+            ).slice(
+                0,
+                Math.min(
+                    questionsToUse,
+                    bank.length
+                )
+            );
+
+    }
+
+
+    /*
+       RESET QUIZ
     */
 
     currentQuestion = 0;
 
     score = 0;
 
+    answered = false;
+
 
     /*
-       Show quiz
+       UPDATE TIMER SETTING
+    */
+
+    timeLeft =
+        quizTime;
+
+
+    /*
+       SHOW QUIZ
     */
 
     document.getElementById(
         "quizBox"
-    ).style.display = "block";
+    ).style.display =
+        "block";
 
 
     document.getElementById(
         "resultBox"
-    ).style.display = "none";
+    ).style.display =
+        "none";
 
 
     /*
-       Load first question
+       LOAD FIRST QUESTION
     */
 
     loadQuestion();
 
 
     /*
-       Start timer
+       START TIMER
     */
 
     startTimer();
@@ -901,7 +1063,7 @@ function loadQuestion() {
 
 
     /*
-       Get current question
+       GET QUESTION
     */
 
     const question =
@@ -911,7 +1073,7 @@ function loadQuestion() {
 
 
     /*
-       Total questions
+       TOTAL
     */
 
     const total =
@@ -919,7 +1081,7 @@ function loadQuestion() {
 
 
     /*
-       Level title
+       LEVEL TITLE
     */
 
     document.getElementById(
@@ -930,7 +1092,7 @@ function loadQuestion() {
 
 
     /*
-       Question number
+       QUESTION NUMBER
     */
 
     document.getElementById(
@@ -943,7 +1105,7 @@ function loadQuestion() {
 
 
     /*
-       Question
+       QUESTION TEXT
     */
 
     document.getElementById(
@@ -953,7 +1115,7 @@ function loadQuestion() {
 
 
     /*
-       Progress
+       PROGRESS BAR
     */
 
     const progress =
@@ -971,7 +1133,7 @@ function loadQuestion() {
 
 
     /*
-       Clear message
+       CLEAR MESSAGE
     */
 
     document.getElementById(
@@ -980,7 +1142,7 @@ function loadQuestion() {
 
 
     /*
-       Answer container
+       CLEAR ANSWERS
     */
 
     const answersDiv =
@@ -993,7 +1155,11 @@ function loadQuestion() {
 
 
     /*
-       Shuffle answers
+       SHUFFLE ANSWERS
+
+       IMPORTANT:
+       Original answer index
+       remains unchanged.
     */
 
     const answers =
@@ -1016,7 +1182,7 @@ function loadQuestion() {
 
 
     /*
-       Create answer buttons
+       CREATE ANSWER BUTTONS
     */
 
     answers.forEach(
@@ -1042,7 +1208,7 @@ function loadQuestion() {
 
 
             /*
-               Store correct answer
+               TRUE = CORRECT
             */
 
             button.dataset.correct =
@@ -1053,7 +1219,7 @@ function loadQuestion() {
 
 
             /*
-               Click event
+               CLICK
             */
 
             button.onclick =
@@ -1075,8 +1241,7 @@ function loadQuestion() {
 
 
     /*
-       Finish button
-       on final question
+       NEXT BUTTON TEXT
     */
 
     if (
@@ -1089,7 +1254,9 @@ function loadQuestion() {
         ).innerText =
             "Finish Quiz ✓";
 
-    } else {
+    }
+
+    else {
 
         document.getElementById(
             "nextButton"
@@ -1110,7 +1277,7 @@ function checkAnswer(button) {
 
 
     /*
-       Prevent multiple answers
+       ALREADY ANSWERED
     */
 
     if (answered) {
@@ -1124,7 +1291,7 @@ function checkAnswer(button) {
 
 
     /*
-       Get all buttons
+       ALL ANSWERS
     */
 
     const buttons =
@@ -1134,7 +1301,7 @@ function checkAnswer(button) {
 
 
     /*
-       Check answer
+       CHECK
     */
 
     const isCorrect =
@@ -1143,7 +1310,7 @@ function checkAnswer(button) {
 
 
     /*
-       Correct
+       CORRECT
     */
 
     if (isCorrect) {
@@ -1172,12 +1339,11 @@ function checkAnswer(button) {
         ).style.color =
             "#28a745";
 
-
     }
 
 
     /*
-       Wrong
+       WRONG
     */
 
     else {
@@ -1193,12 +1359,11 @@ function checkAnswer(button) {
 
 
         /*
-           Show correct answer
+           SHOW CORRECT ANSWER
         */
 
         buttons.forEach(
             function(btn) {
-
 
                 if (
                     btn.dataset.correct ===
@@ -1243,7 +1408,7 @@ function nextQuestion() {
 
 
     /*
-       Require answer
+       ANSWER REQUIRED
     */
 
     if (!answered) {
@@ -1266,14 +1431,14 @@ function nextQuestion() {
 
 
     /*
-       Next
+       MOVE TO NEXT
     */
 
     currentQuestion++;
 
 
     /*
-       More questions
+       MORE QUESTIONS
     */
 
     if (
@@ -1287,7 +1452,7 @@ function nextQuestion() {
 
 
     /*
-       Quiz finished
+       FINISH
     */
 
     else {
@@ -1308,7 +1473,7 @@ function startTimer() {
 
 
     /*
-       Clear old timer
+       STOP OLD TIMER
     */
 
     clearInterval(
@@ -1317,8 +1482,7 @@ function startTimer() {
 
 
     /*
-       Level 1
-       = 600 seconds
+       SET TIME
     */
 
     if (
@@ -1326,29 +1490,27 @@ function startTimer() {
     ) {
 
         timeLeft =
-            LEVEL_1_TIME;
+            600;
+
+    }
+
+    else {
+
+        timeLeft =
+            60;
 
     }
 
 
     /*
-       Other levels
-       = 60 seconds
+       DISPLAY
     */
-
-    else {
-
-        timeLeft =
-            OTHER_LEVEL_TIME;
-
-    }
-
 
     updateTimerDisplay();
 
 
     /*
-       Start countdown
+       COUNTDOWN
     */
 
     timer =
@@ -1363,7 +1525,7 @@ function startTimer() {
 
 
                 /*
-                   Time over
+                   TIME OVER
                 */
 
                 if (
@@ -1432,7 +1594,7 @@ function finishQuiz() {
 
 
     /*
-       Stop timer
+       PREVENT DOUBLE FINISH
     */
 
     clearInterval(
@@ -1441,27 +1603,7 @@ function finishQuiz() {
 
 
     /*
-       Hide quiz
-    */
-
-    document.getElementById(
-        "quizBox"
-    ).style.display =
-        "none";
-
-
-    /*
-       Show result
-    */
-
-    document.getElementById(
-        "resultBox"
-    ).style.display =
-        "block";
-
-
-    /*
-       Total
+       TOTAL
     */
 
     const total =
@@ -1469,7 +1611,7 @@ function finishQuiz() {
 
 
     /*
-       Percentage
+       PERCENTAGE
     */
 
     const percentage =
@@ -1482,7 +1624,27 @@ function finishQuiz() {
 
 
     /*
-       Display score
+       HIDE QUIZ
+    */
+
+    document.getElementById(
+        "quizBox"
+    ).style.display =
+        "none";
+
+
+    /*
+       SHOW RESULT
+    */
+
+    document.getElementById(
+        "resultBox"
+    ).style.display =
+        "block";
+
+
+    /*
+       SCORE
     */
 
     document.getElementById(
@@ -1493,6 +1655,10 @@ function finishQuiz() {
         total;
 
 
+    /*
+       PERCENTAGE
+    */
+
     document.getElementById(
         "percentage"
     ).innerText =
@@ -1501,7 +1667,7 @@ function finishQuiz() {
 
 
     /*
-       Save best score
+       SAVE BEST SCORE
     */
 
     const bestKey =
@@ -1570,7 +1736,7 @@ function finishQuiz() {
 
 
         /*
-           Unlock next level
+           UNLOCK NEXT LEVEL
         */
 
         const currentUnlocked =
@@ -1596,7 +1762,7 @@ function finishQuiz() {
 
 
         /*
-           Next level button
+           NEXT LEVEL BUTTON
         */
 
         if (
@@ -1724,11 +1890,10 @@ function goHome() {
 
 
 /* =====================================================
-   START QUIZ
+   START
 ===================================================== */
 
 createQuiz();
-
 
 </script>
 
