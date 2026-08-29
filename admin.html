@@ -1,17 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GK Quiz Master - Admin</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -20,292 +14,123 @@ content="width=device-width, initial-scale=1.0">
 body {
     margin: 0;
     min-height: 100vh;
-
-    background:
-    linear-gradient(135deg, #667eea, #764ba2);
-
-    padding: 25px 15px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    padding: 30px 20px;
 }
 
 .container {
     width: 100%;
     max-width: 1100px;
-
     margin: auto;
 }
 
-
-/* HEADER */
-
 .header {
-
     background: white;
-
+    padding: 25px 30px;
     border-radius: 20px;
-
-    padding: 22px 25px;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
-
     margin-bottom: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
 }
 
 .header h1 {
     margin: 0;
-
-    color: #333;
+    color: #667eea;
 }
 
 .header p {
     margin: 5px 0 0;
-
     color: #777;
 }
 
 .logout {
-
-    border: none;
-
     background: #dc3545;
-
     color: white;
-
-    padding: 11px 18px;
-
-    border-radius: 9px;
-
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
     cursor: pointer;
-
-    font-weight: bold;
+    font-size: 15px;
 }
 
-
-/* STATS */
-
 .stats {
-
     display: grid;
-
-    grid-template-columns:
-    repeat(3, 1fr);
-
+    grid-template-columns: repeat(3, 1fr);
     gap: 15px;
-
     margin-bottom: 20px;
 }
 
 .stat {
-
     background: white;
-
-    border-radius: 16px;
-
-    padding: 18px;
-
-    text-align: center;
-}
-
-.stat-icon {
-    font-size: 30px;
-}
-
-.stat-number {
-
-    font-size: 30px;
-
-    font-weight: bold;
-
-    margin: 5px 0;
-}
-
-.stat-label {
-    color: #777;
-}
-
-
-/* MAIN */
-
-.users-box {
-
-    background: white;
-
-    border-radius: 20px;
-
     padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
 }
 
-
-/* TOOLBAR */
-
-.toolbar {
-
-    display: flex;
-
-    gap: 10px;
-
-    margin-bottom: 20px;
-
-    flex-wrap: wrap;
-}
-
-.search {
-
-    flex: 1;
-
-    min-width: 220px;
-
-    padding: 13px;
-
-    border: 2px solid #ddd;
-
-    border-radius: 10px;
-
-    font-size: 16px;
-
-    outline: none;
-}
-
-.search:focus {
-    border-color: #667eea;
-}
-
-.filter {
-
-    padding: 13px;
-
-    border: 2px solid #ddd;
-
-    border-radius: 10px;
-
-    font-size: 15px;
-
-    background: white;
-}
-
-
-/* USER */
-
-.user {
-
-    border: 1px solid #ddd;
-
-    border-radius: 15px;
-
-    padding: 18px;
-
-    margin-bottom: 12px;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 15px;
-}
-
-.user-info {
-    flex: 1;
-}
-
-.user-info h3 {
-
+.stat h2 {
+    font-size: 35px;
     margin: 0 0 5px;
-
-    color: #333;
+    color: #667eea;
 }
 
-.user-info p {
-
-    margin: 4px 0;
-
+.stat p {
+    margin: 0;
     color: #777;
-
-    font-size: 14px;
 }
 
-.date {
-
-    font-size: 13px;
-
-    color: #999;
-}
-
-
-/* BADGES */
-
-.badge {
-
-    display: inline-block;
-
-    padding: 5px 10px;
-
+.panel {
+    background: white;
+    padding: 25px;
     border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
 
-    font-size: 12px;
+.panel h2 {
+    margin-top: 0;
+}
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 14px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+th {
+    background: #f5f6ff;
+    color: #555;
+}
+
+.status {
     font-weight: bold;
-
-    margin-top: 5px;
 }
 
 .pending {
-
-    background: #fff3cd;
-
-    color: #856404;
+    color: #f39c12;
 }
 
 .approved {
-
-    background: #d4edda;
-
-    color: #155724;
+    color: #28a745;
 }
 
-
-/* ACCESS */
-
-.access {
-
-    margin-top: 8px;
-
-    font-size: 13px;
-
-    font-weight: bold;
+.rejected {
+    color: #dc3545;
 }
 
-
-/* BUTTONS */
-
-.actions {
-
-    display: flex;
-
-    gap: 7px;
-
-    flex-wrap: wrap;
-
-    justify-content: flex-end;
-}
-
-.actions button {
-
+button.action {
     border: none;
-
-    padding: 10px 13px;
-
+    padding: 8px 13px;
     border-radius: 8px;
-
-    color: white;
-
     cursor: pointer;
-
-    font-weight: bold;
+    color: white;
+    margin: 2px;
 }
 
 .approve {
@@ -316,228 +141,435 @@ body {
     background: #dc3545;
 }
 
-.revoke {
-    background: #f0ad4e;
+.delete {
+    background: #555;
 }
-
-
-/* EMPTY */
 
 .empty {
-
     text-align: center;
-
-    padding: 45px;
-
+    padding: 30px;
     color: #777;
 }
-
-
-/* MOBILE */
 
 @media(max-width:700px) {
 
     .header {
-
         flex-direction: column;
-
-        align-items: flex-start;
-
         gap: 15px;
+        text-align: center;
     }
 
     .stats {
-
         grid-template-columns: 1fr;
     }
 
-    .user {
-
-        flex-direction: column;
-
-        align-items: flex-start;
+    .panel {
+        overflow-x: auto;
     }
 
-    .actions {
-
-        justify-content: flex-start;
+    table {
+        min-width: 700px;
     }
-
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="container">
 
+    <div class="header">
 
-<!-- HEADER -->
+        <div>
+            <h1>👑 GK Quiz Master</h1>
+            <p>Administrator Control Panel</p>
+        </div>
 
-<div class="header">
-
-    <div>
-
-        <h1>
-            👨‍💼 Admin Dashboard
-        </h1>
-
-        <p>
-            GK Quiz Master User Management
-        </p>
+        <button class="logout" onclick="logoutAdmin()">
+            Logout
+        </button>
 
     </div>
 
 
-    <button
-    class="logout"
-    onclick="logout()">
+    <div class="stats">
 
-        Logout
-
-    </button>
-
-</div>
-
-
-
-<!-- STATS -->
-
-<div class="stats">
-
-
-    <div class="stat">
-
-        <div class="stat-icon">
-            👥
+        <div class="stat">
+            <h2 id="totalUsers">0</h2>
+            <p>Total Users</p>
         </div>
 
-        <div
-        class="stat-number"
-        id="totalUsers">
-            0
+        <div class="stat">
+            <h2 id="pendingUsers">0</h2>
+            <p>Pending Approval</p>
         </div>
 
-        <div class="stat-label">
-            Total Users
+        <div class="stat">
+            <h2 id="approvedUsers">0</h2>
+            <p>Approved Users</p>
         </div>
 
     </div>
 
 
-    <div class="stat">
+    <div class="panel">
 
-        <div class="stat-icon">
-            ⏳
-        </div>
+        <h2>👥 User Management</h2>
 
-        <div
-        class="stat-number"
-        id="pendingUsers">
-            0
-        </div>
+        <table>
 
-        <div class="stat-label">
-            Pending Approval
-        </div>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                    <th>Registered</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
 
-    </div>
+            <tbody id="userTable">
 
+            </tbody>
 
-    <div class="stat">
-
-        <div class="stat-icon">
-            ✅
-        </div>
-
-        <div
-        class="stat-number"
-        id="approvedUsers">
-            0
-        </div>
-
-        <div class="stat-label">
-            Approved Users
-        </div>
+        </table>
 
     </div>
 
 </div>
-
-
-
-<!-- USERS -->
-
-<div class="users-box">
-
-
-    <h2>
-        👥 User Management
-    </h2>
-
-
-    <!-- TOOLBAR -->
-
-    <div class="toolbar">
-
-
-        <input
-        class="search"
-        id="search"
-        type="text"
-        placeholder="🔍 Search by name or email..."
-        oninput="displayUsers()">
-
-
-        <select
-        class="filter"
-        id="filter"
-        onchange="displayUsers()">
-
-            <option value="all">
-                All Users
-            </option>
-
-            <option value="pending">
-                Pending
-            </option>
-
-            <option value="approved">
-                Approved
-            </option>
-
-        </select>
-
-
-    </div>
-
-
-    <div id="userList"></div>
-
-
-</div>
-
-
-</div>
-
 
 
 <script>
 
+/* =========================================
+   ADMIN ACCOUNT
+========================================= */
 
-/* =========================
-   ADMIN
-========================= */
+const ADMIN_EMAIL = "admin@gkquiz.com";
+const ADMIN_PASSWORD = "Admin@123";
 
-const ADMIN_EMAIL =
-    "admin@gkquiz.com";
 
+/* =========================================
+   CHECK ADMIN LOGIN
+========================================= */
 
 function checkAdmin() {
+
+    const adminLoggedIn =
+        localStorage.getItem("adminLoggedIn");
+
+    if (adminLoggedIn !== "true") {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
+
+    return true;
+}
+
+
+if (!checkAdmin()) {
+
+    throw new Error("Admin access denied.");
+
+}
+
+
+/* =========================================
+   GET USERS
+========================================= */
+
+function getUsers() {
+
+    return JSON.parse(
+        localStorage.getItem("users")
+    ) || [];
+
+}
+
+
+/* =========================================
+   SAVE USERS
+========================================= */
+
+function saveUsers(users) {
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
+
+}
+
+
+/* =========================================
+   LOAD USERS
+========================================= */
+
+function loadUsers() {
+
+    const users = getUsers();
+
+    const table =
+        document.getElementById("userTable");
+
+    table.innerHTML = "";
+
+
+    /* Statistics */
+
+    const total =
+        users.length;
+
+    const pending =
+        users.filter(
+            user => user.approved !== true
+        ).length;
+
+    const approved =
+        users.filter(
+            user => user.approved === true
+        ).length;
+
+
+    document.getElementById(
+        "totalUsers"
+    ).innerText = total;
+
+    document.getElementById(
+        "pendingUsers"
+    ).innerText = pending;
+
+    document.getElementById(
+        "approvedUsers"
+    ).innerText = approved;
+
+
+    if (users.length === 0) {
+
+        table.innerHTML = `
+            <tr>
+                <td colspan="5" class="empty">
+                    No registered users yet.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    users.forEach(
+        function(user, index) {
+
+            const row =
+                document.createElement("tr");
+
+
+            let statusText;
+            let statusClass;
+
+
+            if (user.approved === true) {
+
+                statusText =
+                    "✓ Approved";
+
+                statusClass =
+                    "approved";
+
+            } else {
+
+                statusText =
+                    "⏳ Pending";
+
+                statusClass =
+                    "pending";
+
+            }
+
+
+            const registered =
+                user.createdAt ||
+                "Unknown";
+
+
+            row.innerHTML = `
+
+                <td>
+                    ${escapeHTML(user.name || "User")}
+                </td>
+
+                <td>
+                    ${escapeHTML(user.email || "")}
+                </td>
+
+                <td class="status ${statusClass}">
+                    ${statusText}
+                </td>
+
+                <td>
+                    ${escapeHTML(registered)}
+                </td>
+
+                <td>
+
+                    ${
+                        user.approved === true
+
+                        ?
+
+                        `
+                        <button
+                            class="action reject"
+                            onclick="rejectUser(${index})">
+                            Reject
+                        </button>
+                        `
+
+                        :
+
+                        `
+                        <button
+                            class="action approve"
+                            onclick="approveUser(${index})">
+                            ✓ Approve
+                        </button>
+                        `
+                    }
+
+                    <button
+                        class="action delete"
+                        onclick="deleteUser(${index})">
+                        Delete
+                    </button>
+
+                </td>
+
+            `;
+
+
+            table.appendChild(row);
+
+        }
+    );
+
+}
+
+
+/* =========================================
+   APPROVE USER
+========================================= */
+
+function approveUser(index) {
+
+    const users =
+        getUsers();
+
+    if (!users[index]) {
+        return;
+    }
+
+
+    users[index].approved = true;
+
+    saveUsers(users);
+
+    alert(
+        "✅ User approved successfully!"
+    );
+
+    loadUsers();
+
+}
+
+
+/* =========================================
+   REJECT USER
+========================================= */
+
+function rejectUser(index) {
+
+    const users =
+        getUsers();
+
+    if (!users[index]) {
+        return;
+    }
+
+
+    users[index].approved = false;
+
+    saveUsers(users);
+
+
+    /*
+       If this user is currently logged in,
+       remove their current session.
+    */
+
+    const currentUser =
+        JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
+
+
+    if (
+        currentUser &&
+        currentUser.email ===
+        users[index].email
+    ) {
+
+        localStorage.removeItem(
+            "currentUser"
+        );
+
+    }
+
+
+    alert(
+        "User approval has been removed."
+    );
+
+    loadUsers();
+
+}
+
+
+/* =========================================
+   DELETE USER
+========================================= */
+
+function deleteUser(index) {
+
+    const users =
+        getUsers();
+
+    if (!users[index]) {
+        return;
+    }
+
+
+    const name =
+        users[index].name ||
+        users[index].email;
+
+
+    const confirmDelete =
+        confirm(
+            "Delete user " +
+            name +
+            "?"
+        );
+
+
+    if (!confirmDelete) {
+        return;
+    }
 
 
     const currentUser =
@@ -549,504 +581,56 @@ function checkAdmin() {
 
 
     if (
-        !currentUser ||
-        currentUser.email !==
-        ADMIN_EMAIL
+        currentUser &&
+        currentUser.email ===
+        users[index].email
     ) {
 
-        alert(
-            "⛔ Admin access required."
+        localStorage.removeItem(
+            "currentUser"
         );
-
-        window.location.href =
-            "login.html";
-
-        return false;
 
     }
 
 
-    return true;
-
-}
-
-
-/* =========================
-   GET USERS
-========================= */
-
-function getUsers() {
-
-    return JSON.parse(
-        localStorage.getItem(
-            "users"
-        )
-    ) || [];
-
-}
-
-
-/* =========================
-   DISPLAY USERS
-========================= */
-
-function displayUsers() {
-
-
-    const users =
-        getUsers();
-
-
-    const search =
-        document.getElementById(
-            "search"
-        )
-        .value
-        .toLowerCase()
-        .trim();
-
-
-    const filter =
-        document.getElementById(
-            "filter"
-        )
-        .value;
-
-
-    let filtered =
-        users.filter(
-            function(user) {
-
-
-                const matchesSearch =
-
-                    user.name
-                    .toLowerCase()
-                    .includes(search)
-
-                    ||
-
-                    user.email
-                    .toLowerCase()
-                    .includes(search);
-
-
-                let matchesFilter =
-                    true;
-
-
-                if (
-                    filter ===
-                    "pending"
-                ) {
-
-                    matchesFilter =
-                        !user.approved;
-
-                }
-
-
-                if (
-                    filter ===
-                    "approved"
-                ) {
-
-                    matchesFilter =
-                        user.approved;
-
-                }
-
-
-                return (
-                    matchesSearch &&
-                    matchesFilter
-                );
-
-            }
-        );
-
-
-    const list =
-        document.getElementById(
-            "userList"
-        );
-
-
-    list.innerHTML = "";
-
-
-    if (
-        filtered.length === 0
-    ) {
-
-        list.innerHTML =
-
-            `
-            <div class="empty">
-
-                No users found.
-
-            </div>
-            `;
-
-        updateStats(users);
-
-        return;
-
-    }
-
-
-    /* Newest users first */
-
-    filtered.sort(
-        function(a, b) {
-
-            return (
-                b.id - a.id
-            );
-
-        }
+    users.splice(
+        index,
+        1
     );
 
 
-    filtered.forEach(
-        function(user) {
+    saveUsers(users);
 
-
-            const div =
-                document.createElement(
-                    "div"
-                );
-
-
-            div.className =
-                "user";
-
-
-            const status =
-                user.approved
-                ? "Approved"
-                : "Pending";
-
-
-            const badgeClass =
-                user.approved
-                ? "approved"
-                : "pending";
-
-
-            const access =
-                user.approved
-                ? "🔓 Levels 1–5"
-                : "🔒 Levels 1–2 only";
-
-
-            let buttons = "";
-
-
-            if (
-                user.approved
-            ) {
-
-                buttons =
-
-                    `
-                    <button
-                    class="revoke"
-                    onclick="revokeUser(${user.id})">
-
-                        🔒 Revoke
-
-                    </button>
-                    `;
-
-            } else {
-
-                buttons =
-
-                    `
-                    <button
-                    class="approve"
-                    onclick="approveUser(${user.id})">
-
-                        ✓ Approve
-
-                    </button>
-
-                    <button
-                    class="reject"
-                    onclick="rejectUser(${user.id})">
-
-                        ✕ Reject
-
-                    </button>
-                    `;
-
-            }
-
-
-            let registrationDate =
-                "Unknown";
-
-
-            if (
-                user.createdAt
-            ) {
-
-                registrationDate =
-                    new Date(
-                        user.createdAt
-                    ).toLocaleString();
-
-            }
-
-
-            div.innerHTML =
-
-                `
-                <div class="user-info">
-
-                    <h3>
-                        ${escapeHTML(user.name)}
-                    </h3>
-
-                    <p>
-                        📧
-                        ${escapeHTML(user.email)}
-                    </p>
-
-                    <span
-                    class="badge ${badgeClass}">
-
-                        ${status}
-
-                    </span>
-
-                    <div class="access">
-
-                        ${access}
-
-                    </div>
-
-                    <div class="date">
-
-                        📅 Registered:
-                        ${registrationDate}
-
-                    </div>
-
-                </div>
-
-
-                <div class="actions">
-
-                    ${buttons}
-
-                </div>
-                `;
-
-
-            list.appendChild(div);
-
-        }
-    );
-
-
-    updateStats(users);
+    loadUsers();
 
 }
 
 
-/* =========================
-   STATS
-========================= */
+/* =========================================
+   ESCAPE HTML
+========================================= */
 
-function updateStats(users) {
+function escapeHTML(value) {
 
-
-    const total =
-        users.length;
-
-
-    const pending =
-        users.filter(
-            user =>
-                !user.approved
-        ).length;
-
-
-    const approved =
-        users.filter(
-            user =>
-                user.approved
-        ).length;
-
-
-    document.getElementById(
-        "totalUsers"
-    ).innerText =
-        total;
-
-
-    document.getElementById(
-        "pendingUsers"
-    ).innerText =
-        pending;
-
-
-    document.getElementById(
-        "approvedUsers"
-    ).innerText =
-        approved;
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
 
-/* =========================
-   APPROVE
-========================= */
+/* =========================================
+   ADMIN LOGOUT
+========================================= */
 
-function approveUser(id) {
-
-
-    const users =
-        getUsers();
-
-
-    const user =
-        users.find(
-            user =>
-                user.id === id
-        );
-
-
-    if (!user) return;
-
-
-    user.approved =
-        true;
-
-
-    /*
-       Approved user gets
-       ALL Level 1–5 access.
-    */
-
-    user.levelAccess =
-        [1, 2, 3, 4, 5];
-
-
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
-
-
-    displayUsers();
-
-}
-
-
-/* =========================
-   REVOKE
-========================= */
-
-function revokeUser(id) {
-
-
-    const confirmRevoke =
-        confirm(
-            "Revoke Level 3–5 access from this user?"
-        );
-
-
-    if (!confirmRevoke)
-        return;
-
-
-    const users =
-        getUsers();
-
-
-    const user =
-        users.find(
-            user =>
-                user.id === id
-        );
-
-
-    if (!user) return;
-
-
-    user.approved =
-        false;
-
-
-    user.levelAccess =
-        [1, 2];
-
-
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
-
-
-    displayUsers();
-
-}
-
-
-/* =========================
-   REJECT
-========================= */
-
-function rejectUser(id) {
-
-
-    const confirmReject =
-        confirm(
-            "Reject and remove this account?"
-        );
-
-
-    if (!confirmReject)
-        return;
-
-
-    let users =
-        getUsers();
-
-
-    users =
-        users.filter(
-            user =>
-                user.id !== id
-        );
-
-
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
-
-
-    displayUsers();
-
-}
-
-
-/* =========================
-   LOGOUT
-========================= */
-
-function logout() {
-
+function logoutAdmin() {
 
     localStorage.removeItem(
-        "currentUser"
+        "adminLoggedIn"
     );
-
 
     window.location.href =
         "login.html";
@@ -1054,38 +638,13 @@ function logout() {
 }
 
 
-/* =========================
-   SECURITY
-========================= */
+/* =========================================
+   LOAD
+========================================= */
 
-function escapeHTML(text) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-    div.textContent =
-        text;
-
-    return div.innerHTML;
-
-}
-
-
-/* =========================
-   START
-========================= */
-
-if (checkAdmin()) {
-
-    displayUsers();
-
-}
+loadUsers();
 
 </script>
 
-
 </body>
-
 </html>
