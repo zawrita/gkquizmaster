@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>GK Quiz Master - Login</title>
 
@@ -24,11 +24,11 @@ body {
     min-height: 100vh;
 
     background:
-    linear-gradient(
-        135deg,
-        #667eea,
-        #764ba2
-    );
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
 
     display: flex;
 
@@ -37,15 +37,13 @@ body {
     align-items: center;
 
     padding: 20px;
-
 }
-
 
 .login-box {
 
     width: 100%;
 
-    max-width: 420px;
+    max-width: 450px;
 
     background: white;
 
@@ -54,33 +52,28 @@ body {
     border-radius: 22px;
 
     box-shadow:
-    0 15px 40px
-    rgba(0,0,0,0.25);
+        0 15px 35px
+        rgba(0,0,0,0.2);
 
 }
-
 
 .logo {
 
     text-align: center;
 
-    font-size: 55px;
+    font-size: 40px;
 
     margin-bottom: 5px;
-
 }
-
 
 h1 {
 
     text-align: center;
 
-    margin: 5px 0;
+    margin-top: 0;
 
-    color: #333;
-
+    color: #667eea;
 }
-
 
 .subtitle {
 
@@ -88,23 +81,72 @@ h1 {
 
     color: #777;
 
-    margin-bottom: 30px;
-
+    margin-bottom: 25px;
 }
 
+.tabs {
+
+    display: flex;
+
+    margin-bottom: 25px;
+
+    background: #f1f2f6;
+
+    border-radius: 10px;
+
+    padding: 4px;
+}
+
+.tab {
+
+    flex: 1;
+
+    border: none;
+
+    padding: 12px;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+}
+
+.tab.active {
+
+    background: white;
+
+    color: #667eea;
+
+    font-weight: bold;
+
+    box-shadow:
+        0 2px 8px
+        rgba(0,0,0,0.1);
+}
+
+.form {
+
+    display: none;
+}
+
+.form.active {
+
+    display: block;
+}
 
 label {
 
     display: block;
 
+    margin-bottom: 6px;
+
     font-weight: bold;
 
-    margin-bottom: 7px;
-
-    color: #444;
-
+    color: #555;
 }
-
 
 input {
 
@@ -112,31 +154,27 @@ input {
 
     padding: 14px;
 
-    margin-bottom: 18px;
-
     border: 2px solid #ddd;
 
     border-radius: 10px;
 
+    margin-bottom: 15px;
+
     font-size: 16px;
 
     outline: none;
-
 }
-
 
 input:focus {
 
     border-color: #667eea;
-
 }
 
-
-.login-btn {
+.submit {
 
     width: 100%;
 
-    padding: 15px;
+    padding: 14px;
 
     border: none;
 
@@ -148,41 +186,32 @@ input:focus {
 
     font-size: 17px;
 
-    font-weight: bold;
-
     cursor: pointer;
-
 }
 
-
-.login-btn:hover {
+.submit:hover {
 
     background: #5568d9;
-
 }
 
+.admin-button {
 
-.register {
+    margin-top: 15px;
 
-    text-align: center;
+    width: 100%;
 
-    margin-top: 20px;
+    padding: 12px;
 
-    color: #777;
+    border: none;
 
+    border-radius: 10px;
+
+    background: #333;
+
+    color: white;
+
+    cursor: pointer;
 }
-
-
-.register a {
-
-    color: #667eea;
-
-    font-weight: bold;
-
-    text-decoration: none;
-
-}
-
 
 .message {
 
@@ -190,12 +219,10 @@ input:focus {
 
     margin-top: 15px;
 
+    min-height: 22px;
+
     font-weight: bold;
-
-    min-height: 20px;
-
 }
-
 
 .back {
 
@@ -205,12 +232,27 @@ input:focus {
 
     margin-top: 20px;
 
-    color: #777;
+    color: #667eea;
 
     text-decoration: none;
-
 }
 
+.admin-info {
+
+    background: #f8f9fa;
+
+    border-radius: 10px;
+
+    padding: 12px;
+
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    color: #666;
+
+    text-align: center;
+}
 
 </style>
 
@@ -222,130 +264,555 @@ input:focus {
 
 <div class="login-box">
 
-
     <div class="logo">
         🧠
     </div>
 
-
     <h1>
-        Welcome Back
+        GK Quiz Master
     </h1>
 
-
     <div class="subtitle">
-        GK Quiz Master
+        General Knowledge Challenge
     </div>
 
 
-    <form
-    onsubmit="login(event)">
+    <div class="tabs">
 
+        <button
+            class="tab active"
+            id="loginTab"
+            onclick="showLogin()">
+
+            Login
+
+        </button>
+
+
+        <button
+            class="tab"
+            id="registerTab"
+            onclick="showRegister()">
+
+            Register
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         LOGIN FORM
+    ========================== -->
+
+    <div
+        class="form active"
+        id="loginForm">
 
         <label>
             Email
         </label>
 
-
         <input
-        type="email"
-        id="email"
-        placeholder="Enter your email"
-        required>
+            type="email"
+            id="loginEmail"
+            placeholder="Enter your email">
 
 
         <label>
             Password
         </label>
 
-
         <input
-        type="password"
-        id="password"
-        placeholder="Enter your password"
-        required>
+            type="password"
+            id="loginPassword"
+            placeholder="Enter your password">
 
 
         <button
-        type="submit"
-        class="login-btn">
+            class="submit"
+            onclick="loginUser()">
 
             🔐 Login
 
         </button>
 
 
-    </form>
+        <button
+            class="admin-button"
+            onclick="adminLogin()">
 
+            👑 Admin Login
 
-    <div
-    class="message"
-    id="message">
+        </button>
+
     </div>
 
 
-    <div class="register">
+    <!-- =========================
+         REGISTER FORM
+    ========================== -->
 
-        Don't have an account?
+    <div
+        class="form"
+        id="registerForm">
 
-        <a href="register.html">
-            Register
-        </a>
+        <label>
+            Name
+        </label>
+
+        <input
+            type="text"
+            id="registerName"
+            placeholder="Enter your name">
+
+
+        <label>
+            Email
+        </label>
+
+        <input
+            type="email"
+            id="registerEmail"
+            placeholder="Enter your email">
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+            type="password"
+            id="registerPassword"
+            placeholder="Create a password">
+
+
+        <label>
+            Confirm Password
+        </label>
+
+        <input
+            type="password"
+            id="registerConfirm"
+            placeholder="Confirm your password">
+
+
+        <button
+            class="submit"
+            onclick="registerUser()">
+
+            📝 Create Account
+
+        </button>
+
+    </div>
+
+
+    <div
+        class="message"
+        id="message">
+    </div>
+
+
+    <div class="admin-info">
+
+        👑 Admin account:
+        admin@gkquiz.com
 
     </div>
 
 
     <a
-    href="index.html"
-    class="back">
+        href="index.html"
+        class="back">
 
         ← Back to Home
 
     </a>
 
-
 </div>
-
 
 
 <script>
 
-function login(event) {
+/* =========================================
+   ADMIN ACCOUNT
+========================================= */
 
-    event.preventDefault();
+const ADMIN_EMAIL =
+    "admin@gkquiz.com";
+
+const ADMIN_PASSWORD =
+    "Admin@123";
 
 
-    const email =
-        document.getElementById(
-            "email"
-        ).value.trim();
+/* =========================================
+   TAB SWITCH
+========================================= */
+
+function showLogin() {
+
+    document
+        .getElementById("loginForm")
+        .classList.add("active");
+
+    document
+        .getElementById("registerForm")
+        .classList.remove("active");
+
+    document
+        .getElementById("loginTab")
+        .classList.add("active");
+
+    document
+        .getElementById("registerTab")
+        .classList.remove("active");
+
+    clearMessage();
+
+}
 
 
-    const password =
-        document.getElementById(
-            "password"
-        ).value;
+function showRegister() {
 
+    document
+        .getElementById("registerForm")
+        .classList.add("active");
+
+    document
+        .getElementById("loginForm")
+        .classList.remove("active");
+
+    document
+        .getElementById("registerTab")
+        .classList.add("active");
+
+    document
+        .getElementById("loginTab")
+        .classList.remove("active");
+
+    clearMessage();
+
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+function showMessage(
+    text,
+    color
+) {
 
     const message =
         document.getElementById(
             "message"
         );
 
+    message.innerText =
+        text;
 
-    /*
-       Temporary login system.
-       We will connect this to
-       the real database later.
-    */
+    message.style.color =
+        color;
+
+}
+
+
+function clearMessage() {
+
+    document.getElementById(
+        "message"
+    ).innerText = "";
+
+}
+
+
+/* =========================================
+   GET USERS
+========================================= */
+
+function getUsers() {
+
+    return JSON.parse(
+        localStorage.getItem(
+            "users"
+        )
+    ) || [];
+
+}
+
+
+/* =========================================
+   REGISTER
+========================================= */
+
+function registerUser() {
+
+    const name =
+        document
+        .getElementById(
+            "registerName"
+        )
+        .value
+        .trim();
+
+
+    const email =
+        document
+        .getElementById(
+            "registerEmail"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const password =
+        document
+        .getElementById(
+            "registerPassword"
+        )
+        .value;
+
+
+    const confirm =
+        document
+        .getElementById(
+            "registerConfirm"
+        )
+        .value;
+
+
+    /* Required fields */
+
+    if (
+        !name ||
+        !email ||
+        !password ||
+        !confirm
+    ) {
+
+        showMessage(
+            "Please fill in all fields.",
+            "#dc3545"
+        );
+
+        return;
+    }
+
+
+    /* Email */
+
+    if (
+        !email.includes("@")
+    ) {
+
+        showMessage(
+            "Please enter a valid email.",
+            "#dc3545"
+        );
+
+        return;
+    }
+
+
+    /* Password */
+
+    if (
+        password.length < 6
+    ) {
+
+        showMessage(
+            "Password must be at least 6 characters.",
+            "#dc3545"
+        );
+
+        return;
+    }
+
+
+    /* Confirm */
+
+    if (
+        password !== confirm
+    ) {
+
+        showMessage(
+            "Passwords do not match.",
+            "#dc3545"
+        );
+
+        return;
+    }
+
+
+    /* Prevent admin registration */
+
+    if (
+        email === ADMIN_EMAIL
+    ) {
+
+        showMessage(
+            "This email is reserved for Admin.",
+            "#dc3545"
+        );
+
+        return;
+    }
 
 
     const users =
-        JSON.parse(
-            localStorage.getItem(
-                "users"
-            )
-        ) || [];
+        getUsers();
+
+
+    /* Check duplicate */
+
+    const exists =
+        users.some(
+            function(user) {
+
+                return (
+                    user.email
+                        .toLowerCase() ===
+                    email
+                );
+
+            }
+        );
+
+
+    if (exists) {
+
+        showMessage(
+            "An account with this email already exists.",
+            "#dc3545"
+        );
+
+        return;
+    }
+
+
+    /* Create user */
+
+    const newUser = {
+
+        name:
+            name,
+
+        email:
+            email,
+
+        password:
+            password,
+
+        approved:
+            false,
+
+        createdAt:
+            new Date()
+                .toLocaleString()
+
+    };
+
+
+    users.push(
+        newUser
+    );
+
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
+
+
+    showMessage(
+        "✅ Account created! Please wait for Admin approval.",
+        "#28a745"
+    );
+
+
+    /* Clear */
+
+    document.getElementById(
+        "registerName"
+    ).value = "";
+
+    document.getElementById(
+        "registerEmail"
+    ).value = "";
+
+    document.getElementById(
+        "registerPassword"
+    ).value = "";
+
+    document.getElementById(
+        "registerConfirm"
+    ).value = "";
+
+}
+
+
+/* =========================================
+   USER LOGIN
+========================================= */
+
+function loginUser() {
+
+    const email =
+        document
+        .getElementById(
+            "loginEmail"
+        )
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const password =
+        document
+        .getElementById(
+            "loginPassword"
+        )
+        .value;
+
+
+    if (
+        !email ||
+        !password
+    ) {
+
+        showMessage(
+            "Please enter email and password.",
+            "#dc3545"
+        );
+
+        return;
+    }
+
+
+    /* Admin account */
+
+    if (
+        email === ADMIN_EMAIL &&
+        password === ADMIN_PASSWORD
+    ) {
+
+        localStorage.setItem(
+            "adminLoggedIn",
+            "true"
+        );
+
+        window.location.href =
+            "admin.html";
+
+        return;
+    }
+
+
+    const users =
+        getUsers();
 
 
     const user =
@@ -353,8 +820,11 @@ function login(event) {
             function(u) {
 
                 return (
-                    u.email === email &&
-                    u.password === password
+                    u.email
+                        .toLowerCase() ===
+                    email &&
+                    u.password ===
+                    password
                 );
 
             }
@@ -363,44 +833,98 @@ function login(event) {
 
     if (!user) {
 
-        message.innerText =
-            "❌ Incorrect email or password.";
-
-        message.style.color =
-            "#dc3545";
+        showMessage(
+            "❌ Incorrect email or password.",
+            "#dc3545"
+        );
 
         return;
+    }
 
+
+    /* Save current user */
+
+    localStorage.setItem(
+        "currentUser",
+        JSON.stringify({
+            name: user.name,
+            email: user.email
+        })
+    );
+
+
+    /* Approval */
+
+    if (
+        user.approved !== true
+    ) {
+
+        showMessage(
+            "⏳ Login successful, but your account is waiting for Admin approval.",
+            "#f39c12"
+        );
+
+        return;
+    }
+
+
+    /* Approved */
+
+    window.location.href =
+        "index.html";
+
+}
+
+
+/* =========================================
+   ADMIN LOGIN BUTTON
+========================================= */
+
+function adminLogin() {
+
+    const email =
+        document
+        .getElementById(
+            "loginEmail"
+        )
+        .value
+        .trim();
+
+
+    const password =
+        document
+        .getElementById(
+            "loginPassword"
+        )
+        .value;
+
+
+    if (
+        email !== ADMIN_EMAIL ||
+        password !== ADMIN_PASSWORD
+    ) {
+
+        showMessage(
+            "❌ Invalid Admin email or password.",
+            "#dc3545"
+        );
+
+        return;
     }
 
 
     localStorage.setItem(
-        "currentUser",
-        JSON.stringify(user)
+        "adminLoggedIn",
+        "true"
     );
 
 
-    message.innerText =
-        "✅ Login successful!";
-
-    message.style.color =
-        "#28a745";
-
-
-    setTimeout(
-        function() {
-
-            window.location.href =
-                "index.html";
-
-        },
-        700
-    );
+    window.location.href =
+        "admin.html";
 
 }
 
 </script>
-
 
 </body>
 
