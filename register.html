@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>GK Quiz Master - Register</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+    linear-gradient(
+        135deg,
+        #667eea,
+        #764ba2
+    );
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+}
+
+.register-box {
+    width: 100%;
+    max-width: 440px;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 22px;
+
+    box-shadow:
+    0 15px 40px
+    rgba(0,0,0,0.25);
+}
+
+.logo {
+    text-align: center;
+    font-size: 55px;
+}
+
+h1 {
+    text-align: center;
+    margin: 5px 0;
+
+    color: #333;
+}
+
+.subtitle {
+    text-align: center;
+
+    color: #777;
+
+    margin-bottom: 28px;
+}
+
+label {
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 7px;
+
+    color: #444;
+}
+
+input {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-bottom: 17px;
+
+    border: 2px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #667eea;
+}
+
+.register-btn {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #667eea;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background: #5568d9;
+}
+
+.message {
+    text-align: center;
+
+    margin-top: 15px;
+
+    font-weight: bold;
+
+    min-height: 20px;
+}
+
+.login {
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #777;
+}
+
+.login a {
+    color: #667eea;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+.back {
+    display: block;
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #777;
+
+    text-decoration: none;
+}
+
+.password-note {
+    font-size: 13px;
+
+    color: #888;
+
+    margin-top: -10px;
+
+    margin-bottom: 15px;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="register-box">
+
+    <div class="logo">
+        🧠
+    </div>
+
+    <h1>
+        Create Account
+    </h1>
+
+    <div class="subtitle">
+        GK Quiz Master
+    </div>
+
+
+    <form onsubmit="register(event)">
+
+
+        <label>
+            Full Name
+        </label>
+
+        <input
+        type="text"
+        id="name"
+        placeholder="Enter your name"
+        required>
+
+
+        <label>
+            Email
+        </label>
+
+        <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        required>
+
+
+        <label>
+            Password
+        </label>
+
+        <input
+        type="password"
+        id="password"
+        placeholder="Create a password"
+        required
+        minlength="6">
+
+        <div class="password-note">
+            Password must be at least 6 characters.
+        </div>
+
+
+        <label>
+            Confirm Password
+        </label>
+
+        <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm your password"
+        required>
+
+
+        <button
+        type="submit"
+        class="register-btn">
+
+            📝 Create Account
+
+        </button>
+
+
+    </form>
+
+
+    <div
+    class="message"
+    id="message">
+    </div>
+
+
+    <div class="login">
+
+        Already have an account?
+
+        <a href="login.html">
+            Login
+        </a>
+
+    </div>
+
+
+    <a
+    href="index.html"
+    class="back">
+
+        ← Back to Home
+
+    </a>
+
+</div>
+
+
+<script>
+
+function register(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById(
+            "name"
+        ).value.trim();
+
+
+    const email =
+        document.getElementById(
+            "email"
+        ).value.trim()
+        .toLowerCase();
+
+
+    const password =
+        document.getElementById(
+            "password"
+        ).value;
+
+
+    const confirmPassword =
+        document.getElementById(
+            "confirmPassword"
+        ).value;
+
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    /* Password check */
+
+    if (password !== confirmPassword) {
+
+        message.innerText =
+            "❌ Passwords do not match.";
+
+        message.style.color =
+            "#dc3545";
+
+        return;
+    }
+
+
+    /* Get existing users */
+
+    const users =
+        JSON.parse(
+            localStorage.getItem(
+                "users"
+            )
+        ) || [];
+
+
+    /* Check duplicate email */
+
+    const existingUser =
+        users.find(
+            function(user) {
+
+                return user.email === email;
+
+            }
+        );
+
+
+    if (existingUser) {
+
+        message.innerText =
+            "❌ This email is already registered.";
+
+        message.style.color =
+            "#dc3545";
+
+        return;
+    }
+
+
+    /* Create new user */
+
+    const newUser = {
+
+        id:
+            Date.now(),
+
+        name:
+            name,
+
+        email:
+            email,
+
+        password:
+            password,
+
+        approved:
+            false,
+
+        levelAccess:
+            [1, 2],
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    users.push(newUser);
+
+
+    localStorage.setItem(
+        "users",
+        JSON.stringify(users)
+    );
+
+
+    message.innerText =
+        "✅ Account created successfully!";
+
+    message.style.color =
+        "#28a745";
+
+
+    setTimeout(
+        function() {
+
+            window.location.href =
+                "login.html";
+
+        },
+        1000
+    );
+
+}
+
+</script>
+
+
+</body>
+
+</html>

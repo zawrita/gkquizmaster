@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>GK Quiz Master</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+    linear-gradient(135deg, #667eea, #764ba2);
+
+    padding: 30px 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 900px;
+
+    margin: auto;
+
+    text-align: center;
+
+    color: white;
+}
+
+.logo {
+    font-size: 60px;
+}
+
+h1 {
+    font-size: 42px;
+    margin: 5px 0;
+}
+
+.subtitle {
+    opacity: .9;
+    margin-bottom: 25px;
+}
+
+
+/* USER AREA */
+
+.user-area {
+    background: rgba(255,255,255,.15);
+
+    border-radius: 15px;
+
+    padding: 15px;
+
+    margin-bottom: 25px;
+}
+
+.login-btn,
+.admin-btn,
+.logout-btn {
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 9px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    margin: 4px;
+}
+
+.login-btn {
+    background: white;
+    color: #667eea;
+}
+
+.admin-btn {
+    background: #ffd43b;
+    color: #333;
+}
+
+.logout-btn {
+    background: #dc3545;
+    color: white;
+}
+
+
+/* LEVELS */
+
+.levels {
+
+    display: grid;
+
+    grid-template-columns:
+    repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.level {
+
+    background: white;
+
+    color: #333;
+
+    padding: 25px;
+
+    border-radius: 18px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    position: relative;
+}
+
+.level:hover {
+    transform: translateY(-5px);
+}
+
+.level.locked {
+    opacity: .55;
+
+    cursor: not-allowed;
+}
+
+.level.locked:hover {
+    transform: none;
+}
+
+.level-icon {
+    font-size: 35px;
+}
+
+.level-title {
+    font-size: 23px;
+
+    font-weight: bold;
+
+    margin: 8px 0;
+}
+
+.level-description {
+    color: #777;
+
+    font-size: 14px;
+}
+
+.lock {
+    position: absolute;
+
+    right: 18px;
+
+    top: 18px;
+
+    font-size: 24px;
+}
+
+.status {
+    margin-top: 10px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+
+/* NOTICE */
+
+.notice {
+
+    margin-top: 25px;
+
+    background:
+    rgba(255,255,255,.15);
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    font-size: 14px;
+}
+
+
+@media(max-width:600px) {
+
+    h1 {
+        font-size: 34px;
+    }
+
+    .levels {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="logo">
+        🧠
+    </div>
+
+
+    <h1>
+        GK Quiz Master
+    </h1>
+
+
+    <div class="subtitle">
+        General Knowledge Challenge
+    </div>
+
+
+    <!-- USER -->
+
+    <div class="user-area">
+
+        <div id="userInfo">
+            You are playing as Guest
+        </div>
+
+
+        <div id="userButtons">
+
+            <button
+            class="login-btn"
+            onclick="goLogin()">
+
+                🔐 Login
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LEVELS -->
+
+    <div class="levels">
+
+
+        <!-- LEVEL 1 -->
+
+        <div
+        class="level"
+        onclick="openLevel(1)">
+
+            <div class="level-icon">
+                🟢
+            </div>
+
+            <div class="level-title">
+                Level 1
+            </div>
+
+            <div class="level-description">
+                Basic General Knowledge
+            </div>
+
+            <div class="status">
+                ✓ Available
+            </div>
+
+        </div>
+
+
+
+        <!-- LEVEL 2 -->
+
+        <div
+        class="level"
+        onclick="openLevel(2)">
+
+            <div class="level-icon">
+                🔵
+            </div>
+
+            <div class="level-title">
+                Level 2
+            </div>
+
+            <div class="level-description">
+                General Knowledge
+            </div>
+
+            <div class="status">
+                ✓ Available
+            </div>
+
+        </div>
+
+
+
+        <!-- LEVEL 3 -->
+
+        <div
+        class="level locked"
+        id="level3"
+        onclick="openLevel(3)">
+
+            <div
+            class="lock"
+            id="lock3">
+
+                🔒
+
+            </div>
+
+            <div class="level-icon">
+                🟡
+            </div>
+
+            <div class="level-title">
+                Level 3
+            </div>
+
+            <div class="level-description">
+                Intermediate GK
+            </div>
+
+            <div
+            class="status"
+            id="status3">
+
+                Admin Approval Required
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LEVEL 4 -->
+
+        <div
+        class="level locked"
+        id="level4"
+        onclick="openLevel(4)">
+
+            <div
+            class="lock"
+            id="lock4">
+
+                🔒
+
+            </div>
+
+            <div class="level-icon">
+                🟠
+            </div>
+
+            <div class="level-title">
+                Level 4
+            </div>
+
+            <div class="level-description">
+                Advanced GK
+            </div>
+
+            <div
+            class="status"
+            id="status4">
+
+                Admin Approval Required
+
+            </div>
+
+        </div>
+
+
+
+        <!-- LEVEL 5 -->
+
+        <div
+        class="level locked"
+        id="level5"
+        onclick="openLevel(5)">
+
+            <div
+            class="lock"
+            id="lock5">
+
+                🔒
+
+            </div>
+
+            <div class="level-icon">
+                🔴
+            </div>
+
+            <div class="level-title">
+                Level 5
+            </div>
+
+            <div class="level-description">
+                Expert / Competitive GK
+            </div>
+
+            <div
+            class="status"
+            id="status5">
+
+                Admin Approval Required
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="notice">
+
+        🔐 Levels 3, 4 and 5 are available
+        only to Admin-approved accounts.
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================
+   GET CURRENT USER
+========================= */
+
+function getCurrentUser() {
+
+    const savedUser =
+        JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
+
+
+    if (!savedUser) {
+
+        return null;
+
+    }
+
+
+    /*
+       Get the latest version of
+       the user from the users list.
+    */
+
+    const users =
+        JSON.parse(
+            localStorage.getItem(
+                "users"
+            )
+        ) || [];
+
+
+    const latestUser =
+        users.find(
+            user =>
+                user.email ===
+                savedUser.email
+        );
+
+
+    return latestUser || savedUser;
+
+}
+
+
+/* =========================
+   UPDATE USER DISPLAY
+========================= */
+
+function updateUserDisplay() {
+
+
+    const user =
+        getCurrentUser();
+
+
+    const info =
+        document.getElementById(
+            "userInfo"
+        );
+
+
+    const buttons =
+        document.getElementById(
+            "userButtons"
+        );
+
+
+    if (!user) {
+
+        info.innerText =
+            "You are playing as Guest";
+
+        buttons.innerHTML =
+
+            `
+            <button
+            class="login-btn"
+            onclick="goLogin()">
+
+                🔐 Login
+
+            </button>
+            `;
+
+        return;
+
+    }
+
+
+    info.innerText =
+        "👋 Welcome, " +
+        user.name;
+
+
+    let html = "";
+
+
+    if (
+        user.email ===
+        "admin@gkquiz.com"
+    ) {
+
+        html +=
+
+            `
+            <button
+            class="admin-btn"
+            onclick="goAdmin()">
+
+                👨‍💼 Admin Dashboard
+
+            </button>
+            `;
+
+    }
+
+
+    html +=
+
+        `
+        <button
+        class="logout-btn"
+        onclick="logout()">
+
+            Logout
+
+        </button>
+        `;
+
+
+    buttons.innerHTML =
+        html;
+
+
+}
+
+
+/* =========================
+   UPDATE LEVEL ACCESS
+========================= */
+
+function updateLevels() {
+
+
+    const user =
+        getCurrentUser();
+
+
+    const approved =
+        user &&
+        user.approved === true;
+
+
+    for (
+        let level = 3;
+        level <= 5;
+        level++
+    ) {
+
+
+        const box =
+            document.getElementById(
+                "level" + level
+            );
+
+
+        const lock =
+            document.getElementById(
+                "lock" + level
+            );
+
+
+        const status =
+            document.getElementById(
+                "status" + level
+            );
+
+
+        if (approved) {
+
+
+            box.classList.remove(
+                "locked"
+            );
+
+
+            lock.innerText =
+                "🔓";
+
+
+            status.innerText =
+                "✓ Approved Access";
+
+
+            status.style.color =
+                "#28a745";
+
+
+        } else {
+
+
+            box.classList.add(
+                "locked"
+            );
+
+
+            lock.innerText =
+                "🔒";
+
+
+            status.innerText =
+                "Admin Approval Required";
+
+
+            status.style.color =
+                "#dc3545";
+
+        }
+
+    }
+
+}
+
+
+/* =========================
+   OPEN LEVEL
+========================= */
+
+function openLevel(level) {
+
+
+    if (
+        level === 1 ||
+        level === 2
+    ) {
+
+        window.location.href =
+            "quiz.html?level=" +
+            level;
+
+        return;
+
+    }
+
+
+    const user =
+        getCurrentUser();
+
+
+    if (!user) {
+
+        alert(
+            "🔐 Please login first.\n\n" +
+            "Levels 3, 4 and 5 require " +
+            "an approved account."
+        );
+
+        goLogin();
+
+        return;
+
+    }
+
+
+    if (
+        user.approved !== true
+    ) {
+
+        alert(
+            "⏳ Your account has not been approved yet.\n\n" +
+            "Please wait for Admin approval."
+        );
+
+        return;
+
+    }
+
+
+    window.location.href =
+        "quiz.html?level=" +
+        level;
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function goLogin() {
+
+    window.location.href =
+        "login.html";
+
+}
+
+
+/* =========================
+   ADMIN
+========================= */
+
+function goAdmin() {
+
+    window.location.href =
+        "admin.html";
+
+}
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+function logout() {
+
+    localStorage.removeItem(
+        "currentUser"
+    );
+
+    updateUserDisplay();
+
+    updateLevels();
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+updateUserDisplay();
+
+updateLevels();
+
+</script>
+
+
+</body>
+
+</html>
