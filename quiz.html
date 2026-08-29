@@ -1,308 +1,583 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
 <title>GK Quiz Master</title>
 
 <style>
+
 * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 
 body {
+
     margin: 0;
+
     min-height: 100vh;
-    background: linear-gradient(135deg, #667eea, #764ba2);
+
+    background:
+        linear-gradient(
+            135deg,
+            #667eea,
+            #764ba2
+        );
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     padding: 20px;
 }
 
 .quiz-box {
+
     width: 100%;
+
     max-width: 720px;
+
     background: white;
+
     padding: 35px;
+
     border-radius: 22px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,0.2);
 }
 
 .top {
+
     display: flex;
+
     justify-content: space-between;
+
+    align-items: center;
+
     margin-bottom: 15px;
 }
 
 .level-title {
+
     font-size: 20px;
+
     font-weight: bold;
+
     color: #667eea;
 }
 
 .timer {
+
     font-size: 18px;
+
     font-weight: bold;
 }
 
 .progress-text {
+
     color: #777;
+
     margin-bottom: 8px;
 }
 
 .progress-container {
+
     width: 100%;
+
     height: 10px;
+
     background: #eee;
+
     border-radius: 10px;
+
     margin-bottom: 25px;
+
+    overflow: hidden;
 }
 
 .progress-bar {
+
     width: 0%;
+
     height: 100%;
+
     background: #667eea;
+
     border-radius: 10px;
+
     transition: width 0.3s;
 }
 
 .question {
+
     font-size: 25px;
+
     font-weight: bold;
+
     line-height: 1.4;
+
     margin-bottom: 25px;
 }
 
 .answer {
+
     width: 100%;
+
     padding: 16px;
+
     margin: 8px 0;
+
     border: 2px solid #ddd;
+
     background: white;
+
     border-radius: 12px;
+
     text-align: left;
+
     font-size: 17px;
+
     cursor: pointer;
+
+    transition: 0.2s;
 }
 
 .answer:hover {
+
     background: #f1f2ff;
+
+    border-color: #667eea;
 }
 
 .answer.correct {
+
     background: #d4edda !important;
+
     border-color: #28a745 !important;
+
     color: #155724;
 }
 
 .answer.wrong {
+
     background: #f8d7da !important;
+
     border-color: #dc3545 !important;
+
     color: #721c24;
 }
 
 .message {
+
     text-align: center;
+
     font-size: 19px;
+
     font-weight: bold;
+
     min-height: 25px;
+
     margin-top: 15px;
 }
 
 .next {
+
     width: 100%;
+
     padding: 15px;
+
     margin-top: 15px;
+
     border: none;
+
     border-radius: 12px;
+
     background: #667eea;
+
     color: white;
+
     font-size: 18px;
+
     cursor: pointer;
 }
 
+.next:hover {
+
+    background: #5568d9;
+}
+
 .result {
+
     display: none;
+
     text-align: center;
 }
 
 .result h1 {
+
     font-size: 32px;
 }
 
 .score {
+
     font-size: 55px;
+
     font-weight: bold;
+
     color: #667eea;
+
     margin: 20px;
 }
 
 .percentage {
+
     font-size: 25px;
+
     margin-bottom: 10px;
 }
 
 .status {
+
     font-size: 23px;
+
     font-weight: bold;
+
     margin-bottom: 20px;
 }
 
 .result-message {
+
     font-size: 18px;
+
     line-height: 1.5;
+
     margin-bottom: 20px;
+
+    white-space: pre-line;
 }
 
 .restart,
-.home {
+.home,
+.next-level {
+
     padding: 14px 25px;
+
     border: none;
+
     border-radius: 10px;
+
     color: white;
+
     font-size: 16px;
+
     cursor: pointer;
+
     margin: 5px;
 }
 
 .restart {
+
     background: #667eea;
 }
 
 .home {
+
     background: #555;
 }
 
 .next-level {
+
     background: #28a745;
 }
 
 @media(max-width:600px) {
+
     .quiz-box {
+
         padding: 25px;
     }
 
     .question {
+
         font-size: 21px;
     }
+
+    .answer {
+
+        font-size: 16px;
+
+        padding: 14px;
+    }
+
+    .timer {
+
+        font-size: 16px;
+    }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
-<div class="quiz-box" id="quizBox">
+
+<!-- =========================
+     QUIZ BOX
+========================= -->
+
+<div class="quiz-box"
+     id="quizBox">
+
 
     <div class="top">
-        <div class="level-title" id="levelTitle">
+
+        <div class="level-title"
+             id="levelTitle">
+
             Level 1
+
         </div>
 
-        <div class="timer" id="timer">
-            ⏱️ 60
+
+        <div class="timer"
+             id="timer">
+
+            ⏱️ 10:00
+
         </div>
+
     </div>
 
-    <div class="progress-text" id="progressText">
-        Question 1 / 10
+
+    <div class="progress-text"
+         id="progressText">
+
+        Question 1 / 50
+
     </div>
+
 
     <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
+
+        <div class="progress-bar"
+             id="progressBar">
+
+        </div>
+
     </div>
 
-    <div class="question" id="question"></div>
 
-    <div id="answers"></div>
+    <div class="question"
+         id="question">
 
-    <div class="message" id="message"></div>
+    </div>
 
-    <button class="next" id="nextButton" onclick="nextQuestion()">
+
+    <div id="answers">
+
+    </div>
+
+
+    <div class="message"
+         id="message">
+
+    </div>
+
+
+    <button class="next"
+            id="nextButton"
+            onclick="nextQuestion()">
+
         Next →
+
     </button>
+
 
 </div>
 
 
-<div class="quiz-box result" id="resultBox">
+
+<!-- =========================
+     RESULT BOX
+========================= -->
+
+<div class="quiz-box result"
+     id="resultBox">
+
 
     <h1 id="resultTitle">
+
         🎉 Quiz Completed!
+
     </h1>
+
 
     <p>Your Score</p>
 
-    <div class="score" id="score">
-        0 / 10
+
+    <div class="score"
+         id="score">
+
+        0 / 50
+
     </div>
 
-    <div class="percentage" id="percentage">
+
+    <div class="percentage"
+         id="percentage">
+
         0%
+
     </div>
 
-    <div class="status" id="status"></div>
 
-    <div class="result-message" id="resultMessage"></div>
+    <div class="status"
+         id="status">
 
-    <button class="restart" onclick="restartQuiz()">
+    </div>
+
+
+    <div class="result-message"
+         id="resultMessage">
+
+    </div>
+
+
+    <button class="restart"
+            onclick="restartQuiz()">
+
         🔄 Try Again
+
     </button>
 
-    <button class="next-level" id="nextLevelButton"
+
+    <button class="next-level"
+            id="nextLevelButton"
             onclick="goNextLevel()"
             style="display:none;">
+
         🔓 Next Level
+
     </button>
 
-    <button class="home" onclick="goHome()">
+
+    <button class="home"
+            onclick="goHome()">
+
         🏠 Home
+
     </button>
+
 
 </div>
 
 
-<!-- Question Bank -->
+
+<!-- =========================
+     QUESTION BANK
+========================= -->
+
 <script src="questions.js"></script>
+
 
 <script>
 
-const QUESTIONS_PER_QUIZ = 50;
-const TIME_PER_QUIZ = 600;
+
+/* =====================================================
+   QUIZ SETTINGS
+===================================================== */
+
+
+/*
+   IMPORTANT:
+
+   Level 1
+   = 50 questions
+   = 10 minutes
+   = 600 seconds
+
+   Level 2-5
+   = 10 questions
+   = 60 seconds
+*/
+
+const LEVEL_1_QUESTIONS = 50;
+
+const OTHER_LEVEL_QUESTIONS = 10;
+
+const LEVEL_1_TIME = 600;
+
+const OTHER_LEVEL_TIME = 60;
+
 const PASS_MARK = 90;
 
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
 let currentLevel = 1;
+
 let quizQuestions = [];
+
 let currentQuestion = 0;
+
 let score = 0;
+
 let answered = false;
-let timeLeft = TIME_PER_QUIZ;
+
+let timeLeft = 0;
+
 let timer;
 
 
-/* =========================
-   GET LEVEL
-========================= */
+
+/* =====================================================
+   GET LEVEL FROM URL
+===================================================== */
 
 const urlParams =
-    new URLSearchParams(window.location.search);
+    new URLSearchParams(
+        window.location.search
+    );
+
 
 if (urlParams.get("level")) {
 
     currentLevel =
-        Number(urlParams.get("level"));
+        Number(
+            urlParams.get("level")
+        );
 
 }
 
 
-/* =========================
-   CHECK LEVEL PERMISSION
-========================= */
+
+/* =====================================================
+   CHECK LEVEL
+===================================================== */
 
 function checkLevelPermission() {
 
-    /* Level 1 and 2 are public */
+
+    /*
+       Level 1 and Level 2
+       are public.
+    */
 
     if (
         currentLevel === 1 ||
@@ -314,7 +589,9 @@ function checkLevelPermission() {
     }
 
 
-    /* Level must be between 1 and 5 */
+    /*
+       Invalid level
+    */
 
     if (
         currentLevel < 1 ||
@@ -333,7 +610,9 @@ function checkLevelPermission() {
     }
 
 
-    /* Get logged-in user */
+    /*
+       Get current user
+    */
 
     const currentUser =
         JSON.parse(
@@ -343,7 +622,9 @@ function checkLevelPermission() {
         );
 
 
-    /* Login required */
+    /*
+       Login required
+    */
 
     if (!currentUser) {
 
@@ -361,7 +642,9 @@ function checkLevelPermission() {
     }
 
 
-    /* Get latest user data */
+    /*
+       Get users
+    */
 
     const users =
         JSON.parse(
@@ -370,6 +653,10 @@ function checkLevelPermission() {
             )
         ) || [];
 
+
+    /*
+       Find user
+    */
 
     const user =
         users.find(
@@ -384,7 +671,9 @@ function checkLevelPermission() {
         );
 
 
-    /* User not found */
+    /*
+       User not found
+    */
 
     if (!user) {
 
@@ -404,7 +693,9 @@ function checkLevelPermission() {
     }
 
 
-    /* Admin approval check */
+    /*
+       Admin approval
+    */
 
     if (
         user.approved !== true
@@ -423,325 +714,814 @@ function checkLevelPermission() {
     }
 
 
-    /* Permission granted */
-
     return true;
 
 }
 
 
-/* =========================
-   RUN PERMISSION CHECK
-========================= */
 
-if (!checkLevelPermission()) {
+/* =====================================================
+   RUN PERMISSION CHECK
+===================================================== */
+
+if (
+    !checkLevelPermission()
+) {
 
     throw new Error(
         "Access denied."
     );
+
 }
 
 
-/* =========================
+
+/* =====================================================
    SHUFFLE
-========================= */
+===================================================== */
 
 function shuffle(array) {
 
     return array
-        .map(value => ({
-            value: value,
-            sort: Math.random()
-        }))
-        .sort((a, b) => a.sort - b.sort)
-        .map(({value}) => value);
+        .map(
+            function(value) {
+
+                return {
+
+                    value: value,
+
+                    sort: Math.random()
+
+                };
+
+            }
+        )
+        .sort(
+            function(a,b) {
+
+                return a.sort - b.sort;
+
+            }
+        )
+        .map(
+            function(item) {
+
+                return item.value;
+
+            }
+        );
 
 }
 
 
-/* =========================
+
+/* =====================================================
    CREATE QUIZ
-========================= */
+===================================================== */
 
 function createQuiz() {
 
-    const bank = questionBank[currentLevel];
+
+    /*
+       Get question bank
+    */
+
+    const bank =
+        questionBank[currentLevel];
+
+
+    /*
+       Check bank
+    */
 
     if (!bank) {
 
-        alert("Question bank not found!");
+        alert(
+            "Question bank not found!"
+        );
 
-        window.location.href = "index.html";
+        window.location.href =
+            "index.html";
 
         return;
+
     }
 
-    const questionsToUse =
-    currentLevel === 1 ? 50 : QUESTIONS_PER_QUIZ;
 
-quizQuestions =
-    shuffle([...bank]).slice(
-        0,
-        Math.min(
-            questionsToUse,
-            bank.length
+    /*
+       LEVEL 1
+
+       Use ALL 50 questions.
+
+       No slicing to 10.
+    */
+
+    let questionsToUse;
+
+
+    if (
+        currentLevel === 1
+    ) {
+
+        questionsToUse =
+            LEVEL_1_QUESTIONS;
+
+    } else {
+
+        questionsToUse =
+            OTHER_LEVEL_QUESTIONS;
+
+    }
+
+
+    /*
+       Create quiz
+    */
+
+    quizQuestions =
+        shuffle(
+            [...bank]
+        ).slice(
+            0,
+            Math.min(
+                questionsToUse,
+                bank.length
             )
         );
 
+
+    /*
+       Reset
+    */
+
     currentQuestion = 0;
+
     score = 0;
 
-    document.getElementById("quizBox").style.display = "block";
-    document.getElementById("resultBox").style.display = "none";
+
+    /*
+       Show quiz
+    */
+
+    document.getElementById(
+        "quizBox"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "resultBox"
+    ).style.display = "none";
+
+
+    /*
+       Load first question
+    */
 
     loadQuestion();
+
+
+    /*
+       Start timer
+    */
+
     startTimer();
+
 }
 
 
-/* =========================
+
+/* =====================================================
    LOAD QUESTION
-========================= */
+===================================================== */
 
 function loadQuestion() {
 
+
     answered = false;
 
+
+    /*
+       Get current question
+    */
+
     const question =
-        quizQuestions[currentQuestion];
+        quizQuestions[
+            currentQuestion
+        ];
+
+
+    /*
+       Total questions
+    */
 
     const total =
         quizQuestions.length;
 
-    document.getElementById("levelTitle").innerText =
-        "Level " + currentLevel;
 
-    document.getElementById("progressText").innerText =
+    /*
+       Level title
+    */
+
+    document.getElementById(
+        "levelTitle"
+    ).innerText =
+        "Level " +
+        currentLevel;
+
+
+    /*
+       Question number
+    */
+
+    document.getElementById(
+        "progressText"
+    ).innerText =
         "Question " +
         (currentQuestion + 1) +
         " / " +
         total;
 
-    document.getElementById("question").innerText =
+
+    /*
+       Question
+    */
+
+    document.getElementById(
+        "question"
+    ).innerText =
         question[0];
 
-    const progress =
-        ((currentQuestion + 1) / total) * 100;
 
-    document.getElementById("progressBar").style.width =
+    /*
+       Progress
+    */
+
+    const progress =
+        (
+            (currentQuestion + 1)
+            /
+            total
+        ) * 100;
+
+
+    document.getElementById(
+        "progressBar"
+    ).style.width =
         progress + "%";
 
-    document.getElementById("message").innerText = "";
+
+    /*
+       Clear message
+    */
+
+    document.getElementById(
+        "message"
+    ).innerText = "";
+
+
+    /*
+       Answer container
+    */
 
     const answersDiv =
-        document.getElementById("answers");
+        document.getElementById(
+            "answers"
+        );
+
 
     answersDiv.innerHTML = "";
+
+
+    /*
+       Shuffle answers
+    */
 
     const answers =
         shuffle(
             question[1].map(
-                (answer, index) => ({
-                    text: answer,
-                    originalIndex: index
-                })
+                function(answer,index) {
+
+                    return {
+
+                        text: answer,
+
+                        originalIndex:
+                            index
+
+                    };
+
+                }
             )
         );
 
-    answers.forEach(function(item, index) {
 
-        const button =
-            document.createElement("button");
+    /*
+       Create answer buttons
+    */
 
-        button.className = "answer";
+    answers.forEach(
+        function(item,index) {
 
-        button.innerText =
-            String.fromCharCode(65 + index) +
-            ". " +
-            item.text;
 
-        button.dataset.correct =
-            item.originalIndex === question[2];
+            const button =
+                document.createElement(
+                    "button"
+                );
 
-        button.onclick = function() {
-            checkAnswer(button);
-        };
 
-        answersDiv.appendChild(button);
+            button.className =
+                "answer";
 
-    });
 
-    if (currentQuestion === total - 1) {
+            button.innerText =
+                String.fromCharCode(
+                    65 + index
+                ) +
+                ". " +
+                item.text;
 
-        document.getElementById("nextButton").innerText =
+
+            /*
+               Store correct answer
+            */
+
+            button.dataset.correct =
+                (
+                    item.originalIndex ===
+                    question[2]
+                );
+
+
+            /*
+               Click event
+            */
+
+            button.onclick =
+                function() {
+
+                    checkAnswer(
+                        button
+                    );
+
+                };
+
+
+            answersDiv.appendChild(
+                button
+            );
+
+        }
+    );
+
+
+    /*
+       Finish button
+       on final question
+    */
+
+    if (
+        currentQuestion ===
+        total - 1
+    ) {
+
+        document.getElementById(
+            "nextButton"
+        ).innerText =
             "Finish Quiz ✓";
 
     } else {
 
-        document.getElementById("nextButton").innerText =
+        document.getElementById(
+            "nextButton"
+        ).innerText =
             "Next →";
 
     }
+
 }
 
 
-/* =========================
+
+/* =====================================================
    CHECK ANSWER
-========================= */
+===================================================== */
 
 function checkAnswer(button) {
 
+
+    /*
+       Prevent multiple answers
+    */
+
     if (answered) {
+
         return;
+
     }
+
 
     answered = true;
 
+
+    /*
+       Get all buttons
+    */
+
     const buttons =
-        document.querySelectorAll(".answer");
+        document.querySelectorAll(
+            ".answer"
+        );
+
+
+    /*
+       Check answer
+    */
 
     const isCorrect =
-        button.dataset.correct === "true";
+        button.dataset.correct ===
+        "true";
+
+
+    /*
+       Correct
+    */
 
     if (isCorrect) {
 
-        button.classList.add("correct");
-        button.innerText += " ✓";
+
+        button.classList.add(
+            "correct"
+        );
+
+
+        button.innerText +=
+            " ✓";
+
 
         score++;
 
-        document.getElementById("message").innerText =
+
+        document.getElementById(
+            "message"
+        ).innerText =
             "✓ Correct Answer!";
 
-        document.getElementById("message").style.color =
+
+        document.getElementById(
+            "message"
+        ).style.color =
             "#28a745";
 
-    } else {
 
-        button.classList.add("wrong");
-        button.innerText += " ✗";
+    }
 
-        buttons.forEach(function(btn) {
 
-            if (btn.dataset.correct === "true") {
+    /*
+       Wrong
+    */
 
-                btn.classList.add("correct");
-                btn.innerText += " ✓";
+    else {
+
+
+        button.classList.add(
+            "wrong"
+        );
+
+
+        button.innerText +=
+            " ✗";
+
+
+        /*
+           Show correct answer
+        */
+
+        buttons.forEach(
+            function(btn) {
+
+
+                if (
+                    btn.dataset.correct ===
+                    "true"
+                ) {
+
+                    btn.classList.add(
+                        "correct"
+                    );
+
+                    btn.innerText +=
+                        " ✓";
+
+                }
 
             }
+        );
 
-        });
 
-        document.getElementById("message").innerText =
+        document.getElementById(
+            "message"
+        ).innerText =
             "✗ Wrong Answer!";
 
-        document.getElementById("message").style.color =
+
+        document.getElementById(
+            "message"
+        ).style.color =
             "#dc3545";
+
     }
+
 }
 
 
-/* =========================
-   NEXT
-========================= */
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
 
 function nextQuestion() {
 
+
+    /*
+       Require answer
+    */
+
     if (!answered) {
 
-        document.getElementById("message").innerText =
+        document.getElementById(
+            "message"
+        ).innerText =
             "Please choose an answer first.";
 
-        document.getElementById("message").style.color =
+
+        document.getElementById(
+            "message"
+        ).style.color =
             "#dc3545";
 
+
         return;
+
     }
+
+
+    /*
+       Next
+    */
 
     currentQuestion++;
 
-    if (currentQuestion < quizQuestions.length) {
+
+    /*
+       More questions
+    */
+
+    if (
+        currentQuestion <
+        quizQuestions.length
+    ) {
 
         loadQuestion();
 
-    } else {
+    }
+
+
+    /*
+       Quiz finished
+    */
+
+    else {
 
         finishQuiz();
 
     }
+
 }
 
 
-/* =========================
+
+/* =====================================================
    TIMER
-========================= */
+===================================================== */
 
 function startTimer() {
 
-    clearInterval(timer);
 
-    timeLeft = TIME_PER_QUIZ;
+    /*
+       Clear old timer
+    */
 
-    document.getElementById("timer").innerText =
-        "⏱️ " + timeLeft;
+    clearInterval(
+        timer
+    );
 
-    timer = setInterval(function() {
 
-        timeLeft--;
+    /*
+       Level 1
+       = 600 seconds
+    */
 
-        document.getElementById("timer").innerText =
-            "⏱️ " + timeLeft;
+    if (
+        currentLevel === 1
+    ) {
 
-        if (timeLeft <= 0) {
+        timeLeft =
+            LEVEL_1_TIME;
 
-            clearInterval(timer);
+    }
 
-            finishQuiz();
 
-        }
+    /*
+       Other levels
+       = 60 seconds
+    */
 
-    }, 1000);
+    else {
+
+        timeLeft =
+            OTHER_LEVEL_TIME;
+
+    }
+
+
+    updateTimerDisplay();
+
+
+    /*
+       Start countdown
+    */
+
+    timer =
+        setInterval(
+            function() {
+
+
+                timeLeft--;
+
+
+                updateTimerDisplay();
+
+
+                /*
+                   Time over
+                */
+
+                if (
+                    timeLeft <= 0
+                ) {
+
+                    clearInterval(
+                        timer
+                    );
+
+                    finishQuiz();
+
+                }
+
+            },
+            1000
+        );
+
 }
 
 
-/* =========================
+
+/* =====================================================
+   TIMER DISPLAY
+===================================================== */
+
+function updateTimerDisplay() {
+
+
+    const minutes =
+        Math.floor(
+            timeLeft / 60
+        );
+
+
+    const seconds =
+        timeLeft % 60;
+
+
+    const formattedSeconds =
+        String(
+            seconds
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    document.getElementById(
+        "timer"
+    ).innerText =
+        "⏱️ " +
+        minutes +
+        ":" +
+        formattedSeconds;
+
+}
+
+
+
+/* =====================================================
    FINISH QUIZ
-========================= */
+===================================================== */
 
 function finishQuiz() {
 
-    clearInterval(timer);
 
-    document.getElementById("quizBox").style.display =
+    /*
+       Stop timer
+    */
+
+    clearInterval(
+        timer
+    );
+
+
+    /*
+       Hide quiz
+    */
+
+    document.getElementById(
+        "quizBox"
+    ).style.display =
         "none";
 
-    document.getElementById("resultBox").style.display =
+
+    /*
+       Show result
+    */
+
+    document.getElementById(
+        "resultBox"
+    ).style.display =
         "block";
+
+
+    /*
+       Total
+    */
 
     const total =
         quizQuestions.length;
 
+
+    /*
+       Percentage
+    */
+
     const percentage =
-        Math.round((score / total) * 100);
+        Math.round(
+            (
+                score /
+                total
+            ) * 100
+        );
 
-    document.getElementById("score").innerText =
-        score + " / " + total;
 
-    document.getElementById("percentage").innerText =
-        percentage + "%";
+    /*
+       Display score
+    */
+
+    document.getElementById(
+        "score"
+    ).innerText =
+        score +
+        " / " +
+        total;
 
 
-    /* =========================
-       SAVE BEST SCORE
-    ========================= */
+    document.getElementById(
+        "percentage"
+    ).innerText =
+        percentage +
+        "%";
+
+
+    /*
+       Save best score
+    */
 
     const bestKey =
-        "level" + currentLevel + "Best";
+        "level" +
+        currentLevel +
+        "Best";
+
 
     const oldBest =
-        Number(localStorage.getItem(bestKey)) || 0;
+        Number(
+            localStorage.getItem(
+                bestKey
+            )
+        ) || 0;
 
-    if (percentage > oldBest) {
+
+    if (
+        percentage >
+        oldBest
+    ) {
 
         localStorage.setItem(
             bestKey,
@@ -751,22 +1531,37 @@ function finishQuiz() {
     }
 
 
-    /* =========================
-       PASS / FAIL
-    ========================= */
+    /*
+       PASS
+    */
 
-    if (percentage >= PASS_MARK) {
+    if (
+        percentage >=
+        PASS_MARK
+    ) {
 
-        document.getElementById("status").innerText =
+
+        document.getElementById(
+            "status"
+        ).innerText =
             "🎉 PASS";
 
-        document.getElementById("status").style.color =
+
+        document.getElementById(
+            "status"
+        ).style.color =
             "#28a745";
 
-        document.getElementById("resultTitle").innerText =
+
+        document.getElementById(
+            "resultTitle"
+        ).innerText =
             "🏆 Excellent!";
 
-        document.getElementById("resultMessage").innerText =
+
+        document.getElementById(
+            "resultMessage"
+        ).innerText =
             "You scored " +
             percentage +
             "% and passed Level " +
@@ -774,18 +1569,22 @@ function finishQuiz() {
             "!";
 
 
-        /* =========================
-           UNLOCK NEXT LEVEL
-        ========================= */
+        /*
+           Unlock next level
+        */
 
         const currentUnlocked =
             Number(
-                localStorage.getItem("unlockedLevel")
+                localStorage.getItem(
+                    "unlockedLevel"
+                )
             ) || 1;
+
 
         if (
             currentLevel < 5 &&
-            currentLevel + 1 > currentUnlocked
+            currentLevel + 1 >
+            currentUnlocked
         ) {
 
             localStorage.setItem(
@@ -796,53 +1595,83 @@ function finishQuiz() {
         }
 
 
-        /* NEXT LEVEL BUTTON */
+        /*
+           Next level button
+        */
 
-        if (currentLevel < 5) {
+        if (
+            currentLevel < 5
+        ) {
 
             document.getElementById(
                 "nextLevelButton"
-            ).style.display = "inline-block";
-
-        } else {
-
-            document.getElementById(
-                "resultMessage"
-            ).innerText =
-                "🏆 Congratulations! You completed all 5 levels!";
+            ).style.display =
+                "inline-block";
 
         }
 
 
-    } else {
+        else {
+
+            document.getElementById(
+                "resultMessage"
+            ).innerText =
+                "🏆 Congratulations! " +
+                "You completed all 5 levels!";
+
+        }
+
+    }
 
 
-        document.getElementById("status").innerText =
+    /*
+       FAIL
+    */
+
+    else {
+
+
+        document.getElementById(
+            "status"
+        ).innerText =
             "❌ FAIL";
 
-        document.getElementById("status").style.color =
+
+        document.getElementById(
+            "status"
+        ).style.color =
             "#dc3545";
 
-        document.getElementById("resultTitle").innerText =
+
+        document.getElementById(
+            "resultTitle"
+        ).innerText =
             "Keep Practicing!";
 
-        document.getElementById("resultMessage").innerText =
+
+        document.getElementById(
+            "resultMessage"
+        ).innerText =
             "You need at least " +
             PASS_MARK +
             "% to pass this level.\n\n" +
             "Try again and improve your score!";
 
+
         document.getElementById(
             "nextLevelButton"
-        ).style.display = "none";
+        ).style.display =
+            "none";
 
     }
+
 }
 
 
-/* =========================
+
+/* =====================================================
    TRY AGAIN
-========================= */
+===================================================== */
 
 function restartQuiz() {
 
@@ -851,30 +1680,41 @@ function restartQuiz() {
 }
 
 
-/* =========================
+
+/* =====================================================
    NEXT LEVEL
-========================= */
+===================================================== */
 
 function goNextLevel() {
 
-    if (currentLevel < 5) {
+
+    if (
+        currentLevel < 5
+    ) {
 
         window.location.href =
             "quiz.html?level=" +
-            (currentLevel + 1);
+            (
+                currentLevel + 1
+            );
 
     }
 
 }
 
 
-/* =========================
+
+/* =====================================================
    HOME
-========================= */
+===================================================== */
 
 function goHome() {
 
-    clearInterval(timer);
+
+    clearInterval(
+        timer
+    );
+
 
     window.location.href =
         "index.html";
@@ -882,13 +1722,16 @@ function goHome() {
 }
 
 
-/* =========================
-   START
-========================= */
+
+/* =====================================================
+   START QUIZ
+===================================================== */
 
 createQuiz();
+
 
 </script>
 
 </body>
+
 </html>
