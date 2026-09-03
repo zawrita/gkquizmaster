@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -7,7 +6,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-   content="width=device-width, initial-scale=1.0">
+      content="width=device-width, initial-scale=1.0">
 
 <title>GK Quiz Master</title>
 
@@ -411,7 +410,9 @@ body {
 
 </head>
 
+
 <body>
+
 
 <!-- =====================================================
      QUIZ BOX
@@ -419,74 +420,68 @@ body {
 
 <div class="quiz-box" id="quizBox">
 
-```
-<div class="top">
+    <div class="top">
+
+        <div class="level-title"
+             id="levelTitle">
+
+            Level 1
+
+        </div>
 
 
-    <div class="level-title"
-         id="levelTitle">
+        <div class="timer"
+             id="timer">
 
-        Level 1
+            ⏱️ 10:00
+
+        </div>
+
+    </div>
+
+
+    <div class="progress-text"
+         id="progressText">
+
+        Question 1 / 50
 
     </div>
 
 
-    <div class="timer"
-         id="timer">
+    <div class="progress-container">
 
-        ⏱️ 10:00
-
-    </div>
-
-
-</div>
-
-
-<div class="progress-text"
-     id="progressText">
-
-    Question 1 / 50
-
-</div>
-
-
-<div class="progress-container">
-
-    <div class="progress-bar"
-         id="progressBar">
+        <div class="progress-bar"
+             id="progressBar">
+        </div>
 
     </div>
 
-</div>
+
+    <div class="question"
+         id="question">
+    </div>
 
 
-<div class="question"
-     id="question">
-
-</div>
+    <div id="answers">
+    </div>
 
 
-<div id="answers">
-
-</div>
-
-
-<div class="message"
-     id="message">
-
-</div>
+    <div class="message"
+         id="message">
+    </div>
 
 
-<button class="next"
-        id="nextButton"
-        onclick="nextQuestion()">
+    <button class="next"
+            id="nextButton"
+            onclick="nextQuestion()">
 
-    Next →
+        Next →
 
-</button>
-```
+    </button>
 
 </div>
+
+
 
 <!-- =====================================================
      RESULT BOX
@@ -495,83 +490,77 @@ body {
 <div class="quiz-box result"
      id="resultBox">
 
-```
-<h1 id="resultTitle">
+    <h1 id="resultTitle">
 
-    🎉 Quiz Completed!
+        🎉 Quiz Completed!
 
-</h1>
-
-
-<p>Your Score</p>
+    </h1>
 
 
-<div class="score"
-     id="score">
-
-    0 / 50
-
-</div>
+    <p>Your Score</p>
 
 
-<div class="percentage"
-     id="percentage">
+    <div class="score"
+         id="score">
 
-    0%
+        0 / 50
 
-</div>
-
-
-<div class="status"
-     id="status">
-
-</div>
+    </div>
 
 
-<div class="result-message"
-     id="resultMessage">
+    <div class="percentage"
+         id="percentage">
 
-</div>
+        0%
 
-
-<button class="restart"
-        onclick="restartQuiz()">
-
-    🔄 Try Again
-
-</button>
+    </div>
 
 
-<button class="next-level"
-        id="nextLevelButton"
-        onclick="goNextLevel()"
-        style="display:none;">
-
-    🔓 Next Level
-
-</button>
+    <div class="status"
+         id="status">
+    </div>
 
 
-<button class="home"
-        onclick="goHome()">
+    <div class="result-message"
+         id="resultMessage">
+    </div>
 
-    🏠 Home
 
-</button>
-```
+    <button class="restart"
+            onclick="restartQuiz()">
+
+        🔄 Try Again
+
+    </button>
+
+
+    <button class="next-level"
+            id="nextLevelButton"
+            onclick="goNextLevel()"
+            style="display:none;">
+
+        🔓 Next Level
+
+    </button>
+
+
+    <button class="home"
+            onclick="goHome()">
+
+        🏠 Home
+
+    </button>
 
 </div>
+
+
 
 <!-- =====================================================
      QUESTION BANK
 ===================================================== -->
 
-<!--
-     IMPORTANT:
-     questions.js contains your ASEAN 50 questions
--->
+<script src="questions.js?v=3"></script>
 
-<script src="questions.js?v=2"></script>
 
 <script>
 
@@ -581,38 +570,32 @@ body {
 
 
 /*
-   LEVEL 1
-   -------------------------
-   50 QUESTIONS
-   10 MINUTES
-   600 SECONDS
+   TOTAL LEVELS
 */
 
-
-const LEVEL_1_QUESTIONS = 50;
-
-const LEVEL_1_TIME = 600;
+const TOTAL_LEVELS = 50;
 
 
 /*
-   LEVEL 2 - 5
-   -------------------------
-   10 QUESTIONS
-   60 SECONDS
+   EVERY LEVEL = 50 QUESTIONS
 */
 
-
-const OTHER_LEVEL_QUESTIONS = 10;
-
-const OTHER_LEVEL_TIME = 60;
+const QUESTIONS_PER_LEVEL = 50;
 
 
 /*
-   PASS MARK
+   PASS MARK = 90%
 */
-
 
 const PASS_MARK = 90;
+
+
+/*
+   50 QUESTIONS
+   10 MINUTES
+*/
+
+const QUIZ_TIME = 600;
 
 
 
@@ -630,9 +613,11 @@ let score = 0;
 
 let answered = false;
 
-let timeLeft = 0;
+let timeLeft = QUIZ_TIME;
 
 let timer = null;
+
+let quizFinished = false;
 
 
 
@@ -656,6 +641,7 @@ if (urlParams.has("level")) {
 }
 
 
+
 /* =====================================================
    CHECK VALID LEVEL
 ===================================================== */
@@ -663,7 +649,7 @@ if (urlParams.has("level")) {
 if (
     !Number.isInteger(currentLevel) ||
     currentLevel < 1 ||
-    currentLevel > 5
+    currentLevel > TOTAL_LEVELS
 ) {
 
     alert("Invalid quiz level.");
@@ -676,21 +662,16 @@ if (
 
 
 /* =====================================================
-   CHECK LEVEL PERMISSION
+   CHECK LEVEL UNLOCK
 ===================================================== */
 
 function checkLevelPermission() {
 
-
     /*
-       LEVEL 1 & 2
-       PUBLIC
+       LEVEL 1 IS ALWAYS OPEN
     */
 
-    if (
-        currentLevel === 1 ||
-        currentLevel === 2
-    ) {
+    if (currentLevel === 1) {
 
         return true;
 
@@ -698,92 +679,33 @@ function checkLevelPermission() {
 
 
     /*
-       LEVEL 3 - 5
-       LOGIN REQUIRED
+       GET UNLOCKED LEVEL
     */
 
-    const currentUser =
-        JSON.parse(
+    const unlockedLevel =
+        Number(
             localStorage.getItem(
-                "currentUser"
+                "unlockedLevel"
             )
-        );
-
-
-    if (!currentUser) {
-
-        alert(
-            "🔐 Please login first.\n\n" +
-            "Levels 3, 4 and 5 require " +
-            "an Admin-approved account."
-        );
-
-        window.location.href =
-            "login.html";
-
-        return false;
-
-    }
+        ) || 1;
 
 
     /*
-       GET USERS
-    */
-
-    const users =
-        JSON.parse(
-            localStorage.getItem(
-                "users"
-            )
-        ) || [];
-
-
-    /*
-       FIND USER
-    */
-
-    const user =
-        users.find(
-            function(u) {
-
-                return (
-                    u.email ===
-                    currentUser.email
-                );
-
-            }
-        );
-
-
-    if (!user) {
-
-        localStorage.removeItem(
-            "currentUser"
-        );
-
-        alert(
-            "Your account could not be found."
-        );
-
-        window.location.href =
-            "login.html";
-
-        return false;
-
-    }
-
-
-    /*
-       ADMIN APPROVAL
+       CHECK
     */
 
     if (
-        user.approved !== true
+        currentLevel >
+        unlockedLevel
     ) {
 
         alert(
-            "⏳ Your account is not approved yet.\n\n" +
-            "Please wait for Admin approval."
+            "🔒 Level " +
+            currentLevel +
+            " is locked.\n\n" +
+            "Pass the previous level with " +
+            PASS_MARK +
+            "% or higher to unlock it."
         );
 
         window.location.href =
@@ -863,7 +785,14 @@ function createQuiz() {
 
 
     /*
-       GET BANK
+       RESET FINISH STATUS
+    */
+
+    quizFinished = false;
+
+
+    /*
+       GET CURRENT LEVEL BANK
     */
 
     const bank =
@@ -871,7 +800,7 @@ function createQuiz() {
 
 
     /*
-       QUESTION BANK NOT FOUND
+       CHECK QUESTION BANK
     */
 
     if (
@@ -880,7 +809,8 @@ function createQuiz() {
 
         alert(
             "Question bank not found for Level " +
-            currentLevel
+            currentLevel +
+            "."
         );
 
         window.location.href =
@@ -892,67 +822,24 @@ function createQuiz() {
 
 
     /*
-       DETERMINE NUMBER OF QUESTIONS
-    */
-
-
-    let questionsToUse;
-
-    let quizTime;
-
-
-    /*
-       =========================
-       LEVEL 1
-       =========================
-
-       ALWAYS USE ALL 50
+       EVERY LEVEL MUST HAVE
+       AT LEAST 50 QUESTIONS
     */
 
     if (
-        currentLevel === 1
-    ) {
-
-        questionsToUse =
-            50;
-
-        quizTime =
-            600;
-
-    }
-
-
-    /*
-       =========================
-       LEVEL 2 - 5
-       =========================
-    */
-
-    else {
-
-        questionsToUse =
-            10;
-
-        quizTime =
-            60;
-
-    }
-
-
-    /*
-       IMPORTANT CHECK
-    */
-
-    if (
-        currentLevel === 1 &&
-        bank.length < 50
+        bank.length < QUESTIONS_PER_LEVEL
     ) {
 
         alert(
-            "Level 1 needs 50 questions.\n\n" +
+            "Level " +
+            currentLevel +
+            " needs 50 questions.\n\n" +
             "Current questions found: " +
             bank.length
         );
+
+        window.location.href =
+            "index.html";
 
         return;
 
@@ -960,48 +847,22 @@ function createQuiz() {
 
 
     /*
-       LEVEL 1
-       -------------------------
-       DO NOT RANDOMLY REMOVE
-       QUESTIONS.
+       USE ALL 50 QUESTIONS
 
-       Use all 50 questions.
+       RANDOM ORDER
     */
 
-    if (
-        currentLevel === 1
-    ) {
-
-        quizQuestions =
-            [...bank];
-
-    }
+    quizQuestions =
+        shuffle(
+            [...bank]
+        ).slice(
+            0,
+            QUESTIONS_PER_LEVEL
+        );
 
 
     /*
-       LEVEL 2 - 5
-       -------------------------
-       Randomly select 10.
-    */
-
-    else {
-
-        quizQuestions =
-            shuffle(
-                [...bank]
-            ).slice(
-                0,
-                Math.min(
-                    questionsToUse,
-                    bank.length
-                )
-            );
-
-    }
-
-
-    /*
-       RESET QUIZ
+       RESET
     */
 
     currentQuestion = 0;
@@ -1010,29 +871,23 @@ function createQuiz() {
 
     answered = false;
 
-
-    /*
-       UPDATE TIMER SETTING
-    */
-
-    timeLeft =
-        quizTime;
+    timeLeft = QUIZ_TIME;
 
 
     /*
-       SHOW QUIZ
+       RESET RESULT
     */
-
-    document.getElementById(
-        "quizBox"
-    ).style.display =
-        "block";
-
 
     document.getElementById(
         "resultBox"
     ).style.display =
         "none";
+
+
+    document.getElementById(
+        "quizBox"
+    ).style.display =
+        "block";
 
 
     /*
@@ -1063,7 +918,7 @@ function loadQuestion() {
 
 
     /*
-       GET QUESTION
+       CURRENT QUESTION
     */
 
     const question =
@@ -1115,7 +970,7 @@ function loadQuestion() {
 
 
     /*
-       PROGRESS BAR
+       PROGRESS
     */
 
     const progress =
@@ -1156,10 +1011,6 @@ function loadQuestion() {
 
     /*
        SHUFFLE ANSWERS
-
-       IMPORTANT:
-       Original answer index
-       remains unchanged.
     */
 
     const answers =
@@ -1182,7 +1033,7 @@ function loadQuestion() {
 
 
     /*
-       CREATE ANSWER BUTTONS
+       CREATE BUTTONS
     */
 
     answers.forEach(
@@ -1208,7 +1059,7 @@ function loadQuestion() {
 
 
             /*
-               TRUE = CORRECT
+               CORRECT ANSWER
             */
 
             button.dataset.correct =
@@ -1241,7 +1092,7 @@ function loadQuestion() {
 
 
     /*
-       NEXT BUTTON TEXT
+       NEXT BUTTON
     */
 
     if (
@@ -1276,10 +1127,6 @@ function loadQuestion() {
 function checkAnswer(button) {
 
 
-    /*
-       ALREADY ANSWERED
-    */
-
     if (answered) {
 
         return;
@@ -1290,19 +1137,11 @@ function checkAnswer(button) {
     answered = true;
 
 
-    /*
-       ALL ANSWERS
-    */
-
     const buttons =
         document.querySelectorAll(
             ".answer"
         );
 
-
-    /*
-       CHECK
-    */
 
     const isCorrect =
         button.dataset.correct ===
@@ -1315,15 +1154,12 @@ function checkAnswer(button) {
 
     if (isCorrect) {
 
-
         button.classList.add(
             "correct"
         );
 
-
         button.innerText +=
             " ✓";
-
 
         score++;
 
@@ -1348,18 +1184,16 @@ function checkAnswer(button) {
 
     else {
 
-
         button.classList.add(
             "wrong"
         );
-
 
         button.innerText +=
             " ✗";
 
 
         /*
-           SHOW CORRECT ANSWER
+           SHOW CORRECT
         */
 
         buttons.forEach(
@@ -1431,7 +1265,7 @@ function nextQuestion() {
 
 
     /*
-       MOVE TO NEXT
+       MOVE
     */
 
     currentQuestion++;
@@ -1473,7 +1307,7 @@ function startTimer() {
 
 
     /*
-       STOP OLD TIMER
+       CLEAR OLD TIMER
     */
 
     clearInterval(
@@ -1482,29 +1316,12 @@ function startTimer() {
 
 
     /*
-       SET TIME
+       RESET TIME
     */
 
-    if (
-        currentLevel === 1
-    ) {
+    timeLeft =
+        QUIZ_TIME;
 
-        timeLeft =
-            600;
-
-    }
-
-    else {
-
-        timeLeft =
-            60;
-
-    }
-
-
-    /*
-       DISPLAY
-    */
 
     updateTimerDisplay();
 
@@ -1517,9 +1334,7 @@ function startTimer() {
         setInterval(
             function() {
 
-
                 timeLeft--;
-
 
                 updateTimerDisplay();
 
@@ -1597,13 +1412,23 @@ function finishQuiz() {
        PREVENT DOUBLE FINISH
     */
 
+    if (quizFinished) {
+
+        return;
+
+    }
+
+
+    quizFinished = true;
+
+
     clearInterval(
         timer
     );
 
 
     /*
-       TOTAL
+       TOTAL QUESTIONS
     */
 
     const total =
@@ -1611,7 +1436,7 @@ function finishQuiz() {
 
 
     /*
-       PERCENTAGE
+       CALCULATE %
     */
 
     const percentage =
@@ -1698,12 +1523,13 @@ function finishQuiz() {
 
 
     /*
+       =========================
        PASS
+       =========================
     */
 
     if (
-        percentage >=
-        PASS_MARK
+        percentage >= PASS_MARK
     ) {
 
 
@@ -1725,49 +1551,65 @@ function finishQuiz() {
             "🏆 Excellent!";
 
 
-        document.getElementById(
-            "resultMessage"
-        ).innerText =
-            "You scored " +
-            percentage +
-            "% and passed Level " +
-            currentLevel +
-            "!";
-
-
         /*
-           UNLOCK NEXT LEVEL
-        */
-
-        const currentUnlocked =
-            Number(
-                localStorage.getItem(
-                    "unlockedLevel"
-                )
-            ) || 1;
-
-
-        if (
-            currentLevel < 5 &&
-            currentLevel + 1 >
-            currentUnlocked
-        ) {
-
-            localStorage.setItem(
-                "unlockedLevel",
-                currentLevel + 1
-            );
-
-        }
-
-
-        /*
-           NEXT LEVEL BUTTON
+           LEVEL 1–49
         */
 
         if (
-            currentLevel < 5
+            currentLevel <
+            TOTAL_LEVELS
         ) {
+
+
+            /*
+               CURRENT UNLOCKED LEVEL
+            */
+
+            const currentUnlocked =
+                Number(
+                    localStorage.getItem(
+                        "unlockedLevel"
+                    )
+                ) || 1;
+
+
+            /*
+               UNLOCK NEXT LEVEL
+            */
+
+            if (
+                currentLevel + 1 >
+                currentUnlocked
+            ) {
+
+                localStorage.setItem(
+                    "unlockedLevel",
+                    currentLevel + 1
+                );
+
+            }
+
+
+            /*
+               RESULT MESSAGE
+            */
+
+            document.getElementById(
+                "resultMessage"
+            ).innerText =
+                "You scored " +
+                percentage +
+                "% and passed Level " +
+                currentLevel +
+                "!\n\n" +
+                "🔓 Level " +
+                (currentLevel + 1) +
+                " is now unlocked.";
+
+
+            /*
+               SHOW NEXT BUTTON
+            */
 
             document.getElementById(
                 "nextLevelButton"
@@ -1777,13 +1619,27 @@ function finishQuiz() {
         }
 
 
+        /*
+           LEVEL 50 COMPLETE
+        */
+
         else {
+
 
             document.getElementById(
                 "resultMessage"
             ).innerText =
-                "🏆 Congratulations! " +
-                "You completed all 5 levels!";
+                "🏆 Congratulations!\n\n" +
+                "You scored " +
+                percentage +
+                "% and successfully " +
+                "completed all 50 levels!";
+
+
+            document.getElementById(
+                "nextLevelButton"
+            ).style.display =
+                "none";
 
         }
 
@@ -1791,7 +1647,9 @@ function finishQuiz() {
 
 
     /*
+       =========================
        FAIL
+       =========================
     */
 
     else {
@@ -1818,11 +1676,18 @@ function finishQuiz() {
         document.getElementById(
             "resultMessage"
         ).innerText =
+            "You scored " +
+            percentage +
+            "%.\n\n" +
             "You need at least " +
             PASS_MARK +
-            "% to pass this level.\n\n" +
-            "Try again and improve your score!";
+            "% to unlock the next level.\n\n" +
+            "Please try again.";
 
+
+        /*
+           HIDE NEXT LEVEL
+        */
 
         document.getElementById(
             "nextLevelButton"
@@ -1855,14 +1720,36 @@ function goNextLevel() {
 
 
     if (
-        currentLevel < 5
+        currentLevel <
+        TOTAL_LEVELS
     ) {
 
-        window.location.href =
-            "quiz.html?level=" +
-            (
-                currentLevel + 1
-            );
+        const nextLevel =
+            currentLevel + 1;
+
+
+        /*
+           DOUBLE CHECK UNLOCK
+        */
+
+        const unlockedLevel =
+            Number(
+                localStorage.getItem(
+                    "unlockedLevel"
+                )
+            ) || 1;
+
+
+        if (
+            nextLevel <=
+            unlockedLevel
+        ) {
+
+            window.location.href =
+                "quiz.html?level=" +
+                nextLevel;
+
+        }
 
     }
 
@@ -1876,11 +1763,9 @@ function goNextLevel() {
 
 function goHome() {
 
-
     clearInterval(
         timer
     );
-
 
     window.location.href =
         "index.html";
