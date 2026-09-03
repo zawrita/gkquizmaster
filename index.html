@@ -37,7 +37,7 @@ body {
 
     width: 100%;
 
-    max-width: 900px;
+    max-width: 1000px;
 
     margin: auto;
 }
@@ -56,7 +56,7 @@ body {
         0 15px 35px
         rgba(0,0,0,0.18);
 
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .logo {
@@ -131,6 +131,10 @@ body {
 
     background: #333;
 }
+
+/* =========================
+   LEVELS
+========================= */
 
 .levels {
 
@@ -211,6 +215,13 @@ body {
     background: #5568d9;
 }
 
+.play.locked-button {
+
+    background: #999;
+
+    cursor: not-allowed;
+}
+
 .locked {
 
     opacity: 0.65;
@@ -260,6 +271,43 @@ body {
 
     margin-top: 5px;
 }
+
+/* =========================
+   LEVEL STATUS
+========================= */
+
+.level-status {
+
+    display: inline-block;
+
+    margin-top: 5px;
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+.status-unlocked {
+
+    background: #d4edda;
+
+    color: #155724;
+}
+
+.status-locked {
+
+    background: #f1f1f1;
+
+    color: #777;
+}
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:700px) {
 
@@ -316,181 +364,15 @@ body {
 
     <!-- =========================
          LEVELS
+         LEVEL 1 - 50
     ========================== -->
 
-    <div class="levels">
-
-
-        <!-- LEVEL 1 -->
-
-        <div class="level">
-
-            <div class="level-number">
-                LEVEL 1
-            </div>
-
-            <h2>
-                🟢 Basic General Knowledge
-            </h2>
-
-            <p>
-                50 Questions<br>
-                10 Minutes<br>
-                Pass Mark: 90%
-            </p>
-
-            <button
-                class="play"
-                onclick="startLevel(1)">
-
-                ▶ Start Level 1
-
-            </button>
-
-        </div>
-
-
-        <!-- LEVEL 2 -->
-
-        <div class="level">
-
-            <div class="level-number">
-                LEVEL 2
-            </div>
-
-            <h2>
-                🔵 General Knowledge
-            </h2>
-
-            <p>
-                10 Questions<br>
-                60 Seconds<br>
-                Pass Mark: 90%
-            </p>
-
-            <button
-                class="play"
-                onclick="startLevel(2)">
-
-                ▶ Start Level 2
-
-            </button>
-
-        </div>
-
-
-        <!-- LEVEL 3 -->
-
-        <div
-            class="level"
-            id="level3">
-
-            <div class="lock-icon"
-                 id="lock3">
-                🔒
-            </div>
-
-            <div class="level-number">
-                LEVEL 3
-            </div>
-
-            <h2>
-                🟡 Intermediate GK
-            </h2>
-
-            <p>
-                10 Questions<br>
-                60 Seconds<br>
-                Admin Approval Required
-            </p>
-
-            <button
-                class="play"
-                id="button3"
-                onclick="startLevel(3)">
-
-                🔐 Login Required
-
-            </button>
-
-        </div>
-
-
-        <!-- LEVEL 4 -->
-
-        <div
-            class="level"
-            id="level4">
-
-            <div class="lock-icon"
-                 id="lock4">
-                🔒
-            </div>
-
-            <div class="level-number">
-                LEVEL 4
-            </div>
-
-            <h2>
-                🟠 Advanced GK
-            </h2>
-
-            <p>
-                10 Questions<br>
-                60 Seconds<br>
-                Admin Approval Required
-            </p>
-
-            <button
-                class="play"
-                id="button4"
-                onclick="startLevel(4)">
-
-                🔐 Login Required
-
-            </button>
-
-        </div>
-
-
-        <!-- LEVEL 5 -->
-
-        <div
-            class="level"
-            id="level5">
-
-            <div class="lock-icon"
-                 id="lock5">
-                🔒
-            </div>
-
-            <div class="level-number">
-                LEVEL 5
-            </div>
-
-            <h2>
-                🔴 Expert IR & GK
-            </h2>
-
-            <p>
-                10 Questions<br>
-                60 Seconds<br>
-                Admin Approval Required
-            </p>
-
-            <button
-                class="play"
-                id="button5"
-                onclick="startLevel(5)">
-
-                🔐 Login Required
-
-            </button>
-
-        </div>
-
+    <div
+        class="levels"
+        id="levelsContainer">
 
     </div>
+
 
 </div>
 
@@ -498,16 +380,35 @@ body {
 <script>
 
 /* =========================================
+   SETTINGS
+========================================= */
+
+const TOTAL_LEVELS = 50;
+
+const QUESTIONS_PER_LEVEL = 50;
+
+const PASS_MARK = 90;
+
+
+/* =========================================
    GET CURRENT USER
 ========================================= */
 
 function getCurrentUser() {
 
-    return JSON.parse(
-        localStorage.getItem(
-            "currentUser"
-        )
-    );
+    try {
+
+        return JSON.parse(
+            localStorage.getItem(
+                "currentUser"
+            )
+        );
+
+    } catch (error) {
+
+        return null;
+
+    }
 
 }
 
@@ -525,15 +426,26 @@ function getLatestUser() {
     if (!currentUser) {
 
         return null;
+
     }
 
 
-    const users =
-        JSON.parse(
-            localStorage.getItem(
-                "users"
-            )
-        ) || [];
+    let users = [];
+
+    try {
+
+        users =
+            JSON.parse(
+                localStorage.getItem(
+                    "users"
+                )
+            ) || [];
+
+    } catch (error) {
+
+        users = [];
+
+    }
 
 
     return users.find(
@@ -546,6 +458,38 @@ function getLatestUser() {
 
         }
     ) || null;
+
+}
+
+
+/* =========================================
+   GET UNLOCKED LEVEL
+========================================= */
+
+function getUnlockedLevel() {
+
+    const savedLevel =
+        Number(
+            localStorage.getItem(
+                "unlockedLevel"
+            )
+        );
+
+
+    if (
+        !Number.isInteger(savedLevel) ||
+        savedLevel < 1
+    ) {
+
+        return 1;
+
+    }
+
+
+    return Math.min(
+        savedLevel,
+        TOTAL_LEVELS
+    );
 
 }
 
@@ -588,6 +532,7 @@ function updateHeader() {
         `;
 
         return;
+
     }
 
 
@@ -627,7 +572,7 @@ function updateHeader() {
 
             `
             <span class="pending-badge">
-                ⏳ Pending Approval
+                ⏳ Account
             </span>
             `
         }
@@ -646,90 +591,190 @@ function updateHeader() {
 
 
 /* =========================================
-   UPDATE LEVELS
+   LEVEL TITLE
 ========================================= */
 
-function updateLevels() {
+function getLevelTitle(level) {
 
-    const currentUser =
-        getCurrentUser();
+    if (level === 1) {
+
+        return "🟢 ASEAN";
+
+    }
+
+    if (level === 2) {
+
+        return "🔵 United Nations (UN)";
+
+    }
+
+    if (level === 3) {
+
+        return "🟡 World General Knowledge";
+
+    }
+
+    if (level === 4) {
+
+        return "🟠 World General Knowledge";
+
+    }
+
+    if (
+        level >= 5 &&
+        level <= 15
+    ) {
+
+        return "🔴 General Questions";
+
+    }
+
+    if (
+        level >= 16 &&
+        level <= 20
+    ) {
+
+        return "🟣 Additional Questions";
+
+    }
+
+    return "⚫ Extra Questions";
+
+}
 
 
-    const user =
-        getLatestUser();
+/* =========================================
+   LEVEL DESCRIPTION
+========================================= */
+
+function getLevelDescription(level) {
+
+    return `
+        ${QUESTIONS_PER_LEVEL} Questions<br>
+        10 Minutes<br>
+        Pass Mark: ${PASS_MARK}%
+    `;
+
+}
 
 
-    const approved =
-        currentUser &&
-        user &&
-        user.approved === true;
+/* =========================================
+   CREATE ALL LEVELS
+========================================= */
+
+function createLevels() {
+
+    const container =
+        document.getElementById(
+            "levelsContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    const unlockedLevel =
+        getUnlockedLevel();
 
 
     for (
-        let level = 3;
-        level <= 5;
+        let level = 1;
+        level <= TOTAL_LEVELS;
         level++
     ) {
 
-        const button =
-            document.getElementById(
-                "button" + level
+        const isUnlocked =
+            level <= unlockedLevel;
+
+
+        const card =
+            document.createElement(
+                "div"
             );
 
-        const lock =
-            document.getElementById(
-                "lock" + level
+
+        card.className =
+            "level";
+
+
+        if (!isUnlocked) {
+
+            card.classList.add(
+                "locked"
             );
-
-
-        if (approved) {
-
-            button.innerText =
-                "▶ Start Level " +
-                level;
-
-            button.onclick =
-                function() {
-
-                    startLevel(level);
-
-                };
-
-            lock.innerText =
-                "🔓";
 
         }
 
-        else {
 
-            button.innerText =
-                currentUser
-                ?
-                "⏳ Waiting for Approval"
-                :
-                "🔐 Login Required";
+        const lockIcon =
+            isUnlocked
+            ? "🔓"
+            : "🔒";
 
-            button.onclick =
-                function() {
 
-                    if (!currentUser) {
+        const buttonText =
+            isUnlocked
+            ? "▶ Start Level " + level
+            : "🔒 Locked";
 
-                        goLogin();
 
-                    } else {
+        const statusText =
+            isUnlocked
+            ? "✓ Unlocked"
+            : "🔒 Locked";
 
-                        alert(
-                            "⏳ Your account is waiting for Admin approval."
-                        );
 
-                    }
+        const statusClass =
+            isUnlocked
+            ? "status-unlocked"
+            : "status-locked";
 
-                };
 
-            lock.innerText =
-                "🔒";
+        card.innerHTML = `
 
-        }
+            <div class="lock-icon">
+                ${lockIcon}
+            </div>
+
+            <div class="level-number">
+                LEVEL ${level}
+            </div>
+
+            <h2>
+                ${getLevelTitle(level)}
+            </h2>
+
+            <p>
+                ${getLevelDescription(level)}
+            </p>
+
+            <span
+                class="level-status ${statusClass}">
+
+                ${statusText}
+
+            </span>
+
+            <br><br>
+
+            <button
+                class="play ${
+                    isUnlocked
+                    ? ""
+                    : "locked-button"
+                }"
+                onclick="startLevel(${level})">
+
+                ${buttonText}
+
+            </button>
+
+        `;
+
+
+        container.appendChild(
+            card
+        );
 
     }
 
@@ -742,55 +787,55 @@ function updateLevels() {
 
 function startLevel(level) {
 
-    /* Level 1 & 2 */
-
     if (
-        level === 1 ||
-        level === 2
-    ) {
-
-        window.location.href =
-            "quiz.html?level=" +
-            level;
-
-        return;
-    }
-
-
-    /* Level 3-5 */
-
-    const currentUser =
-        getCurrentUser();
-
-
-    if (!currentUser) {
-
-        alert(
-            "🔐 Please login first."
-        );
-
-        goLogin();
-
-        return;
-    }
-
-
-    const user =
-        getLatestUser();
-
-
-    if (
-        !user ||
-        user.approved !== true
+        !Number.isInteger(level) ||
+        level < 1 ||
+        level > TOTAL_LEVELS
     ) {
 
         alert(
-            "⏳ Your account has not been approved by Admin yet."
+            "Invalid level."
         );
 
         return;
+
     }
 
+
+    const unlockedLevel =
+        getUnlockedLevel();
+
+
+    /* =========================
+       CHECK UNLOCK
+    ========================= */
+
+    if (
+        level > unlockedLevel
+    ) {
+
+        alert(
+
+            "🔒 Level " +
+            level +
+            " is locked.\n\n" +
+
+            "Please pass Level " +
+            (level - 1) +
+            " with " +
+            PASS_MARK +
+            "% or higher."
+
+        );
+
+        return;
+
+    }
+
+
+    /* =========================
+       OPEN QUIZ
+    ========================= */
 
     window.location.href =
         "quiz.html?level=" +
@@ -833,11 +878,31 @@ function logout() {
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -848,7 +913,7 @@ function escapeHTML(value) {
 
 updateHeader();
 
-updateLevels();
+createLevels();
 
 </script>
 
