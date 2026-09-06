@@ -63,7 +63,6 @@ body {
 
     font-size: 40px;
 
-    margin-bottom: 5px;
 }
 
 h1 {
@@ -73,6 +72,7 @@ h1 {
     margin-top: 0;
 
     color: #667eea;
+
 }
 
 .subtitle {
@@ -82,59 +82,7 @@ h1 {
     color: #777;
 
     margin-bottom: 25px;
-}
 
-.tabs {
-
-    display: flex;
-
-    margin-bottom: 25px;
-
-    background: #f1f2f6;
-
-    border-radius: 10px;
-
-    padding: 4px;
-}
-
-.tab {
-
-    flex: 1;
-
-    border: none;
-
-    padding: 12px;
-
-    background: transparent;
-
-    cursor: pointer;
-
-    border-radius: 8px;
-
-    font-size: 15px;
-}
-
-.tab.active {
-
-    background: white;
-
-    color: #667eea;
-
-    font-weight: bold;
-
-    box-shadow:
-        0 2px 8px
-        rgba(0,0,0,0.1);
-}
-
-.form {
-
-    display: none;
-}
-
-.form.active {
-
-    display: block;
 }
 
 label {
@@ -146,6 +94,7 @@ label {
     font-weight: bold;
 
     color: #555;
+
 }
 
 input {
@@ -163,11 +112,13 @@ input {
     font-size: 16px;
 
     outline: none;
+
 }
 
 input:focus {
 
     border-color: #667eea;
+
 }
 
 .submit {
@@ -187,11 +138,15 @@ input:focus {
     font-size: 17px;
 
     cursor: pointer;
+
+    font-weight: bold;
+
 }
 
 .submit:hover {
 
     background: #5568d9;
+
 }
 
 .admin-button {
@@ -211,6 +166,7 @@ input:focus {
     color: white;
 
     cursor: pointer;
+
 }
 
 .message {
@@ -222,6 +178,29 @@ input:focus {
     min-height: 22px;
 
     font-weight: bold;
+
+    line-height: 1.5;
+
+}
+
+.register {
+
+    text-align: center;
+
+    margin-top: 20px;
+
+    color: #777;
+
+}
+
+.register a {
+
+    color: #667eea;
+
+    font-weight: bold;
+
+    text-decoration: none;
+
 }
 
 .back {
@@ -235,6 +214,7 @@ input:focus {
     color: #667eea;
 
     text-decoration: none;
+
 }
 
 .admin-info {
@@ -252,12 +232,12 @@ input:focus {
     color: #666;
 
     text-align: center;
+
 }
 
 </style>
 
 </head>
-
 
 <body>
 
@@ -277,37 +257,7 @@ input:focus {
     </div>
 
 
-    <div class="tabs">
-
-        <button
-            class="tab active"
-            id="loginTab"
-            onclick="showLogin()">
-
-            Login
-
-        </button>
-
-
-        <button
-            class="tab"
-            id="registerTab"
-            onclick="showRegister()">
-
-            Register
-
-        </button>
-
-    </div>
-
-
-    <!-- =========================
-         LOGIN FORM
-    ========================== -->
-
-    <div
-        class="form active"
-        id="loginForm">
+    <form onsubmit="loginUser(event)">
 
         <label>
             Email
@@ -316,7 +266,9 @@ input:focus {
         <input
             type="email"
             id="loginEmail"
-            placeholder="Enter your email">
+            placeholder="Enter your email"
+            required
+        >
 
 
         <label>
@@ -326,108 +278,59 @@ input:focus {
         <input
             type="password"
             id="loginPassword"
-            placeholder="Enter your password">
+            placeholder="Enter your password"
+            required
+        >
 
 
         <button
+            type="submit"
             class="submit"
-            onclick="loginUser()">
-
+        >
             🔐 Login
-
         </button>
 
-
-        <button
-            class="admin-button"
-            onclick="adminLogin()">
-
-            👑 Admin Login
-
-        </button>
-
-    </div>
+    </form>
 
 
-    <!-- =========================
-         REGISTER FORM
-    ========================== -->
-
-    <div
-        class="form"
-        id="registerForm">
-
-        <label>
-            Name
-        </label>
-
-        <input
-            type="text"
-            id="registerName"
-            placeholder="Enter your name">
-
-
-        <label>
-            Email
-        </label>
-
-        <input
-            type="email"
-            id="registerEmail"
-            placeholder="Enter your email">
-
-
-        <label>
-            Password
-        </label>
-
-        <input
-            type="password"
-            id="registerPassword"
-            placeholder="Create a password">
-
-
-        <label>
-            Confirm Password
-        </label>
-
-        <input
-            type="password"
-            id="registerConfirm"
-            placeholder="Confirm your password">
-
-
-        <button
-            class="submit"
-            onclick="registerUser()">
-
-            📝 Create Account
-
-        </button>
-
-    </div>
+    <button
+        class="admin-button"
+        onclick="adminLogin()"
+    >
+        👑 Admin Login
+    </button>
 
 
     <div
         class="message"
-        id="message">
+        id="message"
+    ></div>
+
+
+    <div class="register">
+
+        Don't have an account?
+
+        <a href="register.html">
+            Create Account
+        </a>
+
     </div>
 
 
     <div class="admin-info">
 
-        👑 Admin account:
-        admin@gkquiz.com
+        👑 Admin:
+        <strong>admin@gkquiz.com</strong>
 
     </div>
 
 
     <a
         href="index.html"
-        class="back">
-
+        class="back"
+    >
         ← Back to Home
-
     </a>
 
 </div>
@@ -436,7 +339,7 @@ input:focus {
 <script>
 
 /* =========================================
-   ADMIN ACCOUNT
+   ADMIN
 ========================================= */
 
 const ADMIN_EMAIL =
@@ -447,51 +350,22 @@ const ADMIN_PASSWORD =
 
 
 /* =========================================
-   TAB SWITCH
+   GET USERS
 ========================================= */
 
-function showLogin() {
+function getUsers() {
 
-    document
-        .getElementById("loginForm")
-        .classList.add("active");
+    try {
 
-    document
-        .getElementById("registerForm")
-        .classList.remove("active");
+        return JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
 
-    document
-        .getElementById("loginTab")
-        .classList.add("active");
+    } catch {
 
-    document
-        .getElementById("registerTab")
-        .classList.remove("active");
+        return [];
 
-    clearMessage();
-
-}
-
-
-function showRegister() {
-
-    document
-        .getElementById("registerForm")
-        .classList.add("active");
-
-    document
-        .getElementById("loginForm")
-        .classList.remove("active");
-
-    document
-        .getElementById("registerTab")
-        .classList.add("active");
-
-    document
-        .getElementById("loginTab")
-        .classList.remove("active");
-
-    clearMessage();
+    }
 
 }
 
@@ -500,69 +374,30 @@ function showRegister() {
    MESSAGE
 ========================================= */
 
-function showMessage(
-    text,
-    color
-) {
+function showMessage(text, color) {
 
     const message =
-        document.getElementById(
-            "message"
-        );
+        document.getElementById("message");
 
-    message.innerText =
-        text;
+    message.innerText = text;
 
-    message.style.color =
-        color;
-
-}
-
-
-function clearMessage() {
-
-    document.getElementById(
-        "message"
-    ).innerText = "";
+    message.style.color = color;
 
 }
 
 
 /* =========================================
-   GET USERS
+   LOGIN
 ========================================= */
 
-function getUsers() {
+function loginUser(event) {
 
-    return JSON.parse(
-        localStorage.getItem(
-            "users"
-        )
-    ) || [];
-
-}
-
-
-/* =========================================
-   REGISTER
-========================================= */
-
-function registerUser() {
-
-    const name =
-        document
-        .getElementById(
-            "registerName"
-        )
-        .value
-        .trim();
+    event.preventDefault();
 
 
     const email =
         document
-        .getElementById(
-            "registerEmail"
-        )
+        .getElementById("loginEmail")
         .value
         .trim()
         .toLowerCase();
@@ -570,229 +405,11 @@ function registerUser() {
 
     const password =
         document
-        .getElementById(
-            "registerPassword"
-        )
+        .getElementById("loginPassword")
         .value;
 
 
-    const confirm =
-        document
-        .getElementById(
-            "registerConfirm"
-        )
-        .value;
-
-
-    /* Required fields */
-
-    if (
-        !name ||
-        !email ||
-        !password ||
-        !confirm
-    ) {
-
-        showMessage(
-            "Please fill in all fields.",
-            "#dc3545"
-        );
-
-        return;
-    }
-
-
-    /* Email */
-
-    if (
-        !email.includes("@")
-    ) {
-
-        showMessage(
-            "Please enter a valid email.",
-            "#dc3545"
-        );
-
-        return;
-    }
-
-
-    /* Password */
-
-    if (
-        password.length < 6
-    ) {
-
-        showMessage(
-            "Password must be at least 6 characters.",
-            "#dc3545"
-        );
-
-        return;
-    }
-
-
-    /* Confirm */
-
-    if (
-        password !== confirm
-    ) {
-
-        showMessage(
-            "Passwords do not match.",
-            "#dc3545"
-        );
-
-        return;
-    }
-
-
-    /* Prevent admin registration */
-
-    if (
-        email === ADMIN_EMAIL
-    ) {
-
-        showMessage(
-            "This email is reserved for Admin.",
-            "#dc3545"
-        );
-
-        return;
-    }
-
-
-    const users =
-        getUsers();
-
-
-    /* Check duplicate */
-
-    const exists =
-        users.some(
-            function(user) {
-
-                return (
-                    user.email
-                        .toLowerCase() ===
-                    email
-                );
-
-            }
-        );
-
-
-    if (exists) {
-
-        showMessage(
-            "An account with this email already exists.",
-            "#dc3545"
-        );
-
-        return;
-    }
-
-
-    /* Create user */
-
-    const newUser = {
-
-        name:
-            name,
-
-        email:
-            email,
-
-        password:
-            password,
-
-        approved:
-            false,
-
-        createdAt:
-            new Date()
-                .toLocaleString()
-
-    };
-
-
-    users.push(
-        newUser
-    );
-
-
-    localStorage.setItem(
-        "users",
-        JSON.stringify(users)
-    );
-
-
-    showMessage(
-        "✅ Account created! Please wait for Admin approval.",
-        "#28a745"
-    );
-
-
-    /* Clear */
-
-    document.getElementById(
-        "registerName"
-    ).value = "";
-
-    document.getElementById(
-        "registerEmail"
-    ).value = "";
-
-    document.getElementById(
-        "registerPassword"
-    ).value = "";
-
-    document.getElementById(
-        "registerConfirm"
-    ).value = "";
-
-}
-
-
-/* =========================================
-   USER LOGIN
-========================================= */
-
-function loginUser() {
-
-    const email =
-        document
-        .getElementById(
-            "loginEmail"
-        )
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    const password =
-        document
-        .getElementById(
-            "loginPassword"
-        )
-        .value;
-
-
-    if (
-        !email ||
-        !password
-    ) {
-
-        showMessage(
-            "Please enter email and password.",
-            "#dc3545"
-        );
-
-        return;
-    }
-
-
-    /* Admin account */
+    /* ADMIN */
 
     if (
         email === ADMIN_EMAIL &&
@@ -804,12 +421,19 @@ function loginUser() {
             "true"
         );
 
+        localStorage.removeItem(
+            "currentUser"
+        );
+
         window.location.href =
             "admin.html";
 
         return;
+
     }
 
+
+    /* USERS */
 
     const users =
         getUsers();
@@ -817,17 +441,10 @@ function loginUser() {
 
     const user =
         users.find(
-            function(u) {
-
-                return (
-                    u.email
-                        .toLowerCase() ===
-                    email &&
-                    u.password ===
-                    password
-                );
-
-            }
+            u =>
+                String(u.email)
+                .toLowerCase() === email &&
+                u.password === password
         );
 
 
@@ -839,25 +456,25 @@ function loginUser() {
         );
 
         return;
+
     }
 
 
-    /* Save current user */
+    /* Save complete current user */
 
     localStorage.setItem(
         "currentUser",
         JSON.stringify({
+            id: user.id,
             name: user.name,
             email: user.email
         })
     );
 
 
-    /* Approval */
+    /* ACCOUNT APPROVAL */
 
-    if (
-        user.approved !== true
-    ) {
+    if (user.approved !== true) {
 
         showMessage(
             "⏳ Login successful, but your account is waiting for Admin approval.",
@@ -865,10 +482,11 @@ function loginUser() {
         );
 
         return;
+
     }
 
 
-    /* Approved */
+    /* APPROVED */
 
     window.location.href =
         "index.html";
@@ -877,25 +495,22 @@ function loginUser() {
 
 
 /* =========================================
-   ADMIN LOGIN BUTTON
+   ADMIN LOGIN
 ========================================= */
 
 function adminLogin() {
 
     const email =
         document
-        .getElementById(
-            "loginEmail"
-        )
+        .getElementById("loginEmail")
         .value
-        .trim();
+        .trim()
+        .toLowerCase();
 
 
     const password =
         document
-        .getElementById(
-            "loginPassword"
-        )
+        .getElementById("loginPassword")
         .value;
 
 
@@ -905,17 +520,23 @@ function adminLogin() {
     ) {
 
         showMessage(
-            "❌ Invalid Admin email or password.",
+            "❌ Enter the correct Admin email and password.",
             "#dc3545"
         );
 
         return;
+
     }
 
 
     localStorage.setItem(
         "adminLoggedIn",
         "true"
+    );
+
+
+    localStorage.removeItem(
+        "currentUser"
     );
 
 
