@@ -1,135 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gemini ရာထူးဝင်ခွင့်သင်တန်း</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
 
 body {
-
     margin: 0;
-
     min-height: 100vh;
-
-    background:
-        linear-gradient(
-            135deg,
-            #667eea,
-            #764ba2
-        );
-
+    background: linear-gradient(135deg, #667eea, #764ba2);
     padding: 30px 20px;
 }
 
 .container {
-
     width: 100%;
-
     max-width: 1000px;
-
     margin: auto;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header {
-
     background: white;
-
     padding: 30px;
-
     border-radius: 22px;
-
     text-align: center;
-
-    box-shadow:
-        0 15px 35px
-        rgba(0,0,0,0.18);
-
+    box-shadow: 0 15px 35px rgba(0,0,0,0.18);
     margin-bottom: 25px;
 }
 
 .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
 
-    font-size: 50px;
+.logo img {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border-radius: 18px;
 }
 
 .header h1 {
-
     margin: 5px 0;
-
     color: #667eea;
-
     font-size: 35px;
 }
 
 .header p {
-
     color: #777;
-
     margin: 5px 0 20px;
 }
 
 .user-area {
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 10px;
-
     flex-wrap: wrap;
 }
 
 .user-name {
-
     color: #555;
-
     font-weight: bold;
 }
 
 .login-btn,
 .logout-btn,
 .admin-btn {
-
     border: none;
-
     padding: 10px 18px;
-
     border-radius: 9px;
-
     color: white;
-
     cursor: pointer;
-
     font-size: 14px;
 }
 
 .login-btn {
-
     background: #667eea;
 }
 
 .logout-btn {
-
     background: #dc3545;
 }
 
 .admin-btn {
-
     background: #333;
+}
+
+.login-btn:hover {
+    background: #5568d9;
+}
+
+.logout-btn:hover {
+    background: #bb2d3b;
+}
+
+.admin-btn:hover {
+    background: #222;
+}
+
+/* =========================
+   ACCESS INFORMATION
+========================= */
+
+.access-info {
+    background: white;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.access-info h3 {
+    margin: 0 0 10px;
+    color: #333;
+}
+
+.access-info p {
+    margin: 7px 0;
+    color: #666;
+    line-height: 1.6;
+}
+
+.public-text {
+    color: #28a745;
+    font-weight: bold;
+}
+
+.approval-text {
+    color: #dc3545;
+    font-weight: bold;
 }
 
 /* =========================
@@ -137,139 +149,98 @@ body {
 ========================= */
 
 .levels {
-
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
 .level {
-
     background: white;
-
     border-radius: 20px;
-
     padding: 25px;
-
-    box-shadow:
-        0 10px 25px
-        rgba(0,0,0,0.15);
-
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     position: relative;
-
     transition: 0.2s;
 }
 
 .level:hover {
+    transform: translateY(-4px);
+}
 
-    transform:
-        translateY(-4px);
+.level.locked {
+    opacity: 0.72;
 }
 
 .level-number {
-
     font-size: 14px;
-
     color: #667eea;
-
     font-weight: bold;
 }
 
 .level h2 {
-
     margin: 8px 0;
-
+    padding-right: 35px;
 }
 
 .level p {
-
     color: #777;
-
     line-height: 1.5;
 }
 
 .play {
-
     width: 100%;
-
     padding: 13px;
-
     border: none;
-
     border-radius: 10px;
-
     background: #667eea;
-
     color: white;
-
     font-size: 16px;
-
     cursor: pointer;
 }
 
 .play:hover {
-
     background: #5568d9;
 }
 
 .play.locked-button {
-
     background: #999;
-
-    cursor: not-allowed;
-}
-
-.locked {
-
-    opacity: 0.65;
+    cursor: pointer;
 }
 
 .lock-icon {
-
     position: absolute;
-
     top: 20px;
-
     right: 20px;
-
     font-size: 25px;
 }
 
-.approved-badge {
+/* =========================
+   BADGES
+========================= */
 
+.approved-badge,
+.pending-badge,
+.guest-badge {
     display: inline-block;
-
-    background: #d4edda;
-
-    color: #155724;
-
     padding: 5px 10px;
-
     border-radius: 20px;
-
     font-size: 12px;
-
     margin-top: 5px;
 }
 
+.approved-badge {
+    background: #d4edda;
+    color: #155724;
+}
+
 .pending-badge {
-
-    display: inline-block;
-
     background: #fff3cd;
-
     color: #856404;
+}
 
-    padding: 5px 10px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    margin-top: 5px;
+.guest-badge {
+    background: #e2e3e5;
+    color: #555;
 }
 
 /* =========================
@@ -277,105 +248,110 @@ body {
 ========================= */
 
 .level-status {
-
     display: inline-block;
-
     margin-top: 5px;
-
     padding: 5px 10px;
-
     border-radius: 20px;
-
     font-size: 12px;
-
     font-weight: bold;
 }
 
-.status-unlocked {
-
+.status-public {
     background: #d4edda;
-
     color: #155724;
 }
 
-.status-locked {
+.status-approved {
+    background: #d4edda;
+    color: #155724;
+}
 
-    background: #f1f1f1;
+.status-approval {
+    background: #fff3cd;
+    color: #856404;
+}
 
-    color: #777;
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    text-align: center;
+    color: white;
+    margin-top: 25px;
+    font-size: 13px;
+    opacity: 0.9;
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media(max-width:700px) {
+@media (max-width: 700px) {
+    body {
+        padding: 20px 12px;
+    }
 
     .levels {
-
         grid-template-columns: 1fr;
     }
 
     .header h1 {
-
         font-size: 28px;
     }
 
+    .logo img {
+        width: 90px;
+        height: 90px;
+    }
 }
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="container">
 
-
-    <!-- =========================
-         HEADER
-    ========================== -->
-
+    <!-- HEADER -->
     <div class="header">
 
         <div class="logo">
-            🧠
+            <img src="logo.jpg" alt="GK Quiz Master Logo">
         </div>
 
-        <h1>
-            Gemini ရာထူးဝင်ခွင့်သင်တန်း
-        </h1>
+        <h1>Gemini ရာထူးဝင်ခွင့်သင်တန်း</h1>
+
+        <p>General Knowledge Challenge</p>
+
+        <div class="user-area" id="userArea"></div>
+
+    </div>
+
+    <!-- ACCESS INFORMATION -->
+    <div class="access-info">
+
+        <h3>🎯 Level Access</h3>
 
         <p>
-            General Knowledge Challenge
+            <span class="public-text">🟢 Level 1–2</span>
+            — Public Access
         </p>
 
-
-        <div
-            class="user-area"
-            id="userArea">
-
-        </div>
+        <p>
+            <span class="approval-text">🔒 Level 3–50</span>
+            — Admin Approval Required
+        </p>
 
     </div>
 
+    <!-- LEVELS -->
+    <div class="levels" id="levelsContainer"></div>
 
-    <!-- =========================
-         LEVELS
-         LEVEL 1 - 50
-    ========================== -->
-
-    <div
-        class="levels"
-        id="levelsContainer">
-
+    <div class="footer">
+        GK Quiz Master © 2026
     </div>
-
 
 </div>
-
 
 <script>
 
@@ -384,9 +360,7 @@ body {
 ========================================= */
 
 const TOTAL_LEVELS = 50;
-
 const QUESTIONS_PER_LEVEL = 50;
-
 const PASS_MARK = 90;
 
 
@@ -397,128 +371,103 @@ const PASS_MARK = 90;
 function getCurrentUser() {
 
     try {
-
         return JSON.parse(
-            localStorage.getItem(
-                "currentUser"
-            )
+            localStorage.getItem("currentUser")
         );
-
     } catch (error) {
-
         return null;
-
     }
 
 }
 
 
 /* =========================================
-   GET USER FROM DATABASE
+   GET USERS DATABASE
+========================================= */
+
+function getUsers() {
+
+    try {
+        return JSON.parse(
+            localStorage.getItem("users")
+        ) || [];
+    } catch (error) {
+        return [];
+    }
+
+}
+
+
+/* =========================================
+   GET LATEST USER
 ========================================= */
 
 function getLatestUser() {
 
-    const currentUser =
-        getCurrentUser();
-
+    const currentUser = getCurrentUser();
 
     if (!currentUser) {
-
         return null;
-
     }
 
+    const users = getUsers();
 
-    let users = [];
+    return users.find(function(user) {
 
-    try {
+        return (
+            user.email === currentUser.email
+        );
 
-        users =
-            JSON.parse(
-                localStorage.getItem(
-                    "users"
-                )
-            ) || [];
-
-    } catch (error) {
-
-        users = [];
-
-    }
-
-
-    return users.find(
-        function(user) {
-
-            return (
-                user.email ===
-                currentUser.email
-            );
-
-        }
-    ) || null;
+    }) || null;
 
 }
 
 
 /* =========================================
-   GET UNLOCKED LEVEL
+   CHECK ADMIN APPROVAL
 ========================================= */
 
-function getUnlockedLevel() {
+function isUserApproved() {
 
-    const savedLevel =
-        Number(
-            localStorage.getItem(
-                "unlockedLevel"
-            )
-        );
+    const user = getLatestUser();
 
-
-    if (
-        !Number.isInteger(savedLevel) ||
-        savedLevel < 1
-    ) {
-
-        return 1;
-
-    }
-
-
-    return Math.min(
-        savedLevel,
-        TOTAL_LEVELS
+    return (
+        user &&
+        user.approved === true
     );
 
 }
 
 
 /* =========================================
-   HEADER
+   UPDATE HEADER
 ========================================= */
 
 function updateHeader() {
 
     const area =
-        document.getElementById(
-            "userArea"
-        );
-
+        document.getElementById("userArea");
 
     area.innerHTML = "";
-
 
     const currentUser =
         getCurrentUser();
 
+
+    /* =========================
+       GUEST
+    ========================= */
 
     if (!currentUser) {
 
         area.innerHTML = `
 
             <span class="user-name">
-                You are playing as Guest
+                👤 You are playing as Guest
+            </span>
+
+            <span class="guest-badge">
+                Level 1–2 Public Access
             </span>
 
             <button
@@ -532,13 +481,15 @@ function updateHeader() {
         `;
 
         return;
-
     }
 
 
+    /* =========================
+       REGISTERED USER
+    ========================= */
+
     const user =
         getLatestUser();
-
 
     const approved =
         user &&
@@ -564,7 +515,7 @@ function updateHeader() {
 
             `
             <span class="approved-badge">
-                ✓ Approved
+                ✓ Admin Approved
             </span>
             `
 
@@ -572,7 +523,7 @@ function updateHeader() {
 
             `
             <span class="pending-badge">
-                ⏳ Account
+                ⏳ Pending Approval
             </span>
             `
         }
@@ -597,45 +548,27 @@ function updateHeader() {
 function getLevelTitle(level) {
 
     if (level === 1) {
-
         return "🟢 ASEAN";
-
     }
 
     if (level === 2) {
-
         return "🔵 United Nations (UN)";
-
     }
 
     if (level === 3) {
-
         return "🟡 MOFA ငယ်ရေး Priority";
-
     }
 
     if (level === 4) {
-
         return "🟠 MOFA ငယ်ရေး Priority";
-
     }
 
-    if (
-        level >= 5 &&
-        level <= 15
-    ) {
-
+    if (level >= 5 && level <= 15) {
         return "🔴 MOFA ငယ်ရေး Priority";
-
     }
 
-    if (
-        level >= 16 &&
-        level <= 20
-    ) {
-
+    if (level >= 16 && level <= 20) {
         return "🟣 Additional Questions";
-
     }
 
     return "⚫ Extra Questions";
@@ -659,7 +592,7 @@ function getLevelDescription(level) {
 
 
 /* =========================================
-   CREATE ALL LEVELS
+   CREATE LEVELS 1–50
 ========================================= */
 
 function createLevels() {
@@ -669,12 +602,10 @@ function createLevels() {
             "levelsContainer"
         );
 
-
     container.innerHTML = "";
 
-
-    const unlockedLevel =
-        getUnlockedLevel();
+    const approved =
+        isUserApproved();
 
 
     for (
@@ -683,52 +614,89 @@ function createLevels() {
         level++
     ) {
 
-        const isUnlocked =
-            level <= unlockedLevel;
+        /*
+         * LEVEL 1–2 = PUBLIC
+         * LEVEL 3–50 = ADMIN APPROVAL
+         */
+
+        const isPublic =
+            level <= 2;
+
+        const canAccess =
+            isPublic || approved;
 
 
         const card =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
+
+        card.className = "level";
 
 
-        card.className =
-            "level";
+        if (!canAccess) {
 
-
-        if (!isUnlocked) {
-
-            card.classList.add(
-                "locked"
-            );
+            card.classList.add("locked");
 
         }
 
 
-        const lockIcon =
-            isUnlocked
-            ? "🔓"
-            : "🔒";
+        /* ICON */
+
+        let lockIcon;
+
+        if (isPublic) {
+            lockIcon = "🌐";
+        }
+        else if (approved) {
+            lockIcon = "🔓";
+        }
+        else {
+            lockIcon = "🔒";
+        }
 
 
-        const buttonText =
-            isUnlocked
-            ? "▶ Start Level " + level
-            : "🔒 Locked";
+        /* BUTTON */
+
+        let buttonText;
+
+        if (canAccess) {
+
+            buttonText =
+                "▶ Start Level " + level;
+
+        } else {
+
+            buttonText =
+                "🔒 Admin Approval Required";
+
+        }
 
 
-        const statusText =
-            isUnlocked
-            ? "✓ Unlocked"
-            : "🔒 Locked";
+        /* STATUS */
+
+        let statusText;
+        let statusClass;
+
+        if (isPublic) {
+
+            statusText = "🌐 Public";
+            statusClass = "status-public";
+
+        }
+        else if (approved) {
+
+            statusText = "✓ Approved Access";
+            statusClass = "status-approved";
+
+        }
+        else {
+
+            statusText = "🔒 Approval Required";
+            statusClass = "status-approval";
+
+        }
 
 
-        const statusClass =
-            isUnlocked
-            ? "status-unlocked"
-            : "status-locked";
-
+        /* CARD HTML */
 
         card.innerHTML = `
 
@@ -748,18 +716,15 @@ function createLevels() {
                 ${getLevelDescription(level)}
             </p>
 
-            <span
-                class="level-status ${statusClass}">
-
+            <span class="level-status ${statusClass}">
                 ${statusText}
-
             </span>
 
             <br><br>
 
             <button
                 class="play ${
-                    isUnlocked
+                    canAccess
                     ? ""
                     : "locked-button"
                 }"
@@ -771,10 +736,7 @@ function createLevels() {
 
         `;
 
-
-        container.appendChild(
-            card
-        );
+        container.appendChild(card);
 
     }
 
@@ -787,45 +749,69 @@ function createLevels() {
 
 function startLevel(level) {
 
+    /* VALIDATE */
+
     if (
         !Number.isInteger(level) ||
         level < 1 ||
         level > TOTAL_LEVELS
     ) {
 
-        alert(
-            "Invalid level."
-        );
+        alert("Invalid level.");
+        return;
+
+    }
+
+
+    /* =========================
+       LEVEL 1–2 PUBLIC
+    ========================= */
+
+    if (level <= 2) {
+
+        window.location.href =
+            "quiz.html?level=" + level;
 
         return;
 
     }
 
 
-    const unlockedLevel =
-        getUnlockedLevel();
+    /* =========================
+       LEVEL 3–50
+       LOGIN REQUIRED
+    ========================= */
+
+    const currentUser =
+        getCurrentUser();
+
+
+    if (!currentUser) {
+
+        alert(
+            "🔒 Level " + level +
+            " ကို အသုံးပြုရန် Login / Register ဝင်ရန်လိုအပ်ပါသည်။"
+        );
+
+        window.location.href =
+            "login.html";
+
+        return;
+
+    }
 
 
     /* =========================
-       CHECK UNLOCK
+       ADMIN APPROVAL REQUIRED
     ========================= */
 
-    if (
-        level > unlockedLevel
-    ) {
+    if (!isUserApproved()) {
 
         alert(
-
-            "🔒 Level " +
-            level +
-            " is locked.\n\n" +
-
-            "Please pass Level " +
-            (level - 1) +
-            " with " +
-            PASS_MARK +
-            "% or higher."
-
+            "⏳ Level " + level +
+            " ကို အသုံးပြုရန် Admin Approval လိုအပ်ပါသည်။\n\n" +
+            "သင့် Account ကို Admin မှ Approve လုပ်ပြီးမှ " +
+            "Level 3–50 ကို အသုံးပြုနိုင်ပါမည်။"
         );
 
         return;
@@ -838,8 +824,7 @@ function startLevel(level) {
     ========================= */
 
     window.location.href =
-        "quiz.html?level=" +
-        level;
+        "quiz.html?level=" + level;
 
 }
 
@@ -878,31 +863,11 @@ function logout() {
 function escapeHTML(value) {
 
     return String(value)
-
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-
-        .replace(
-            /</g,
-            "&lt;"
-        )
-
-        .replace(
-            />/g,
-            "&gt;"
-        )
-
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -912,11 +877,9 @@ function escapeHTML(value) {
 ========================================= */
 
 updateHeader();
-
 createLevels();
 
 </script>
 
 </body>
-
 </html>
