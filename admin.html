@@ -8,7 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>GK Quiz Master - Admin</title>
+<title>GK Quiz Master - Admin Panel</title>
 
 <style>
 
@@ -18,9 +18,7 @@
 }
 
 body {
-
     margin: 0;
-
     min-height: 100vh;
 
     background:
@@ -30,124 +28,105 @@ body {
             #764ba2
         );
 
-    padding: 30px 20px;
+    padding: 25px 15px;
 }
 
 .container {
-
     width: 100%;
-
-    max-width: 1250px;
-
+    max-width: 1400px;
     margin: auto;
-
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .header {
-
     background: white;
-
-    padding: 25px 30px;
-
+    padding: 22px 28px;
     border-radius: 20px;
 
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 
     margin-bottom: 20px;
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.15);
-
+        0 10px 30px rgba(0,0,0,0.15);
 }
 
 .header h1 {
-
     margin: 0;
-
     color: #667eea;
-
+    font-size: 28px;
 }
 
 .header p {
-
     margin: 5px 0 0;
-
     color: #777;
-
 }
 
 .logout {
-
     background: #dc3545;
-
     color: white;
-
     border: none;
 
     padding: 12px 20px;
-
     border-radius: 10px;
 
     cursor: pointer;
-
     font-size: 15px;
-
 }
 
-.stats {
+.logout:hover {
+    background: #b52a37;
+}
 
+/* =========================
+   STATS
+========================= */
+
+.stats {
     display: grid;
 
     grid-template-columns:
-        repeat(3, 1fr);
+        repeat(4, 1fr);
 
     gap: 15px;
 
     margin-bottom: 20px;
-
 }
 
 .stat {
-
     background: white;
 
-    padding: 25px;
+    padding: 22px;
 
     border-radius: 18px;
 
     text-align: center;
 
     box-shadow:
-        0 10px 25px
-        rgba(0,0,0,0.12);
-
+        0 10px 25px rgba(0,0,0,0.12);
 }
 
 .stat h2 {
-
-    font-size: 35px;
-
+    font-size: 34px;
     margin: 0 0 5px;
-
     color: #667eea;
-
 }
 
 .stat p {
-
     margin: 0;
-
     color: #777;
-
 }
 
-.panel {
+/* =========================
+   PANEL
+========================= */
 
+.panel {
     background: white;
 
     padding: 25px;
@@ -155,36 +134,57 @@ body {
     border-radius: 20px;
 
     box-shadow:
-        0 10px 30px
-        rgba(0,0,0,0.15);
-
+        0 10px 30px rgba(0,0,0,0.15);
 }
 
 .panel h2 {
-
     margin-top: 0;
-
+    color: #333;
 }
 
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #667eea;
+}
+
+/* =========================
+   TABLE
+========================= */
+
 .table-wrapper {
-
     overflow-x: auto;
-
 }
 
 table {
-
     width: 100%;
-
     border-collapse: collapse;
 
-    min-width: 1000px;
-
+    min-width: 1150px;
 }
 
 th,
 td {
-
     padding: 14px 10px;
 
     border-bottom:
@@ -192,60 +192,55 @@ td {
 
     text-align: left;
 
+    vertical-align: middle;
 }
 
 th {
-
     background: #f5f6ff;
-
     color: #555;
-
 }
 
-.status {
-
+.user-name {
     font-weight: bold;
+    color: #333;
+}
 
+.user-email {
+    font-size: 13px;
+    color: #777;
+    margin-top: 3px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    font-weight: bold;
 }
 
 .pending {
-
     color: #f39c12;
-
 }
 
 .approved {
-
     color: #28a745;
-
 }
 
-.denied {
+/* =========================
+   LEVEL SUMMARY
+========================= */
 
-    color: #dc3545;
-
-}
-
-.level {
-
+.level-summary {
     font-weight: bold;
-
+    color: #667eea;
 }
 
-.level-yes {
-
-    color: #28a745;
-
-}
-
-.level-no {
-
-    color: #999;
-
-}
+/* =========================
+   BUTTONS
+========================= */
 
 button.action {
-
     border: none;
 
     padding: 8px 11px;
@@ -258,74 +253,300 @@ button.action {
 
     margin: 2px;
 
+    font-size: 13px;
+}
+
+button.action:hover {
+    opacity: 0.85;
 }
 
 .approve {
-
     background: #28a745;
-
 }
 
 .reject {
-
     background: #dc3545;
-
 }
 
 .level-btn {
-
     background: #667eea;
-
 }
 
 .delete {
-
     background: #555;
-
 }
 
+.manage {
+    background: #764ba2;
+}
+
+/* =========================
+   EMPTY
+========================= */
+
 .empty {
+    text-align: center;
+    padding: 40px;
+    color: #777;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    z-index: 9999;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+
+    background:
+        rgba(0,0,0,0.65);
+
+    padding: 20px;
+
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+
+    width: 100%;
+
+    max-width: 850px;
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: #667eea;
+}
+
+.close {
+    border: none;
+
+    background: #eee;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+
+    cursor: pointer;
+}
+
+/* =========================
+   USER INFO
+========================= */
+
+.user-info {
+    background: #f5f6ff;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    margin-bottom: 20px;
+}
+
+.user-info strong {
+    color: #333;
+}
+
+/* =========================
+   LEVEL CONTROLS
+========================= */
+
+.level-controls {
+    display: flex;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 20px;
+}
+
+.control-btn {
+    border: none;
+
+    padding: 10px 14px;
+
+    border-radius: 9px;
+
+    color: white;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+.grant-all {
+    background: #28a745;
+}
+
+.remove-all {
+    background: #dc3545;
+}
+
+.default-levels {
+    background: #667eea;
+}
+
+/* =========================
+   LEVEL GRID
+========================= */
+
+.level-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, 1fr);
+
+    gap: 10px;
+}
+
+.level-card {
+    border: 2px solid #ddd;
+
+    background: #f8f8f8;
+
+    border-radius: 12px;
+
+    padding: 14px 8px;
 
     text-align: center;
 
-    padding: 30px;
+    cursor: pointer;
 
-    color: #777;
-
+    transition: 0.2s;
 }
 
-.user-name {
+.level-card:hover {
+    transform: translateY(-2px);
+}
 
+.level-card.granted {
+    background: #e8f8ed;
+
+    border-color: #28a745;
+
+    color: #168235;
+}
+
+.level-card.not-granted {
+    background: #f8f8f8;
+
+    border-color: #ddd;
+
+    color: #999;
+}
+
+.level-number {
+    font-size: 18px;
     font-weight: bold;
-
-    color: #333;
-
 }
 
-.user-email {
-
-    font-size: 13px;
-
-    color: #777;
-
+.level-status {
+    font-size: 12px;
+    margin-top: 4px;
 }
 
-@media(max-width:700px) {
+/* =========================
+   MODAL FOOTER
+========================= */
+
+.modal-footer {
+    margin-top: 20px;
+
+    display: flex;
+
+    justify-content: flex-end;
+}
+
+.done-btn {
+    background: #667eea;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px) {
+
+    .stats {
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .level-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+}
+
+@media(max-width:600px) {
+
+    body {
+        padding: 15px 10px;
+    }
 
     .header {
-
         flex-direction: column;
-
         gap: 15px;
-
         text-align: center;
-
     }
 
     .stats {
-
         grid-template-columns: 1fr;
+    }
 
+    .panel {
+        padding: 15px;
+    }
+
+    .level-grid {
+        grid-template-columns:
+            repeat(3, 1fr);
     }
 
 }
@@ -341,131 +562,252 @@ button.action {
 <div class="container">
 
 
-    <div class="header">
+<!-- =========================
+     HEADER
+========================= -->
 
-        <div>
+<div class="header">
 
-            <h1>
-                👑 GK Quiz Master
-            </h1>
+    <div>
 
-            <p>
-                Administrator Control Panel
-            </p>
+        <h1>
+            👑 GK Quiz Master
+        </h1>
 
-        </div>
-
-
-        <button
-            class="logout"
-            onclick="logoutAdmin()"
-        >
-            Logout
-        </button>
+        <p>
+            Administrator Control Panel
+        </p>
 
     </div>
 
+    <button
+        class="logout"
+        onclick="logoutAdmin()"
+    >
+        Logout
+    </button>
 
-    <div class="stats">
-
-
-        <div class="stat">
-
-            <h2 id="totalUsers">
-                0
-            </h2>
-
-            <p>
-                Total Users
-            </p>
-
-        </div>
+</div>
 
 
-        <div class="stat">
+<!-- =========================
+     STATISTICS
+========================= -->
 
-            <h2 id="pendingUsers">
-                0
-            </h2>
-
-            <p>
-                Pending Approval
-            </p>
-
-        </div>
+<div class="stats">
 
 
-        <div class="stat">
+    <div class="stat">
 
-            <h2 id="approvedUsers">
-                0
-            </h2>
-
-            <p>
-                Approved Users
-            </p>
-
-        </div>
-
-    </div>
-
-
-    <div class="panel">
-
-        <h2>
-            👥 User Management
+        <h2 id="totalUsers">
+            0
         </h2>
 
+        <p>
+            Total Users
+        </p>
 
-        <div class="table-wrapper">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            User
-                        </th>
-
-                        <th>
-                            Account
-                        </th>
-
-                        <th>
-                            Level 3
-                        </th>
-
-                        <th>
-                            Level 4
-                        </th>
-
-                        <th>
-                            Level 5
-                        </th>
-
-                        <th>
-                            Registered
-                        </th>
-
-                        <th>
-                            Action
-                        </th>
-
-                    </tr>
-
-                </thead>
+    </div>
 
 
-                <tbody
-                    id="userTable"
-                >
-                </tbody>
+    <div class="stat">
 
-            </table>
+        <h2 id="pendingUsers">
+            0
+        </h2>
+
+        <p>
+            Pending Approval
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2 id="approvedUsers">
+            0
+        </h2>
+
+        <p>
+            Approved Users
+        </p>
+
+    </div>
+
+
+    <div class="stat">
+
+        <h2 id="activeUsers">
+            0
+        </h2>
+
+        <p>
+            Users With Access
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     USER MANAGEMENT
+========================= -->
+
+<div class="panel">
+
+    <h2>
+        👥 User Management
+    </h2>
+
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchUser"
+            placeholder="🔎 Search by name or email..."
+            oninput="loadUsers()"
+        >
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        User
+                    </th>
+
+                    <th>
+                        Account
+                    </th>
+
+                    <th>
+                        Level Access
+                    </th>
+
+                    <th>
+                        Registered
+                    </th>
+
+                    <th>
+                        Action
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="userTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<!-- =========================
+     LEVEL MANAGEMENT MODAL
+========================= -->
+
+<div
+    id="levelModal"
+    class="modal"
+>
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <h2>
+                🔐 Level Access Management
+            </h2>
+
+            <button
+                class="close"
+                onclick="closeLevelModal()"
+            >
+                ×
+            </button>
 
         </div>
+
+
+        <div
+            id="modalUserInfo"
+            class="user-info"
+        >
+        </div>
+
+
+        <div class="level-controls">
+
+
+            <button
+                class="control-btn grant-all"
+                onclick="grantAllLevels()"
+            >
+                🔓 Grant All 1–50
+            </button>
+
+
+            <button
+                class="control-btn remove-all"
+                onclick="removeAllLevels()"
+            >
+                🔒 Remove All
+            </button>
+
+
+            <button
+                class="control-btn default-levels"
+                onclick="setDefaultLevels()"
+            >
+                ⭐ Level 1–2 Only
+            </button>
+
+
+        </div>
+
+
+        <h3>
+            Select Level Access
+        </h3>
+
+
+        <div
+            id="levelGrid"
+            class="level-grid"
+        >
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="done-btn"
+                onclick="closeLevelModal()"
+            >
+                Done
+            </button>
+
+        </div>
+
 
     </div>
 
@@ -475,7 +817,7 @@ button.action {
 <script>
 
 /* =========================================
-   CHECK ADMIN
+   ADMIN SECURITY
 ========================================= */
 
 function checkAdmin() {
@@ -490,11 +832,9 @@ function checkAdmin() {
             "login.html";
 
         return false;
-
     }
 
     return true;
-
 }
 
 
@@ -508,18 +848,40 @@ if (!checkAdmin()) {
 
 
 /* =========================================
-   USERS
+   GLOBAL VARIABLES
+========================================= */
+
+let selectedUserIndex = null;
+
+
+/* =========================================
+   GET USERS
 ========================================= */
 
 function getUsers() {
 
     try {
 
-        return JSON.parse(
-            localStorage.getItem("users")
-        ) || [];
+        const data =
+            localStorage.getItem("users");
 
-    } catch {
+        if (!data) {
+            return [];
+        }
+
+        const users =
+            JSON.parse(data);
+
+        return Array.isArray(users)
+            ? users
+            : [];
+
+    } catch (error) {
+
+        console.error(
+            "Cannot read users:",
+            error
+        );
 
         return [];
 
@@ -527,6 +889,10 @@ function getUsers() {
 
 }
 
+
+/* =========================================
+   SAVE USERS
+========================================= */
 
 function saveUsers(users) {
 
@@ -544,25 +910,80 @@ function saveUsers(users) {
 
 function normalizeUser(user) {
 
-    if (!Array.isArray(user.levelAccess)) {
+    if (!user) {
+        return user;
+    }
+
+
+    /*
+       Old accounts may not have
+       levelAccess.
+    */
+
+    if (
+        !Array.isArray(
+            user.levelAccess
+        )
+    ) {
 
         user.levelAccess = [1, 2];
 
     }
 
 
-    if (!user.levelAccess.includes(1)) {
+    /*
+       Make sure levels are valid
+    */
+
+    user.levelAccess =
+        user.levelAccess
+
+        .map(Number)
+
+        .filter(
+            level =>
+                Number.isInteger(level) &&
+                level >= 1 &&
+                level <= 50
+        );
+
+
+    /*
+       Remove duplicates
+    */
+
+    user.levelAccess =
+        [...new Set(
+            user.levelAccess
+        )];
+
+
+    /*
+       Level 1 and 2 are
+       always available.
+    */
+
+    if (
+        !user.levelAccess.includes(1)
+    ) {
 
         user.levelAccess.push(1);
 
     }
 
 
-    if (!user.levelAccess.includes(2)) {
+    if (
+        !user.levelAccess.includes(2)
+    ) {
 
         user.levelAccess.push(2);
 
     }
+
+
+    user.levelAccess.sort(
+        (a,b) => a-b
+    );
 
 
     return user;
@@ -577,11 +998,53 @@ function normalizeUser(user) {
 function loadUsers() {
 
     let users =
-        getUsers()
-        .map(normalizeUser);
+        getUsers();
+
+
+    /*
+       Normalize all users
+    */
+
+    users =
+        users.map(
+            normalizeUser
+        );
 
 
     saveUsers(users);
+
+
+    const search =
+        (
+            document.getElementById(
+                "searchUser"
+            )?.value || ""
+        )
+        .trim()
+        .toLowerCase();
+
+
+    const filteredUsers =
+        users.filter(
+            user => {
+
+                const name =
+                    String(
+                        user.name || ""
+                    ).toLowerCase();
+
+                const email =
+                    String(
+                        user.email || ""
+                    ).toLowerCase();
+
+                return (
+                    name.includes(search) ||
+                    email.includes(search)
+                );
+
+            }
+        );
 
 
     const table =
@@ -593,7 +1056,9 @@ function loadUsers() {
     table.innerHTML = "";
 
 
-    /* Statistics */
+    /* =========================
+       STATISTICS
+    ========================= */
 
     const total =
         users.length;
@@ -613,6 +1078,17 @@ function loadUsers() {
         ).length;
 
 
+    const active =
+        users.filter(
+            user =>
+                user.approved === true &&
+                Array.isArray(
+                    user.levelAccess
+                ) &&
+                user.levelAccess.length > 0
+        ).length;
+
+
     document.getElementById(
         "totalUsers"
     ).innerText = total;
@@ -628,18 +1104,33 @@ function loadUsers() {
     ).innerText = approved;
 
 
-    if (users.length === 0) {
+    document.getElementById(
+        "activeUsers"
+    ).innerText = active;
+
+
+    /* =========================
+       EMPTY
+    ========================= */
+
+    if (
+        filteredUsers.length === 0
+    ) {
 
         table.innerHTML = `
 
             <tr>
 
                 <td
-                    colspan="7"
+                    colspan="5"
                     class="empty"
                 >
 
-                    No registered users yet.
+                    ${
+                        users.length === 0
+                        ? "No registered users yet."
+                        : "No users found."
+                    }
 
                 </td>
 
@@ -652,8 +1143,16 @@ function loadUsers() {
     }
 
 
-    users.forEach(
-        (user, index) => {
+    /* =========================
+       USER ROWS
+    ========================= */
+
+    filteredUsers.forEach(
+        user => {
+
+            const index =
+                users.indexOf(user);
+
 
             const row =
                 document.createElement(
@@ -726,62 +1225,29 @@ function loadUsers() {
                 <td>
 
                     <span
-                        class="level ${
-                            access.includes(3)
-                            ? "level-yes"
-                            : "level-no"
-                        }"
+                        class="level-summary"
                     >
 
-                        ${
-                            access.includes(3)
-                            ? "✓ Granted"
-                            : "✕ No Access"
-                        }
+                        🔐 ${
+                            access.length
+                        } / 50 Levels
 
                     </span>
 
-                </td>
+                    <br>
 
-
-                <td>
-
-                    <span
-                        class="level ${
-                            access.includes(4)
-                            ? "level-yes"
-                            : "level-no"
-                        }"
-                    >
+                    <small>
 
                         ${
-                            access.includes(4)
-                            ? "✓ Granted"
-                            : "✕ No Access"
+                            access.length >= 50
+
+                            ? "All Levels Granted"
+
+                            : "Levels: " +
+                              access.join(", ")
                         }
 
-                    </span>
-
-                </td>
-
-
-                <td>
-
-                    <span
-                        class="level ${
-                            access.includes(5)
-                            ? "level-yes"
-                            : "level-no"
-                        }"
-                    >
-
-                        ${
-                            access.includes(5)
-                            ? "✓ Granted"
-                            : "✕ No Access"
-                        }
-
-                    </span>
+                    </small>
 
                 </td>
 
@@ -798,7 +1264,6 @@ function loadUsers() {
 
                 <td>
 
-
                     ${
                         accountStatus
 
@@ -809,7 +1274,7 @@ function loadUsers() {
                             class="action reject"
                             onclick="rejectUser(${index})"
                         >
-                            Reject
+                            ❌ Reject
                         </button>
                         `
 
@@ -827,31 +1292,11 @@ function loadUsers() {
 
 
                     <button
-                        class="action level-btn"
-                        onclick="toggleLevel(${index}, 3)"
+                        class="action manage"
+                        onclick="openLevelModal(${index})"
                     >
 
-                        L3
-
-                    </button>
-
-
-                    <button
-                        class="action level-btn"
-                        onclick="toggleLevel(${index}, 4)"
-                    >
-
-                        L4
-
-                    </button>
-
-
-                    <button
-                        class="action level-btn"
-                        onclick="toggleLevel(${index}, 5)"
-                    >
-
-                        L5
+                        🔐 Manage Levels
 
                     </button>
 
@@ -861,10 +1306,9 @@ function loadUsers() {
                         onclick="deleteUser(${index})"
                     >
 
-                        Delete
+                        🗑 Delete
 
                     </button>
-
 
                 </td>
 
@@ -880,7 +1324,7 @@ function loadUsers() {
 
 
 /* =========================================
-   APPROVE
+   APPROVE USER
 ========================================= */
 
 function approveUser(index) {
@@ -918,7 +1362,7 @@ function approveUser(index) {
 
 
 /* =========================================
-   REJECT
+   REJECT USER
 ========================================= */
 
 function rejectUser(index) {
@@ -928,6 +1372,25 @@ function rejectUser(index) {
 
 
     if (!users[index]) {
+        return;
+    }
+
+
+    const name =
+        users[index].name ||
+        users[index].email ||
+        "this user";
+
+
+    const confirmed =
+        confirm(
+            "Remove approval from " +
+            name +
+            "?"
+        );
+
+
+    if (!confirmed) {
         return;
     }
 
@@ -950,10 +1413,10 @@ function rejectUser(index) {
 
 
 /* =========================================
-   LEVEL ACCESS
+   OPEN LEVEL MODAL
 ========================================= */
 
-function toggleLevel(index, level) {
+function openLevelModal(index) {
 
     const users =
         getUsers();
@@ -970,13 +1433,209 @@ function toggleLevel(index, level) {
         );
 
 
+    saveUsers(users);
+
+
+    selectedUserIndex =
+        index;
+
+
+    const user =
+        users[index];
+
+
+    document.getElementById(
+        "modalUserInfo"
+    ).innerHTML = `
+
+        <strong>
+            👤 ${escapeHTML(
+                user.name ||
+                "Unknown User"
+            )}
+        </strong>
+
+        <br>
+
+        📧 ${escapeHTML(
+            user.email ||
+            ""
+        )}
+
+        <br>
+
+        📊 Account Status:
+
+        ${
+            user.approved === true
+
+            ?
+
+            `<span class="approved">
+                ✓ Approved
+             </span>`
+
+            :
+
+            `<span class="pending">
+                ⏳ Pending
+             </span>`
+        }
+
+    `;
+
+
+    buildLevelGrid(
+        user.levelAccess
+    );
+
+
+    document.getElementById(
+        "levelModal"
+    ).style.display = "block";
+
+}
+
+
+/* =========================================
+   BUILD LEVEL GRID
+========================================= */
+
+function buildLevelGrid(
+    access
+) {
+
+    const grid =
+        document.getElementById(
+            "levelGrid"
+        );
+
+
+    grid.innerHTML = "";
+
+
+    for (
+        let level = 1;
+        level <= 50;
+        level++
+    ) {
+
+        const granted =
+            access.includes(level);
+
+
+        const card =
+            document.createElement(
+                "div"
+            );
+
+
+        card.className =
+            "level-card " +
+            (
+                granted
+                ? "granted"
+                : "not-granted"
+            );
+
+
+        card.onclick =
+            function() {
+
+                toggleLevel(
+                    level
+                );
+
+            };
+
+
+        card.innerHTML = `
+
+            <div class="level-number">
+
+                Level ${level}
+
+            </div>
+
+            <div class="level-status">
+
+                ${
+                    granted
+                    ? "✓ Granted"
+                    : "🔒 No Access"
+                }
+
+            </div>
+
+        `;
+
+
+        grid.appendChild(card);
+
+    }
+
+}
+
+
+/* =========================================
+   TOGGLE LEVEL
+========================================= */
+
+function toggleLevel(
+    level
+) {
+
+    if (
+        selectedUserIndex === null
+    ) {
+        return;
+    }
+
+
+    const users =
+        getUsers();
+
+
+    if (
+        !users[selectedUserIndex]
+    ) {
+        return;
+    }
+
+
+    users[selectedUserIndex] =
+        normalizeUser(
+            users[selectedUserIndex]
+        );
+
+
     let access =
-        users[index].levelAccess;
+        users[selectedUserIndex]
+            .levelAccess;
 
 
-    if (access.includes(level)) {
+    /*
+       Level 1 and Level 2
+       are always available.
+    */
 
-        /* Remove access */
+    if (
+        level === 1 ||
+        level === 2
+    ) {
+
+        alert(
+            "⭐ Level 1 and Level 2 are default access levels."
+        );
+
+        return;
+
+    }
+
+
+    if (
+        access.includes(level)
+    ) {
 
         access =
             access.filter(
@@ -985,8 +1644,6 @@ function toggleLevel(index, level) {
             );
 
     } else {
-
-        /* Grant access */
 
         access.push(level);
 
@@ -998,11 +1655,17 @@ function toggleLevel(index, level) {
     );
 
 
-    users[index].levelAccess =
-        access;
+    users[selectedUserIndex]
+        .levelAccess =
+            access;
 
 
     saveUsers(users);
+
+
+    buildLevelGrid(
+        access
+    );
 
 
     loadUsers();
@@ -1011,7 +1674,215 @@ function toggleLevel(index, level) {
 
 
 /* =========================================
-   DELETE
+   GRANT ALL LEVELS
+========================================= */
+
+function grantAllLevels() {
+
+    if (
+        selectedUserIndex === null
+    ) {
+        return;
+    }
+
+
+    const users =
+        getUsers();
+
+
+    if (
+        !users[selectedUserIndex]
+    ) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Grant access to ALL Levels 1–50?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    users[selectedUserIndex]
+        .levelAccess =
+            Array.from(
+                {length: 50},
+                (_, i) => i + 1
+            );
+
+
+    saveUsers(users);
+
+
+    buildLevelGrid(
+        users[selectedUserIndex]
+            .levelAccess
+    );
+
+
+    loadUsers();
+
+
+    alert(
+        "🔓 All Levels 1–50 granted!"
+    );
+
+}
+
+
+/* =========================================
+   REMOVE ALL LEVELS
+========================================= */
+
+function removeAllLevels() {
+
+    if (
+        selectedUserIndex === null
+    ) {
+        return;
+    }
+
+
+    const users =
+        getUsers();
+
+
+    if (
+        !users[selectedUserIndex]
+    ) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Remove all advanced level access?\n\nLevel 1 and Level 2 will remain available."
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    users[selectedUserIndex]
+        .levelAccess =
+            [1, 2];
+
+
+    saveUsers(users);
+
+
+    buildLevelGrid(
+        [1, 2]
+    );
+
+
+    loadUsers();
+
+
+    alert(
+        "🔒 Advanced level access removed."
+    );
+
+}
+
+
+/* =========================================
+   DEFAULT LEVELS
+========================================= */
+
+function setDefaultLevels() {
+
+    if (
+        selectedUserIndex === null
+    ) {
+        return;
+    }
+
+
+    const users =
+        getUsers();
+
+
+    if (
+        !users[selectedUserIndex]
+    ) {
+        return;
+    }
+
+
+    users[selectedUserIndex]
+        .levelAccess =
+            [1, 2];
+
+
+    saveUsers(users);
+
+
+    buildLevelGrid(
+        [1, 2]
+    );
+
+
+    loadUsers();
+
+
+    alert(
+        "⭐ Access set to Level 1–2."
+    );
+
+}
+
+
+/* =========================================
+   CLOSE MODAL
+========================================= */
+
+function closeLevelModal() {
+
+    document.getElementById(
+        "levelModal"
+    ).style.display = "none";
+
+
+    selectedUserIndex =
+        null;
+
+}
+
+
+/* =========================================
+   CLICK OUTSIDE MODAL
+========================================= */
+
+window.onclick =
+    function(event) {
+
+        const modal =
+            document.getElementById(
+                "levelModal"
+            );
+
+
+        if (
+            event.target === modal
+        ) {
+
+            closeLevelModal();
+
+        }
+
+    };
+
+
+/* =========================================
+   DELETE USER
 ========================================= */
 
 function deleteUser(index) {
@@ -1029,16 +1900,21 @@ function deleteUser(index) {
         users[index];
 
 
-    const confirmDelete =
+    const name =
+        user.name ||
+        user.email ||
+        "this user";
+
+
+    const confirmed =
         confirm(
-            "Delete account for " +
-            (user.name ||
-             user.email) +
-            "?"
+            "⚠️ Delete account for " +
+            name +
+            "?\n\nThis action cannot be undone."
         );
 
 
-    if (!confirmDelete) {
+    if (!confirmed) {
         return;
     }
 
@@ -1052,28 +1928,47 @@ function deleteUser(index) {
     saveUsers(users);
 
 
-    const currentUser =
-        JSON.parse(
-            localStorage.getItem(
+    /*
+       If deleted user is
+       currently logged in,
+       remove currentUser.
+    */
+
+    try {
+
+        const currentUser =
+            JSON.parse(
+                localStorage.getItem(
+                    "currentUser"
+                )
+            );
+
+
+        if (
+            currentUser &&
+            currentUser.email ===
+            user.email
+        ) {
+
+            localStorage.removeItem(
                 "currentUser"
-            )
-        );
+            );
 
+        }
 
-    if (
-        currentUser &&
-        currentUser.email ===
-        user.email
-    ) {
+    } catch {
 
-        localStorage.removeItem(
-            "currentUser"
-        );
+        // Nothing
 
     }
 
 
     loadUsers();
+
+
+    alert(
+        "🗑 User deleted successfully."
+    );
 
 }
 
@@ -1132,7 +2027,7 @@ function logoutAdmin() {
 
 
 /* =========================================
-   LOAD
+   INITIAL LOAD
 ========================================= */
 
 loadUsers();
