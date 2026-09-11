@@ -1,4 +1,4 @@
-const questionBank = {
+questionBank = {
 
     // =====================================================
     // LEVEL 1 - ASEAN
