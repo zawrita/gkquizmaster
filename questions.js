@@ -1,4 +1,4 @@
-questionBank = {
+const questionBank = {
 
     // =====================================================
     // LEVEL 1 - ASEAN
@@ -861,4 +861,3 @@ Object.keys(questionBank).forEach(level => {
         `Level ${level}: ${questionBank[level].length} questions`
     );
 });
-```
