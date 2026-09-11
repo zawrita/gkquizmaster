@@ -24,9 +24,7 @@ body {
     margin: auto;
 }
 
-/* =========================
-   HEADER
-========================= */
+/* HEADER */
 
 .header {
     background: white;
@@ -110,9 +108,7 @@ body {
     background: #222;
 }
 
-/* =========================
-   ACCESS INFORMATION
-========================= */
+/* ACCESS INFORMATION */
 
 .access-info {
     background: white;
@@ -139,14 +135,7 @@ body {
     font-weight: bold;
 }
 
-.approval-text {
-    color: #dc3545;
-    font-weight: bold;
-}
-
-/* =========================
-   LEVELS
-========================= */
+/* LEVELS */
 
 .levels {
     display: grid;
@@ -167,10 +156,6 @@ body {
     transform: translateY(-4px);
 }
 
-.level.locked {
-    opacity: 0.72;
-}
-
 .level-number {
     font-size: 14px;
     color: #667eea;
@@ -179,7 +164,9 @@ body {
 
 .level h2 {
     margin: 8px 0;
-    padding-right: 35px;
+    padding-right: 10px;
+    font-size: 21px;
+    line-height: 1.4;
 }
 
 .level p {
@@ -202,50 +189,12 @@ body {
     background: #5568d9;
 }
 
-.play.locked-button {
-    background: #999;
-    cursor: pointer;
-}
-
 .lock-icon {
     position: absolute;
     top: 20px;
     right: 20px;
     font-size: 25px;
 }
-
-/* =========================
-   BADGES
-========================= */
-
-.approved-badge,
-.pending-badge,
-.guest-badge {
-    display: inline-block;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin-top: 5px;
-}
-
-.approved-badge {
-    background: #d4edda;
-    color: #155724;
-}
-
-.pending-badge {
-    background: #fff3cd;
-    color: #856404;
-}
-
-.guest-badge {
-    background: #e2e3e5;
-    color: #555;
-}
-
-/* =========================
-   LEVEL STATUS
-========================= */
 
 .level-status {
     display: inline-block;
@@ -261,19 +210,7 @@ body {
     color: #155724;
 }
 
-.status-approved {
-    background: #d4edda;
-    color: #155724;
-}
-
-.status-approval {
-    background: #fff3cd;
-    color: #856404;
-}
-
-/* =========================
-   FOOTER
-========================= */
+/* FOOTER */
 
 .footer {
     text-align: center;
@@ -283,11 +220,10 @@ body {
     opacity: 0.9;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 700px) {
+
     body {
         padding: 20px 12px;
     }
@@ -304,6 +240,10 @@ body {
         width: 90px;
         height: 90px;
     }
+
+    .level h2 {
+        font-size: 19px;
+    }
 }
 </style>
 </head>
@@ -313,10 +253,11 @@ body {
 <div class="container">
 
     <!-- HEADER -->
+
     <div class="header">
 
         <div class="logo">
-            <img src="logo.jpg" alt="GK Quiz Master Logo">
+            <img src="logo.jpg" alt="Gemini Class Logo">
         </div>
 
         <h1>Gemini ရာထူးဝင်ခွင့်သင်တန်း</h1>
@@ -327,25 +268,30 @@ body {
 
     </div>
 
+
     <!-- ACCESS INFORMATION -->
+
     <div class="access-info">
 
-        <h3>🎯 Level Access</h3>
+        <h3>🎯 Quiz Access</h3>
 
         <p>
-            <span class="public-text">🟢 Level 1–2</span>
-            — Public Access
+            <span class="public-text">🟢 Level 1–20</span>
+            — Public Visitor Access
         </p>
 
         <p>
-            <span class="approval-text">🔒 Level 3–50</span>
-            — Admin Approval Required
+            Level အားလုံးကို Login / Register မလိုဘဲ
+            Visitor အနေဖြင့် ဝင်ရောက်ဖြေဆိုနိုင်ပါသည်။
         </p>
 
     </div>
 
+
     <!-- LEVELS -->
+
     <div class="levels" id="levelsContainer"></div>
+
 
     <div class="footer">
         GK Quiz Master © 2026
@@ -353,88 +299,89 @@ body {
 
 </div>
 
+
 <script>
 
 /* =========================================
    SETTINGS
 ========================================= */
 
-const TOTAL_LEVELS = 50;
+const TOTAL_LEVELS = 20;
 const QUESTIONS_PER_LEVEL = 50;
-const PASS_MARK = 90;
+
+
+/* =========================================
+   LEVEL TITLES
+========================================= */
+
+const levelTitles = {
+
+    1: "Gemini Class Level 1 - ASEAN",
+
+    2: "Gemini Class Level 2 - United Nations",
+
+    3: "Gemini Class Level 3 - MOFA ငယ်/ရေး Objectives Chapter 1",
+
+    4: "Gemini Class Level 4 - MOFA ငယ်/ရေး Objectives Chapter 2",
+
+    5: "Gemini Class Level 5 - MOFA ငယ်/ရေး Objectives Chapter 3",
+
+    6: "Gemini Class Level 6 - MOFA ငယ်/ရေး Objectives Chapter 4",
+
+    7: "Gemini Class Level 7 - MOFA ငယ်/ရေး Objectives Chapter 5",
+
+    8: "Gemini Class Level 8 - MOFA ငယ်/ရေး Objectives Chapter 6",
+
+    9: "Gemini Class Level 9 - MOFA ငယ်/ရေး Objectives Chapter 7",
+
+    10: "Gemini Class Level 10 - MOFA ငယ်/ရေး Objectives Chapter 8",
+
+    11: "Gemini Class Level 11 - MOFA ငယ်/ရေး Objectives Chapter 9",
+
+    12: "Gemini Class Level 12 - MOFA ငယ်/ရေး Objectives Chapter 10",
+
+    13: "Gemini Class Level 13 - MOFA ငယ်/ရေး English Chapter 1",
+
+    14: "Gemini Class Level 14 - MOFA ငယ်/ရေး English Chapter 2",
+
+    15: "Gemini Class Level 15 - MOFA ငယ်/ရေး English Chapter 3",
+
+    16: "Gemini Class Level 16 - MOFA ငယ်/ရေး English Chapter 4",
+
+    17: "Gemini Class Level 17 - MOFA ငယ်/ရေး English Chapter 5",
+
+    18: "Gemini Class Level 18 - MOFA ငယ်/ရေး English Chapter 6",
+
+    19: "Gemini Class Level 19 - MOFA ငယ်/ရေး English Chapter 7",
+
+    20: "Gemini Class Level 20 - MOFA ငယ်/ရေး English Chapter 8"
+
+};
 
 
 /* =========================================
    GET CURRENT USER
+   =========================================
+   
+   Login system ရှိနေသေးရင်
+   Header မှာ user name ပြနိုင်ရန်သာသုံးသည်။
+   
+   Quiz Access အတွက် မသုံးပါ။
 ========================================= */
 
 function getCurrentUser() {
 
     try {
+
         return JSON.parse(
             localStorage.getItem("currentUser")
         );
+
     } catch (error) {
+
         return null;
+
     }
-
-}
-
-
-/* =========================================
-   GET USERS DATABASE
-========================================= */
-
-function getUsers() {
-
-    try {
-        return JSON.parse(
-            localStorage.getItem("users")
-        ) || [];
-    } catch (error) {
-        return [];
-    }
-
-}
-
-
-/* =========================================
-   GET LATEST USER
-========================================= */
-
-function getLatestUser() {
-
-    const currentUser = getCurrentUser();
-
-    if (!currentUser) {
-        return null;
-    }
-
-    const users = getUsers();
-
-    return users.find(function(user) {
-
-        return (
-            user.email === currentUser.email
-        );
-
-    }) || null;
-
-}
-
-
-/* =========================================
-   CHECK ADMIN APPROVAL
-========================================= */
-
-function isUserApproved() {
-
-    const user = getLatestUser();
-
-    return (
-        user &&
-        user.approved === true
-    );
 
 }
 
@@ -448,15 +395,11 @@ function updateHeader() {
     const area =
         document.getElementById("userArea");
 
-    area.innerHTML = "";
-
     const currentUser =
         getCurrentUser();
 
 
-    /* =========================
-       GUEST
-    ========================= */
+    /* GUEST */
 
     if (!currentUser) {
 
@@ -466,8 +409,8 @@ function updateHeader() {
                 👤 You are playing as Guest
             </span>
 
-            <span class="guest-badge">
-                Level 1–2 Public Access
+            <span class="level-status status-public">
+                🌐 Level 1–20 Public Access
             </span>
 
             <button
@@ -481,52 +424,25 @@ function updateHeader() {
         `;
 
         return;
+
     }
 
 
-    /* =========================
-       REGISTERED USER
-    ========================= */
-
-    const user =
-        getLatestUser();
-
-    const approved =
-        user &&
-        user.approved === true;
-
+    /* REGISTERED USER */
 
     area.innerHTML = `
 
         <span class="user-name">
-
             👤 Welcome,
             ${escapeHTML(
                 currentUser.name ||
                 currentUser.email
             )}
-
         </span>
 
-        ${
-            approved
-
-            ?
-
-            `
-            <span class="approved-badge">
-                ✓ Admin Approved
-            </span>
-            `
-
-            :
-
-            `
-            <span class="pending-badge">
-                ⏳ Pending Approval
-            </span>
-            `
-        }
+        <span class="level-status status-public">
+            🌐 Level 1–20 Public Access
+        </span>
 
         <button
             class="logout-btn"
@@ -542,36 +458,15 @@ function updateHeader() {
 
 
 /* =========================================
-   LEVEL TITLE
+   GET LEVEL TITLE
 ========================================= */
 
 function getLevelTitle(level) {
 
-    if (level === 1) {
-        return "🟢 ASEAN";
-    }
-
-    if (level === 2) {
-        return "🔵 United Nations (UN)";
-    }
-
-    if (level === 3) {
-        return "🟡 MOFA ငယ်ရေး Priority";
-    }
-
-    if (level === 4) {
-        return "🟠 MOFA ငယ်ရေး Priority";
-    }
-
-    if (level >= 5 && level <= 15) {
-        return "🔴 MOFA ငယ်ရေး Priority";
-    }
-
-    if (level >= 16 && level <= 20) {
-        return "🟣 Additional Questions";
-    }
-
-    return "⚫ Extra Questions";
+    return (
+        levelTitles[level] ||
+        "Gemini Class Level " + level
+    );
 
 }
 
@@ -585,14 +480,14 @@ function getLevelDescription(level) {
     return `
         ${QUESTIONS_PER_LEVEL} Questions<br>
         10 Minutes<br>
-        Pass Mark: ${PASS_MARK}%
+        🌐 Visitor Access
     `;
 
 }
 
 
 /* =========================================
-   CREATE LEVELS 1–50
+   CREATE LEVELS 1–20
 ========================================= */
 
 function createLevels() {
@@ -604,9 +499,6 @@ function createLevels() {
 
     container.innerHTML = "";
 
-    const approved =
-        isUserApproved();
-
 
     for (
         let level = 1;
@@ -614,94 +506,16 @@ function createLevels() {
         level++
     ) {
 
-        /*
-         * LEVEL 1–2 = PUBLIC
-         * LEVEL 3–50 = ADMIN APPROVAL
-         */
-
-        const isPublic =
-            level <= 2;
-
-        const canAccess =
-            isPublic || approved;
-
-
         const card =
             document.createElement("div");
 
         card.className = "level";
 
 
-        if (!canAccess) {
-
-            card.classList.add("locked");
-
-        }
-
-
-        /* ICON */
-
-        let lockIcon;
-
-        if (isPublic) {
-            lockIcon = "🌐";
-        }
-        else if (approved) {
-            lockIcon = "🔓";
-        }
-        else {
-            lockIcon = "🔒";
-        }
-
-
-        /* BUTTON */
-
-        let buttonText;
-
-        if (canAccess) {
-
-            buttonText =
-                "▶ Start Level " + level;
-
-        } else {
-
-            buttonText =
-                "🔒 Admin Approval Required";
-
-        }
-
-
-        /* STATUS */
-
-        let statusText;
-        let statusClass;
-
-        if (isPublic) {
-
-            statusText = "🌐 Public";
-            statusClass = "status-public";
-
-        }
-        else if (approved) {
-
-            statusText = "✓ Approved Access";
-            statusClass = "status-approved";
-
-        }
-        else {
-
-            statusText = "🔒 Approval Required";
-            statusClass = "status-approval";
-
-        }
-
-
-        /* CARD HTML */
-
         card.innerHTML = `
 
             <div class="lock-icon">
-                ${lockIcon}
+                🌐
             </div>
 
             <div class="level-number">
@@ -709,32 +523,31 @@ function createLevels() {
             </div>
 
             <h2>
-                ${getLevelTitle(level)}
+                ${escapeHTML(
+                    getLevelTitle(level)
+                )}
             </h2>
 
             <p>
                 ${getLevelDescription(level)}
             </p>
 
-            <span class="level-status ${statusClass}">
-                ${statusText}
+            <span class="level-status status-public">
+                🌐 Public Access
             </span>
 
             <br><br>
 
             <button
-                class="play ${
-                    canAccess
-                    ? ""
-                    : "locked-button"
-                }"
+                class="play"
                 onclick="startLevel(${level})">
 
-                ${buttonText}
+                ▶ Start Level ${level}
 
             </button>
 
         `;
+
 
         container.appendChild(card);
 
@@ -749,8 +562,6 @@ function createLevels() {
 
 function startLevel(level) {
 
-    /* VALIDATE */
-
     if (
         !Number.isInteger(level) ||
         level < 1 ||
@@ -758,70 +569,18 @@ function startLevel(level) {
     ) {
 
         alert("Invalid level.");
-        return;
-
-    }
-
-
-    /* =========================
-       LEVEL 1–2 PUBLIC
-    ========================= */
-
-    if (level <= 2) {
-
-        window.location.href =
-            "quiz.html?level=" + level;
 
         return;
 
     }
 
 
-    /* =========================
-       LEVEL 3–50
-       LOGIN REQUIRED
-    ========================= */
-
-    const currentUser =
-        getCurrentUser();
-
-
-    if (!currentUser) {
-
-        alert(
-            "🔒 Level " + level +
-            " ကို အသုံးပြုရန် Login / Register ဝင်ရန်လိုအပ်ပါသည်။"
-        );
-
-        window.location.href =
-            "login.html";
-
-        return;
-
-    }
-
-
-    /* =========================
-       ADMIN APPROVAL REQUIRED
-    ========================= */
-
-    if (!isUserApproved()) {
-
-        alert(
-            "⏳ Level " + level +
-            " ကို အသုံးပြုရန် Admin Approval လိုအပ်ပါသည်။\n\n" +
-            "သင့် Account ကို Admin မှ Approve လုပ်ပြီးမှ " +
-            "Level 3–50 ကို အသုံးပြုနိုင်ပါမည်။"
-        );
-
-        return;
-
-    }
-
-
-    /* =========================
-       OPEN QUIZ
-    ========================= */
+    /* =====================================
+       ALL LEVELS ARE PUBLIC
+       NO LOGIN REQUIRED
+       NO APPROVAL REQUIRED
+       NO LEVEL ACCESS CHECK
+    ===================================== */
 
     window.location.href =
         "quiz.html?level=" + level;
@@ -863,10 +622,15 @@ function logout() {
 function escapeHTML(value) {
 
     return String(value)
+
         .replace(/&/g, "&amp;")
+
         .replace(/</g, "&lt;")
+
         .replace(/>/g, "&gt;")
+
         .replace(/"/g, "&quot;")
+
         .replace(/'/g, "&#039;");
 
 }
