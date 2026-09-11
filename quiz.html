@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,13 +9,10 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>GK Quiz Master</title>
+<title>Gemini ရာထူးဝင်ခွင့်သင်တန်း</title>
+
 
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 * {
     box-sizing: border-box;
@@ -46,6 +44,7 @@ body {
     align-items: center;
 
     padding: 20px;
+
 }
 
 
@@ -68,6 +67,7 @@ body {
     box-shadow:
         0 15px 35px
         rgba(0,0,0,0.2);
+
 }
 
 
@@ -83,7 +83,10 @@ body {
 
     align-items: center;
 
+    gap: 15px;
+
     margin-bottom: 15px;
+
 }
 
 
@@ -94,6 +97,7 @@ body {
     font-weight: bold;
 
     color: #667eea;
+
 }
 
 
@@ -102,6 +106,9 @@ body {
     font-size: 20px;
 
     font-weight: bold;
+
+    white-space: nowrap;
+
 }
 
 
@@ -116,6 +123,7 @@ body {
     margin-bottom: 8px;
 
     font-size: 16px;
+
 }
 
 
@@ -132,6 +140,7 @@ body {
     margin-bottom: 25px;
 
     overflow: hidden;
+
 }
 
 
@@ -146,6 +155,7 @@ body {
     border-radius: 10px;
 
     transition: width 0.3s;
+
 }
 
 
@@ -162,6 +172,7 @@ body {
     line-height: 1.5;
 
     margin-bottom: 25px;
+
 }
 
 
@@ -190,6 +201,7 @@ body {
     cursor: pointer;
 
     transition: 0.2s;
+
 }
 
 
@@ -198,6 +210,7 @@ body {
     background: #f1f2ff;
 
     border-color: #667eea;
+
 }
 
 
@@ -208,6 +221,7 @@ body {
     border-color: #28a745 !important;
 
     color: #155724;
+
 }
 
 
@@ -218,6 +232,7 @@ body {
     border-color: #dc3545 !important;
 
     color: #721c24;
+
 }
 
 
@@ -236,6 +251,7 @@ body {
     min-height: 25px;
 
     margin-top: 15px;
+
 }
 
 
@@ -262,12 +278,14 @@ body {
     font-size: 18px;
 
     cursor: pointer;
+
 }
 
 
 .next:hover {
 
     background: #5568d9;
+
 }
 
 
@@ -280,12 +298,14 @@ body {
     display: none;
 
     text-align: center;
+
 }
 
 
 .result h1 {
 
     font-size: 32px;
+
 }
 
 
@@ -298,6 +318,7 @@ body {
     color: #667eea;
 
     margin: 20px;
+
 }
 
 
@@ -306,6 +327,7 @@ body {
     font-size: 25px;
 
     margin-bottom: 10px;
+
 }
 
 
@@ -316,6 +338,7 @@ body {
     font-weight: bold;
 
     margin-bottom: 20px;
+
 }
 
 
@@ -328,6 +351,7 @@ body {
     margin-bottom: 20px;
 
     white-space: pre-line;
+
 }
 
 
@@ -352,24 +376,28 @@ body {
     cursor: pointer;
 
     margin: 5px;
+
 }
 
 
 .restart {
 
     background: #667eea;
+
 }
 
 
 .home {
 
     background: #555;
+
 }
 
 
 .next-level {
 
     background: #28a745;
+
 }
 
 
@@ -382,12 +410,30 @@ body {
     .quiz-box {
 
         padding: 25px;
+
+    }
+
+
+    .top {
+
+        align-items: flex-start;
+
+    }
+
+
+    .level-title {
+
+        font-size: 17px;
+
+        line-height: 1.4;
+
     }
 
 
     .question {
 
         font-size: 21px;
+
     }
 
 
@@ -396,12 +442,14 @@ body {
         font-size: 16px;
 
         padding: 14px;
+
     }
 
 
     .timer {
 
         font-size: 17px;
+
     }
 
 }
@@ -419,6 +467,7 @@ body {
 ===================================================== -->
 
 <div class="quiz-box" id="quizBox">
+
 
     <div class="top">
 
@@ -490,6 +539,7 @@ body {
 <div class="quiz-box result"
      id="resultBox">
 
+
     <h1 id="resultTitle">
 
         🎉 Quiz Completed!
@@ -518,6 +568,9 @@ body {
 
     <div class="status"
          id="status">
+
+        Completed
+
     </div>
 
 
@@ -536,10 +589,9 @@ body {
 
     <button class="next-level"
             id="nextLevelButton"
-            onclick="goNextLevel()"
-            style="display:none;">
+            onclick="goNextLevel()">
 
-        🔓 Next Level
+        ➡️ Next Level
 
     </button>
 
@@ -559,10 +611,11 @@ body {
      QUESTION BANK
 ===================================================== -->
 
-<script src="questions.js?v=3"></script>
+<script src="questions.js?v=4"></script>
 
 
 <script>
+
 
 /* =====================================================
    QUIZ SETTINGS
@@ -570,10 +623,10 @@ body {
 
 
 /*
-   TOTAL LEVELS
+   ONLY LEVEL 1–20
 */
 
-const TOTAL_LEVELS = 50;
+const TOTAL_LEVELS = 20;
 
 
 /*
@@ -584,10 +637,11 @@ const QUESTIONS_PER_LEVEL = 50;
 
 
 /*
-   PASS MARK = 90%
-*/
+   NO PASS MARK
 
-const PASS_MARK = 90;
+   Users can complete every level
+   regardless of their score.
+*/
 
 
 /*
@@ -622,6 +676,76 @@ let quizFinished = false;
 
 
 /* =====================================================
+   LEVEL TITLES
+===================================================== */
+
+const levelTitles = {
+
+    1:
+        "Gemini Class Level 1 - ASEAN",
+
+    2:
+        "Gemini Class Level 2 - United Nations",
+
+    3:
+        "Gemini Class Level 3 - MOFA ငယ်/ရေး Objectives Chapter 1",
+
+    4:
+        "Gemini Class Level 4 - MOFA ငယ်/ရေး Objectives Chapter 2",
+
+    5:
+        "Gemini Class Level 5 - MOFA ငယ်/ရေး Objectives Chapter 3",
+
+    6:
+        "Gemini Class Level 6 - MOFA ငယ်/ရေး Objectives Chapter 4",
+
+    7:
+        "Gemini Class Level 7 - MOFA ငယ်/ရေး Objectives Chapter 5",
+
+    8:
+        "Gemini Class Level 8 - MOFA ငယ်/ရေး Objectives Chapter 6",
+
+    9:
+        "Gemini Class Level 9 - MOFA ငယ်/ရေး Objectives Chapter 7",
+
+    10:
+        "Gemini Class Level 10 - MOFA ငယ်/ရေး Objectives Chapter 8",
+
+    11:
+        "Gemini Class Level 11 - MOFA ငယ်/ရေး Objectives Chapter 9",
+
+    12:
+        "Gemini Class Level 12 - MOFA ငယ်/ရေး Objectives Chapter 10",
+
+    13:
+        "Gemini Class Level 13 - MOFA ငယ်/ရေး English Chapter 1",
+
+    14:
+        "Gemini Class Level 14 - MOFA ငယ်/ရေး English Chapter 2",
+
+    15:
+        "Gemini Class Level 15 - MOFA ငယ်/ရေး English Chapter 3",
+
+    16:
+        "Gemini Class Level 16 - MOFA ငယ်/ရေး English Chapter 4",
+
+    17:
+        "Gemini Class Level 17 - MOFA ငယ်/ရေး English Chapter 5",
+
+    18:
+        "Gemini Class Level 18 - MOFA ငယ်/ရေး English Chapter 6",
+
+    19:
+        "Gemini Class Level 19 - MOFA ငယ်/ရေး English Chapter 7",
+
+    20:
+        "Gemini Class Level 20 - MOFA ငယ်/ရေး English Chapter 8"
+
+};
+
+
+
+/* =====================================================
    GET LEVEL FROM URL
 ===================================================== */
 
@@ -647,12 +771,18 @@ if (urlParams.has("level")) {
 ===================================================== */
 
 if (
+
     !Number.isInteger(currentLevel) ||
+
     currentLevel < 1 ||
+
     currentLevel > TOTAL_LEVELS
+
 ) {
 
-    alert("Invalid quiz level.");
+    alert(
+        "Invalid quiz level."
+    );
 
     window.location.href =
         "index.html";
@@ -660,81 +790,13 @@ if (
 }
 
 
-
 /* =====================================================
-   CHECK LEVEL UNLOCK
+   NO LOGIN CHECK
+   NO APPROVAL CHECK
+   NO UNLOCK CHECK
+
+   ALL LEVELS 1–20 ARE PUBLIC.
 ===================================================== */
-
-function checkLevelPermission() {
-
-    /*
-       LEVEL 1 IS ALWAYS OPEN
-    */
-
-    if (currentLevel === 1) {
-
-        return true;
-
-    }
-
-
-    /*
-       GET UNLOCKED LEVEL
-    */
-
-    const unlockedLevel =
-        Number(
-            localStorage.getItem(
-                "unlockedLevel"
-            )
-        ) || 1;
-
-
-    /*
-       CHECK
-    */
-
-    if (
-        currentLevel >
-        unlockedLevel
-    ) {
-
-        alert(
-            "🔒 Level " +
-            currentLevel +
-            " is locked.\n\n" +
-            "Pass the previous level with " +
-            PASS_MARK +
-            "% or higher to unlock it."
-        );
-
-        window.location.href =
-            "index.html";
-
-        return false;
-
-    }
-
-
-    return true;
-
-}
-
-
-
-/* =====================================================
-   RUN PERMISSION CHECK
-===================================================== */
-
-if (
-    !checkLevelPermission()
-) {
-
-    throw new Error(
-        "Access denied."
-    );
-
-}
 
 
 
@@ -745,6 +807,7 @@ if (
 function shuffle(array) {
 
     return array
+
         .map(
             function(value) {
 
@@ -758,6 +821,7 @@ function shuffle(array) {
 
             }
         )
+
         .sort(
             function(a,b) {
 
@@ -765,6 +829,7 @@ function shuffle(array) {
 
             }
         )
+
         .map(
             function(item) {
 
@@ -784,24 +849,16 @@ function shuffle(array) {
 function createQuiz() {
 
 
-    /*
-       RESET FINISH STATUS
-    */
-
     quizFinished = false;
 
 
-    /*
-       GET CURRENT LEVEL BANK
-    */
+    /* GET CURRENT LEVEL BANK */
 
     const bank =
         questionBank[currentLevel];
 
 
-    /*
-       CHECK QUESTION BANK
-    */
+    /* CHECK QUESTION BANK */
 
     if (
         !Array.isArray(bank)
@@ -821,21 +878,21 @@ function createQuiz() {
     }
 
 
-    /*
-       EVERY LEVEL MUST HAVE
-       AT LEAST 50 QUESTIONS
-    */
+    /* EVERY LEVEL MUST HAVE 50 QUESTIONS */
 
     if (
         bank.length < QUESTIONS_PER_LEVEL
     ) {
 
         alert(
+
             "Level " +
             currentLevel +
             " needs 50 questions.\n\n" +
+
             "Current questions found: " +
             bank.length
+
         );
 
         window.location.href =
@@ -847,9 +904,8 @@ function createQuiz() {
 
 
     /*
-       USE ALL 50 QUESTIONS
-
-       RANDOM ORDER
+       USE FIRST 50 QUESTIONS
+       IN RANDOM ORDER
     */
 
     quizQuestions =
@@ -861,9 +917,7 @@ function createQuiz() {
         );
 
 
-    /*
-       RESET
-    */
+    /* RESET */
 
     currentQuestion = 0;
 
@@ -874,9 +928,7 @@ function createQuiz() {
     timeLeft = QUIZ_TIME;
 
 
-    /*
-       RESET RESULT
-    */
+    /* RESET RESULT */
 
     document.getElementById(
         "resultBox"
@@ -890,16 +942,12 @@ function createQuiz() {
         "block";
 
 
-    /*
-       LOAD FIRST QUESTION
-    */
+    /* SHOW QUIZ */
 
     loadQuestion();
 
 
-    /*
-       START TIMER
-    */
+    /* START TIMER */
 
     startTimer();
 
@@ -913,13 +961,8 @@ function createQuiz() {
 
 function loadQuestion() {
 
-
     answered = false;
 
-
-    /*
-       CURRENT QUESTION
-    */
 
     const question =
         quizQuestions[
@@ -927,41 +970,36 @@ function loadQuestion() {
         ];
 
 
-    /*
-       TOTAL
-    */
-
     const total =
         quizQuestions.length;
 
 
-    /*
-       LEVEL TITLE
-    */
+    /* LEVEL TITLE */
 
     document.getElementById(
         "levelTitle"
     ).innerText =
-        "Level " +
+        levelTitles[currentLevel] ||
+        "Gemini Class Level " +
         currentLevel;
 
 
-    /*
-       QUESTION NUMBER
-    */
+    /* QUESTION NUMBER */
 
     document.getElementById(
         "progressText"
     ).innerText =
+
         "Question " +
+
         (currentQuestion + 1) +
+
         " / " +
+
         total;
 
 
-    /*
-       QUESTION TEXT
-    */
+    /* QUESTION TEXT */
 
     document.getElementById(
         "question"
@@ -969,9 +1007,7 @@ function loadQuestion() {
         question[0];
 
 
-    /*
-       PROGRESS
-    */
+    /* PROGRESS */
 
     const progress =
         (
@@ -987,18 +1023,14 @@ function loadQuestion() {
         progress + "%";
 
 
-    /*
-       CLEAR MESSAGE
-    */
+    /* CLEAR MESSAGE */
 
     document.getElementById(
         "message"
     ).innerText = "";
 
 
-    /*
-       CLEAR ANSWERS
-    */
+    /* CLEAR ANSWERS */
 
     const answersDiv =
         document.getElementById(
@@ -1009,9 +1041,7 @@ function loadQuestion() {
     answersDiv.innerHTML = "";
 
 
-    /*
-       SHUFFLE ANSWERS
-    */
+    /* SHUFFLE ANSWERS */
 
     const answers =
         shuffle(
@@ -1032,9 +1062,7 @@ function loadQuestion() {
         );
 
 
-    /*
-       CREATE BUTTONS
-    */
+    /* CREATE ANSWER BUTTONS */
 
     answers.forEach(
         function(item,index) {
@@ -1051,27 +1079,27 @@ function loadQuestion() {
 
 
             button.innerText =
+
                 String.fromCharCode(
                     65 + index
                 ) +
+
                 ". " +
+
                 item.text;
 
 
-            /*
-               CORRECT ANSWER
-            */
+            /* CORRECT ANSWER */
 
             button.dataset.correct =
+
                 (
                     item.originalIndex ===
                     question[2]
                 );
 
 
-            /*
-               CLICK
-            */
+            /* CLICK */
 
             button.onclick =
                 function() {
@@ -1091,9 +1119,7 @@ function loadQuestion() {
     );
 
 
-    /*
-       NEXT BUTTON
-    */
+    /* NEXT BUTTON */
 
     if (
         currentQuestion ===
@@ -1148,9 +1174,7 @@ function checkAnswer(button) {
         "true";
 
 
-    /*
-       CORRECT
-    */
+    /* CORRECT */
 
     if (isCorrect) {
 
@@ -1158,8 +1182,10 @@ function checkAnswer(button) {
             "correct"
         );
 
+
         button.innerText +=
             " ✓";
+
 
         score++;
 
@@ -1178,9 +1204,7 @@ function checkAnswer(button) {
     }
 
 
-    /*
-       WRONG
-    */
+    /* WRONG */
 
     else {
 
@@ -1188,13 +1212,12 @@ function checkAnswer(button) {
             "wrong"
         );
 
+
         button.innerText +=
             " ✗";
 
 
-        /*
-           SHOW CORRECT
-        */
+        /* SHOW CORRECT ANSWER */
 
         buttons.forEach(
             function(btn) {
@@ -1241,9 +1264,7 @@ function checkAnswer(button) {
 function nextQuestion() {
 
 
-    /*
-       ANSWER REQUIRED
-    */
+    /* ANSWER REQUIRED */
 
     if (!answered) {
 
@@ -1264,16 +1285,10 @@ function nextQuestion() {
     }
 
 
-    /*
-       MOVE
-    */
-
     currentQuestion++;
 
 
-    /*
-       MORE QUESTIONS
-    */
+    /* MORE QUESTIONS */
 
     if (
         currentQuestion <
@@ -1285,9 +1300,7 @@ function nextQuestion() {
     }
 
 
-    /*
-       FINISH
-    */
+    /* FINISH */
 
     else {
 
@@ -1306,18 +1319,10 @@ function nextQuestion() {
 function startTimer() {
 
 
-    /*
-       CLEAR OLD TIMER
-    */
-
     clearInterval(
         timer
     );
 
-
-    /*
-       RESET TIME
-    */
 
     timeLeft =
         QUIZ_TIME;
@@ -1325,10 +1330,6 @@ function startTimer() {
 
     updateTimerDisplay();
 
-
-    /*
-       COUNTDOWN
-    */
 
     timer =
         setInterval(
@@ -1339,9 +1340,7 @@ function startTimer() {
                 updateTimerDisplay();
 
 
-                /*
-                   TIME OVER
-                */
+                /* TIME OVER */
 
                 if (
                     timeLeft <= 0
@@ -1392,9 +1391,13 @@ function updateTimerDisplay() {
     document.getElementById(
         "timer"
     ).innerText =
+
         "⏱️ " +
+
         minutes +
+
         ":" +
+
         formattedSeconds;
 
 }
@@ -1408,9 +1411,7 @@ function updateTimerDisplay() {
 function finishQuiz() {
 
 
-    /*
-       PREVENT DOUBLE FINISH
-    */
+    /* PREVENT DOUBLE FINISH */
 
     if (quizFinished) {
 
@@ -1427,17 +1428,13 @@ function finishQuiz() {
     );
 
 
-    /*
-       TOTAL QUESTIONS
-    */
+    /* TOTAL QUESTIONS */
 
     const total =
         quizQuestions.length;
 
 
-    /*
-       CALCULATE %
-    */
+    /* CALCULATE PERCENTAGE */
 
     const percentage =
         Math.round(
@@ -1448,9 +1445,7 @@ function finishQuiz() {
         );
 
 
-    /*
-       HIDE QUIZ
-    */
+    /* HIDE QUIZ */
 
     document.getElementById(
         "quizBox"
@@ -1458,9 +1453,7 @@ function finishQuiz() {
         "none";
 
 
-    /*
-       SHOW RESULT
-    */
+    /* SHOW RESULT */
 
     document.getElementById(
         "resultBox"
@@ -1468,230 +1461,96 @@ function finishQuiz() {
         "block";
 
 
-    /*
-       SCORE
-    */
+    /* SCORE */
 
     document.getElementById(
         "score"
     ).innerText =
+
         score +
         " / " +
         total;
 
 
-    /*
-       PERCENTAGE
-    */
+    /* PERCENTAGE */
 
     document.getElementById(
         "percentage"
     ).innerText =
+
         percentage +
         "%";
 
 
-    /*
-       SAVE BEST SCORE
-    */
+    /* STATUS */
 
-    const bestKey =
-        "level" +
-        currentLevel +
-        "Best";
+    document.getElementById(
+        "status"
+    ).innerText =
+        "Completed";
 
 
-    const oldBest =
-        Number(
-            localStorage.getItem(
-                bestKey
-            )
-        ) || 0;
+    document.getElementById(
+        "status"
+    ).style.color =
+        "#667eea";
 
 
-    if (
-        percentage >
-        oldBest
-    ) {
+    /* TITLE */
 
-        localStorage.setItem(
-            bestKey,
-            percentage
+    document.getElementById(
+        "resultTitle"
+    ).innerText =
+        "🎉 Quiz Completed!";
+
+
+    /* RESULT MESSAGE */
+
+    document.getElementById(
+        "resultMessage"
+    ).innerText =
+
+        "You scored " +
+
+        percentage +
+
+        "% in " +
+
+        levelTitles[currentLevel] +
+
+        ".\n\n" +
+
+        "There is no pass mark or level unlock requirement.\n" +
+
+        "You can try again or continue to the next level.";
+
+
+    /* NEXT LEVEL BUTTON */
+
+    const nextButton =
+        document.getElementById(
+            "nextLevelButton"
         );
 
-    }
-
-
-    /*
-       =========================
-       PASS
-       =========================
-    */
 
     if (
-        percentage >= PASS_MARK
+        currentLevel <
+        TOTAL_LEVELS
     ) {
 
+        nextButton.style.display =
+            "inline-block";
 
-        document.getElementById(
-            "status"
-        ).innerText =
-            "🎉 PASS";
+        nextButton.innerText =
 
-
-        document.getElementById(
-            "status"
-        ).style.color =
-            "#28a745";
-
-
-        document.getElementById(
-            "resultTitle"
-        ).innerText =
-            "🏆 Excellent!";
-
-
-        /*
-           LEVEL 1–49
-        */
-
-        if (
-            currentLevel <
-            TOTAL_LEVELS
-        ) {
-
-
-            /*
-               CURRENT UNLOCKED LEVEL
-            */
-
-            const currentUnlocked =
-                Number(
-                    localStorage.getItem(
-                        "unlockedLevel"
-                    )
-                ) || 1;
-
-
-            /*
-               UNLOCK NEXT LEVEL
-            */
-
-            if (
-                currentLevel + 1 >
-                currentUnlocked
-            ) {
-
-                localStorage.setItem(
-                    "unlockedLevel",
-                    currentLevel + 1
-                );
-
-            }
-
-
-            /*
-               RESULT MESSAGE
-            */
-
-            document.getElementById(
-                "resultMessage"
-            ).innerText =
-                "You scored " +
-                percentage +
-                "% and passed Level " +
-                currentLevel +
-                "!\n\n" +
-                "🔓 Level " +
-                (currentLevel + 1) +
-                " is now unlocked.";
-
-
-            /*
-               SHOW NEXT BUTTON
-            */
-
-            document.getElementById(
-                "nextLevelButton"
-            ).style.display =
-                "inline-block";
-
-        }
-
-
-        /*
-           LEVEL 50 COMPLETE
-        */
-
-        else {
-
-
-            document.getElementById(
-                "resultMessage"
-            ).innerText =
-                "🏆 Congratulations!\n\n" +
-                "You scored " +
-                percentage +
-                "% and successfully " +
-                "completed all 50 levels!";
-
-
-            document.getElementById(
-                "nextLevelButton"
-            ).style.display =
-                "none";
-
-        }
+            "➡️ Next Level " +
+            (currentLevel + 1);
 
     }
-
-
-    /*
-       =========================
-       FAIL
-       =========================
-    */
 
     else {
 
-
-        document.getElementById(
-            "status"
-        ).innerText =
-            "❌ FAIL";
-
-
-        document.getElementById(
-            "status"
-        ).style.color =
-            "#dc3545";
-
-
-        document.getElementById(
-            "resultTitle"
-        ).innerText =
-            "Keep Practicing!";
-
-
-        document.getElementById(
-            "resultMessage"
-        ).innerText =
-            "You scored " +
-            percentage +
-            "%.\n\n" +
-            "You need at least " +
-            PASS_MARK +
-            "% to unlock the next level.\n\n" +
-            "Please try again.";
-
-
-        /*
-           HIDE NEXT LEVEL
-        */
-
-        document.getElementById(
-            "nextLevelButton"
-        ).style.display =
+        nextButton.style.display =
             "none";
 
     }
@@ -1729,27 +1588,16 @@ function goNextLevel() {
 
 
         /*
-           DOUBLE CHECK UNLOCK
+           NO UNLOCK CHECK
+           NO PASS CHECK
+           DIRECT ACCESS
         */
 
-        const unlockedLevel =
-            Number(
-                localStorage.getItem(
-                    "unlockedLevel"
-                )
-            ) || 1;
+        window.location.href =
 
+            "quiz.html?level=" +
 
-        if (
-            nextLevel <=
-            unlockedLevel
-        ) {
-
-            window.location.href =
-                "quiz.html?level=" +
-                nextLevel;
-
-        }
+            nextLevel;
 
     }
 
@@ -1766,6 +1614,7 @@ function goHome() {
     clearInterval(
         timer
     );
+
 
     window.location.href =
         "index.html";
@@ -1785,3 +1634,4 @@ createQuiz();
 </body>
 
 </html>
+```
