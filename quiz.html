@@ -14,15 +14,14 @@
 
 <style>
 
+/* =====================================================
+   GLOBAL
+===================================================== */
+
 * {
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: Arial, "Myanmar Text", sans-serif;
 }
-
-
-/* =========================
-   BODY
-========================= */
 
 body {
 
@@ -48,9 +47,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    QUIZ BOX
-========================= */
+===================================================== */
 
 .quiz-box {
 
@@ -66,14 +65,14 @@ body {
 
     box-shadow:
         0 15px 35px
-        rgba(0,0,0,0.2);
+        rgba(0,0,0,0.20);
 
 }
 
 
-/* =========================
+/* =====================================================
    TOP
-========================= */
+===================================================== */
 
 .top {
 
@@ -89,7 +88,6 @@ body {
 
 }
 
-
 .level-title {
 
     font-size: 20px;
@@ -98,8 +96,9 @@ body {
 
     color: #667eea;
 
-}
+    line-height: 1.4;
 
+}
 
 .timer {
 
@@ -112,9 +111,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    PROGRESS
-========================= */
+===================================================== */
 
 .progress-text {
 
@@ -125,7 +124,6 @@ body {
     font-size: 16px;
 
 }
-
 
 .progress-container {
 
@@ -143,7 +141,6 @@ body {
 
 }
 
-
 .progress-bar {
 
     width: 0%;
@@ -159,9 +156,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    QUESTION
-========================= */
+===================================================== */
 
 .question {
 
@@ -176,9 +173,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    ANSWERS
-========================= */
+===================================================== */
 
 .answer {
 
@@ -200,10 +197,11 @@ body {
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition:
+        background 0.2s,
+        border-color 0.2s;
 
 }
-
 
 .answer:hover {
 
@@ -213,6 +211,14 @@ body {
 
 }
 
+.answer:disabled {
+
+    cursor: default;
+
+}
+
+
+/* CORRECT */
 
 .answer.correct {
 
@@ -225,6 +231,8 @@ body {
 }
 
 
+/* WRONG */
+
 .answer.wrong {
 
     background: #f8d7da !important;
@@ -236,28 +244,28 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    MESSAGE
-========================= */
+===================================================== */
 
 .message {
 
     text-align: center;
 
-    font-size: 19px;
+    font-size: 18px;
 
     font-weight: bold;
 
-    min-height: 25px;
+    min-height: 27px;
 
     margin-top: 15px;
 
 }
 
 
-/* =========================
+/* =====================================================
    NEXT BUTTON
-========================= */
+===================================================== */
 
 .next {
 
@@ -279,8 +287,9 @@ body {
 
     cursor: pointer;
 
-}
+    transition: 0.2s;
 
+}
 
 .next:hover {
 
@@ -288,10 +297,16 @@ body {
 
 }
 
+.next:active {
 
-/* =========================
+    transform: scale(0.98);
+
+}
+
+
+/* =====================================================
    RESULT
-========================= */
+===================================================== */
 
 .result {
 
@@ -301,13 +316,13 @@ body {
 
 }
 
-
 .result h1 {
 
     font-size: 32px;
 
-}
+    margin-top: 0;
 
+}
 
 .score {
 
@@ -321,7 +336,6 @@ body {
 
 }
 
-
 .percentage {
 
     font-size: 25px;
@@ -329,7 +343,6 @@ body {
     margin-bottom: 10px;
 
 }
-
 
 .status {
 
@@ -341,12 +354,11 @@ body {
 
 }
 
-
 .result-message {
 
     font-size: 18px;
 
-    line-height: 1.5;
+    line-height: 1.6;
 
     margin-bottom: 20px;
 
@@ -355,9 +367,9 @@ body {
 }
 
 
-/* =========================
+/* =====================================================
    RESULT BUTTONS
-========================= */
+===================================================== */
 
 .restart,
 .home,
@@ -379,13 +391,17 @@ body {
 
 }
 
-
 .restart {
 
     background: #667eea;
 
 }
 
+.restart:hover {
+
+    background: #5568d9;
+
+}
 
 .home {
 
@@ -393,6 +409,11 @@ body {
 
 }
 
+.home:hover {
+
+    background: #444;
+
+}
 
 .next-level {
 
@@ -400,26 +421,61 @@ body {
 
 }
 
+.next-level:hover {
 
-/* =========================
+    background: #218838;
+
+}
+
+
+/* =====================================================
+   PUBLIC ACCESS LABEL
+===================================================== */
+
+.public-access {
+
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: #d4edda;
+
+    color: #155724;
+
+    font-size: 12px;
+
+    font-weight: bold;
+
+}
+
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:600px) {
 
-    .quiz-box {
+    body {
 
-        padding: 25px;
+        padding: 12px;
 
     }
 
+    .quiz-box {
+
+        padding: 25px 20px;
+
+    }
 
     .top {
 
         align-items: flex-start;
 
     }
-
 
     .level-title {
 
@@ -429,13 +485,17 @@ body {
 
     }
 
+    .timer {
+
+        font-size: 17px;
+
+    }
 
     .question {
 
         font-size: 21px;
 
     }
-
 
     .answer {
 
@@ -445,10 +505,15 @@ body {
 
     }
 
+    .result h1 {
 
-    .timer {
+        font-size: 27px;
 
-        font-size: 17px;
+    }
+
+    .score {
+
+        font-size: 45px;
 
     }
 
@@ -466,7 +531,8 @@ body {
      QUIZ BOX
 ===================================================== -->
 
-<div class="quiz-box" id="quizBox">
+<div class="quiz-box"
+     id="quizBox">
 
 
     <div class="top">
@@ -485,6 +551,13 @@ body {
             ⏱️ 10:00
 
         </div>
+
+    </div>
+
+
+    <div class="public-access">
+
+        🌐 Visitor Access
 
     </div>
 
@@ -520,9 +593,10 @@ body {
     </div>
 
 
-    <button class="next"
-            id="nextButton"
-            onclick="nextQuestion()">
+    <button
+        class="next"
+        id="nextButton"
+        onclick="nextQuestion()">
 
         Next →
 
@@ -547,7 +621,9 @@ body {
     </h1>
 
 
-    <p>Your Score</p>
+    <p>
+        Your Score
+    </p>
 
 
     <div class="score"
@@ -579,25 +655,28 @@ body {
     </div>
 
 
-    <button class="restart"
-            onclick="restartQuiz()">
+    <button
+        class="restart"
+        onclick="restartQuiz()">
 
         🔄 Try Again
 
     </button>
 
 
-    <button class="next-level"
-            id="nextLevelButton"
-            onclick="goNextLevel()">
+    <button
+        class="next-level"
+        id="nextLevelButton"
+        onclick="goNextLevel()">
 
         ➡️ Next Level
 
     </button>
 
 
-    <button class="home"
-            onclick="goHome()">
+    <button
+        class="home"
+        onclick="goHome()">
 
         🏠 Home
 
@@ -611,46 +690,49 @@ body {
      QUESTION BANK
 ===================================================== -->
 
-<script src="questions.js?v=4"></script>
+<script src="questions.js?v=5"></script>
+
 
 
 <script>
 
-
 /* =====================================================
-   QUIZ SETTINGS
+   SETTINGS
 ===================================================== */
 
-
 /*
-   ONLY LEVEL 1–20
+    ONLY LEVEL 1–20
 */
 
 const TOTAL_LEVELS = 20;
 
 
 /*
-   EVERY LEVEL = 50 QUESTIONS
+    EVERY LEVEL = 50 QUESTIONS
 */
 
 const QUESTIONS_PER_LEVEL = 50;
 
 
 /*
-   NO PASS MARK
-
-   Users can complete every level
-   regardless of their score.
-*/
-
-
-/*
-   50 QUESTIONS
-   10 MINUTES
+    10 MINUTES
 */
 
 const QUIZ_TIME = 600;
 
+
+/*
+    IMPORTANT
+
+    There is NO:
+
+    - Pass mark
+    - 90% requirement
+    - Level unlock
+    - Admin approval
+    - Login requirement
+    - User access check
+*/
 
 
 /* =====================================================
@@ -672,7 +754,6 @@ let timeLeft = QUIZ_TIME;
 let timer = null;
 
 let quizFinished = false;
-
 
 
 /* =====================================================
@@ -744,7 +825,6 @@ const levelTitles = {
 };
 
 
-
 /* =====================================================
    GET LEVEL FROM URL
 ===================================================== */
@@ -765,9 +845,8 @@ if (urlParams.has("level")) {
 }
 
 
-
 /* =====================================================
-   CHECK VALID LEVEL
+   VALIDATE LEVEL
 ===================================================== */
 
 if (
@@ -791,55 +870,42 @@ if (
 
 
 /* =====================================================
-   NO LOGIN CHECK
-   NO APPROVAL CHECK
-   NO UNLOCK CHECK
-
-   ALL LEVELS 1–20 ARE PUBLIC.
-===================================================== */
-
-
-
-/* =====================================================
-   SHUFFLE
+   SHUFFLE ARRAY
 ===================================================== */
 
 function shuffle(array) {
 
-    return array
+    const shuffled =
+        [...array];
 
-        .map(
-            function(value) {
 
-                return {
+    for (
+        let i = shuffled.length - 1;
+        i > 0;
+        i--
+    ) {
 
-                    value: value,
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
 
-                    sort: Math.random()
 
-                };
+        [
+            shuffled[i],
+            shuffled[j]
+        ] =
+        [
+            shuffled[j],
+            shuffled[i]
+        ];
 
-            }
-        )
+    }
 
-        .sort(
-            function(a,b) {
 
-                return a.sort - b.sort;
-
-            }
-        )
-
-        .map(
-            function(item) {
-
-                return item.value;
-
-            }
-        );
+    return shuffled;
 
 }
-
 
 
 /* =====================================================
@@ -848,26 +914,20 @@ function shuffle(array) {
 
 function createQuiz() {
 
-
     quizFinished = false;
 
 
-    /* GET CURRENT LEVEL BANK */
-
-    const bank =
-        questionBank[currentLevel];
-
-
-    /* CHECK QUESTION BANK */
+    /* ---------------------------------------------
+       CHECK QUESTION BANK EXISTS
+    --------------------------------------------- */
 
     if (
-        !Array.isArray(bank)
+        typeof questionBank === "undefined"
     ) {
 
         alert(
-            "Question bank not found for Level " +
-            currentLevel +
-            "."
+            "Question bank could not be loaded.\n\n" +
+            "Please check questions.js."
         );
 
         window.location.href =
@@ -878,7 +938,43 @@ function createQuiz() {
     }
 
 
-    /* EVERY LEVEL MUST HAVE 50 QUESTIONS */
+    /* ---------------------------------------------
+       GET CURRENT LEVEL
+    --------------------------------------------- */
+
+    const bank =
+        questionBank[currentLevel];
+
+
+    /* ---------------------------------------------
+       CHECK LEVEL BANK
+    --------------------------------------------- */
+
+    if (
+        !Array.isArray(bank)
+    ) {
+
+        alert(
+
+            "Question bank not found for Level " +
+            currentLevel +
+            ".\n\n" +
+
+            "Please check questions.js."
+
+        );
+
+        window.location.href =
+            "index.html";
+
+        return;
+
+    }
+
+
+    /* ---------------------------------------------
+       EVERY LEVEL MUST HAVE 50 QUESTIONS
+    --------------------------------------------- */
 
     if (
         bank.length < QUESTIONS_PER_LEVEL
@@ -888,7 +984,7 @@ function createQuiz() {
 
             "Level " +
             currentLevel +
-            " needs 50 questions.\n\n" +
+            " needs at least 50 questions.\n\n" +
 
             "Current questions found: " +
             bank.length
@@ -903,21 +999,22 @@ function createQuiz() {
     }
 
 
-    /*
-       USE FIRST 50 QUESTIONS
-       IN RANDOM ORDER
-    */
+    /* ---------------------------------------------
+       SELECT RANDOM 50
+    --------------------------------------------- */
 
     quizQuestions =
         shuffle(
-            [...bank]
+            bank
         ).slice(
             0,
             QUESTIONS_PER_LEVEL
         );
 
 
-    /* RESET */
+    /* ---------------------------------------------
+       RESET QUIZ
+    --------------------------------------------- */
 
     currentQuestion = 0;
 
@@ -928,13 +1025,9 @@ function createQuiz() {
     timeLeft = QUIZ_TIME;
 
 
-    /* RESET RESULT */
-
-    document.getElementById(
-        "resultBox"
-    ).style.display =
-        "none";
-
+    /* ---------------------------------------------
+       SHOW QUIZ
+    --------------------------------------------- */
 
     document.getElementById(
         "quizBox"
@@ -942,17 +1035,26 @@ function createQuiz() {
         "block";
 
 
-    /* SHOW QUIZ */
+    document.getElementById(
+        "resultBox"
+    ).style.display =
+        "none";
+
+
+    /* ---------------------------------------------
+       LOAD FIRST QUESTION
+    --------------------------------------------- */
 
     loadQuestion();
 
 
-    /* START TIMER */
+    /* ---------------------------------------------
+       START TIMER
+    --------------------------------------------- */
 
     startTimer();
 
 }
-
 
 
 /* =====================================================
@@ -974,17 +1076,23 @@ function loadQuestion() {
         quizQuestions.length;
 
 
-    /* LEVEL TITLE */
+    /* ---------------------------------------------
+       LEVEL TITLE
+    --------------------------------------------- */
 
     document.getElementById(
         "levelTitle"
     ).innerText =
+
         levelTitles[currentLevel] ||
+
         "Gemini Class Level " +
         currentLevel;
 
 
-    /* QUESTION NUMBER */
+    /* ---------------------------------------------
+       QUESTION NUMBER
+    --------------------------------------------- */
 
     document.getElementById(
         "progressText"
@@ -999,7 +1107,9 @@ function loadQuestion() {
         total;
 
 
-    /* QUESTION TEXT */
+    /* ---------------------------------------------
+       QUESTION TEXT
+    --------------------------------------------- */
 
     document.getElementById(
         "question"
@@ -1007,7 +1117,9 @@ function loadQuestion() {
         question[0];
 
 
-    /* PROGRESS */
+    /* ---------------------------------------------
+       PROGRESS BAR
+    --------------------------------------------- */
 
     const progress =
         (
@@ -1023,30 +1135,80 @@ function loadQuestion() {
         progress + "%";
 
 
-    /* CLEAR MESSAGE */
+    /* ---------------------------------------------
+       CLEAR MESSAGE
+    --------------------------------------------- */
 
-    document.getElementById(
-        "message"
-    ).innerText = "";
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+    message.innerText = "";
+
+    message.style.color =
+        "#333";
 
 
-    /* CLEAR ANSWERS */
+    /* ---------------------------------------------
+       CLEAR OLD ANSWERS
+    --------------------------------------------- */
 
     const answersDiv =
         document.getElementById(
             "answers"
         );
 
-
     answersDiv.innerHTML = "";
 
 
-    /* SHUFFLE ANSWERS */
+    /* ---------------------------------------------
+       CHECK QUESTION FORMAT
+    --------------------------------------------- */
+
+    if (
+        !Array.isArray(question) ||
+        question.length < 3
+    ) {
+
+        answersDiv.innerHTML =
+
+            "<p>Invalid question format.</p>";
+
+        return;
+
+    }
+
+
+    /* ---------------------------------------------
+       ANSWER DATA
+
+       question[0] = Question
+       question[1] = Answers
+       question[2] = Correct Answer Index
+    --------------------------------------------- */
+
+    if (
+        !Array.isArray(question[1])
+    ) {
+
+        answersDiv.innerHTML =
+
+            "<p>Invalid answer format.</p>";
+
+        return;
+
+    }
+
+
+    /* ---------------------------------------------
+       SHUFFLE ANSWERS
+    --------------------------------------------- */
 
     const answers =
         shuffle(
             question[1].map(
-                function(answer,index) {
+                function(answer, index) {
 
                     return {
 
@@ -1062,11 +1224,12 @@ function loadQuestion() {
         );
 
 
-    /* CREATE ANSWER BUTTONS */
+    /* ---------------------------------------------
+       CREATE ANSWER BUTTONS
+    --------------------------------------------- */
 
     answers.forEach(
-        function(item,index) {
-
+        function(item, index) {
 
             const button =
                 document.createElement(
@@ -1089,17 +1252,19 @@ function loadQuestion() {
                 item.text;
 
 
-            /* CORRECT ANSWER */
+            /*
+                TRUE if this is the
+                original correct answer
+            */
 
             button.dataset.correct =
 
                 (
                     item.originalIndex ===
                     question[2]
-                );
+                )
+                .toString();
 
-
-            /* CLICK */
 
             button.onclick =
                 function() {
@@ -1119,31 +1284,34 @@ function loadQuestion() {
     );
 
 
-    /* NEXT BUTTON */
+    /* ---------------------------------------------
+       NEXT BUTTON TEXT
+    --------------------------------------------- */
+
+    const nextButton =
+        document.getElementById(
+            "nextButton"
+        );
+
 
     if (
         currentQuestion ===
         total - 1
     ) {
 
-        document.getElementById(
-            "nextButton"
-        ).innerText =
+        nextButton.innerText =
             "Finish Quiz ✓";
 
     }
 
     else {
 
-        document.getElementById(
-            "nextButton"
-        ).innerText =
+        nextButton.innerText =
             "Next →";
 
     }
 
 }
-
 
 
 /* =====================================================
@@ -1174,7 +1342,22 @@ function checkAnswer(button) {
         "true";
 
 
-    /* CORRECT */
+    /* ---------------------------------------------
+       DISABLE ALL ANSWERS
+    --------------------------------------------- */
+
+    buttons.forEach(
+        function(btn) {
+
+            btn.disabled = true;
+
+        }
+    );
+
+
+    /* ---------------------------------------------
+       CORRECT
+    --------------------------------------------- */
 
     if (isCorrect) {
 
@@ -1190,21 +1373,25 @@ function checkAnswer(button) {
         score++;
 
 
-        document.getElementById(
-            "message"
-        ).innerText =
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.innerText =
             "✓ Correct Answer!";
 
 
-        document.getElementById(
-            "message"
-        ).style.color =
+        message.style.color =
             "#28a745";
 
     }
 
 
-    /* WRONG */
+    /* ---------------------------------------------
+       WRONG
+    --------------------------------------------- */
 
     else {
 
@@ -1240,21 +1427,22 @@ function checkAnswer(button) {
         );
 
 
-        document.getElementById(
-            "message"
-        ).innerText =
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.innerText =
             "✗ Wrong Answer!";
 
 
-        document.getElementById(
-            "message"
-        ).style.color =
+        message.style.color =
             "#dc3545";
 
     }
 
 }
-
 
 
 /* =====================================================
@@ -1264,19 +1452,23 @@ function checkAnswer(button) {
 function nextQuestion() {
 
 
-    /* ANSWER REQUIRED */
+    /* ---------------------------------------------
+       USER MUST ANSWER
+    --------------------------------------------- */
 
     if (!answered) {
 
-        document.getElementById(
-            "message"
-        ).innerText =
+        const message =
+            document.getElementById(
+                "message"
+            );
+
+
+        message.innerText =
             "Please choose an answer first.";
 
 
-        document.getElementById(
-            "message"
-        ).style.color =
+        message.style.color =
             "#dc3545";
 
 
@@ -1288,7 +1480,9 @@ function nextQuestion() {
     currentQuestion++;
 
 
-    /* MORE QUESTIONS */
+    /* ---------------------------------------------
+       MORE QUESTIONS
+    --------------------------------------------- */
 
     if (
         currentQuestion <
@@ -1297,19 +1491,18 @@ function nextQuestion() {
 
         loadQuestion();
 
-    }
-
-
-    /* FINISH */
-
-    else {
-
-        finishQuiz();
+        return;
 
     }
+
+
+    /* ---------------------------------------------
+       FINISH
+    --------------------------------------------- */
+
+    finishQuiz();
 
 }
-
 
 
 /* =====================================================
@@ -1317,7 +1510,6 @@ function nextQuestion() {
 ===================================================== */
 
 function startTimer() {
-
 
     clearInterval(
         timer
@@ -1337,10 +1529,9 @@ function startTimer() {
 
                 timeLeft--;
 
+
                 updateTimerDisplay();
 
-
-                /* TIME OVER */
 
                 if (
                     timeLeft <= 0
@@ -1349,6 +1540,7 @@ function startTimer() {
                     clearInterval(
                         timer
                     );
+
 
                     finishQuiz();
 
@@ -1361,13 +1553,11 @@ function startTimer() {
 }
 
 
-
 /* =====================================================
    TIMER DISPLAY
 ===================================================== */
 
 function updateTimerDisplay() {
-
 
     const minutes =
         Math.floor(
@@ -1403,7 +1593,6 @@ function updateTimerDisplay() {
 }
 
 
-
 /* =====================================================
    FINISH QUIZ
 ===================================================== */
@@ -1411,7 +1600,9 @@ function updateTimerDisplay() {
 function finishQuiz() {
 
 
-    /* PREVENT DOUBLE FINISH */
+    /* ---------------------------------------------
+       PREVENT DOUBLE FINISH
+    --------------------------------------------- */
 
     if (quizFinished) {
 
@@ -1428,13 +1619,17 @@ function finishQuiz() {
     );
 
 
-    /* TOTAL QUESTIONS */
+    /* ---------------------------------------------
+       TOTAL QUESTIONS
+    --------------------------------------------- */
 
     const total =
         quizQuestions.length;
 
 
-    /* CALCULATE PERCENTAGE */
+    /* ---------------------------------------------
+       PERCENTAGE
+    --------------------------------------------- */
 
     const percentage =
         Math.round(
@@ -1445,7 +1640,9 @@ function finishQuiz() {
         );
 
 
-    /* HIDE QUIZ */
+    /* ---------------------------------------------
+       HIDE QUIZ
+    --------------------------------------------- */
 
     document.getElementById(
         "quizBox"
@@ -1453,7 +1650,9 @@ function finishQuiz() {
         "none";
 
 
-    /* SHOW RESULT */
+    /* ---------------------------------------------
+       SHOW RESULT
+    --------------------------------------------- */
 
     document.getElementById(
         "resultBox"
@@ -1461,7 +1660,19 @@ function finishQuiz() {
         "block";
 
 
-    /* SCORE */
+    /* ---------------------------------------------
+       RESULT TITLE
+    --------------------------------------------- */
+
+    document.getElementById(
+        "resultTitle"
+    ).innerText =
+        "🎉 Quiz Completed!";
+
+
+    /* ---------------------------------------------
+       SCORE
+    --------------------------------------------- */
 
     document.getElementById(
         "score"
@@ -1472,7 +1683,9 @@ function finishQuiz() {
         total;
 
 
-    /* PERCENTAGE */
+    /* ---------------------------------------------
+       PERCENTAGE
+    --------------------------------------------- */
 
     document.getElementById(
         "percentage"
@@ -1482,7 +1695,14 @@ function finishQuiz() {
         "%";
 
 
-    /* STATUS */
+    /* ---------------------------------------------
+       STATUS
+
+       IMPORTANT:
+       ALWAYS COMPLETED
+
+       NO PASS / FAIL
+    --------------------------------------------- */
 
     document.getElementById(
         "status"
@@ -1496,15 +1716,9 @@ function finishQuiz() {
         "#667eea";
 
 
-    /* TITLE */
-
-    document.getElementById(
-        "resultTitle"
-    ).innerText =
-        "🎉 Quiz Completed!";
-
-
-    /* RESULT MESSAGE */
+    /* ---------------------------------------------
+       RESULT MESSAGE
+    --------------------------------------------- */
 
     document.getElementById(
         "resultMessage"
@@ -1514,7 +1728,7 @@ function finishQuiz() {
 
         percentage +
 
-        "% in " +
+        "% in\n\n" +
 
         levelTitles[currentLevel] +
 
@@ -1522,10 +1736,12 @@ function finishQuiz() {
 
         "There is no pass mark or level unlock requirement.\n" +
 
-        "You can try again or continue to the next level.";
+        "You may try again or continue to the next level.";
 
 
-    /* NEXT LEVEL BUTTON */
+    /* ---------------------------------------------
+       NEXT LEVEL BUTTON
+    --------------------------------------------- */
 
     const nextButton =
         document.getElementById(
@@ -1541,14 +1757,22 @@ function finishQuiz() {
         nextButton.style.display =
             "inline-block";
 
+
         nextButton.innerText =
 
             "➡️ Next Level " +
+
             (currentLevel + 1);
 
     }
 
     else {
+
+        /*
+            Level 20 = Final Level
+
+            No next level
+        */
 
         nextButton.style.display =
             "none";
@@ -1556,7 +1780,6 @@ function finishQuiz() {
     }
 
 }
-
 
 
 /* =====================================================
@@ -1570,7 +1793,6 @@ function restartQuiz() {
 }
 
 
-
 /* =====================================================
    NEXT LEVEL
 ===================================================== */
@@ -1579,30 +1801,40 @@ function goNextLevel() {
 
 
     if (
-        currentLevel <
+        currentLevel >=
         TOTAL_LEVELS
     ) {
 
-        const nextLevel =
-            currentLevel + 1;
-
-
-        /*
-           NO UNLOCK CHECK
-           NO PASS CHECK
-           DIRECT ACCESS
-        */
-
-        window.location.href =
-
-            "quiz.html?level=" +
-
-            nextLevel;
+        return;
 
     }
 
-}
 
+    const nextLevel =
+        currentLevel + 1;
+
+
+    /*
+        IMPORTANT:
+
+        NO LOGIN
+        NO APPROVAL
+        NO PASS MARK
+        NO LEVEL ACCESS
+        NO UNLOCK CHECK
+
+        Directly open next level.
+    */
+
+    window.location.href =
+
+        "quiz.html?level=" +
+
+        encodeURIComponent(
+            nextLevel
+        );
+
+}
 
 
 /* =====================================================
@@ -1622,9 +1854,8 @@ function goHome() {
 }
 
 
-
 /* =====================================================
-   START
+   START QUIZ
 ===================================================== */
 
 createQuiz();
